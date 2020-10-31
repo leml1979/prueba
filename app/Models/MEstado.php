@@ -9,6 +9,7 @@ class MEstado extends Model
 {
 	use HasFactory;
 	public $timestamps = false;
+	
 	public function municipios(){
 		return $this->hasMany('App\Models\MMunicipio','estado_id');
 	}

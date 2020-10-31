@@ -10,6 +10,7 @@ class MDivision extends Model
     use HasFactory;
 
     protected $table='m_divisiones';
+    public $timestamps = false;
 
     public function seccion()
     {

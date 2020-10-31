@@ -12,6 +12,7 @@ class MSeccion extends Model
 	protected $table='m_secciones';
 	public $incrementing = false;
 	protected $keyType = 'string';
+	public $timestamps = false;
 
 	public function divisiones(){
 		return $this->hasMany('App\Models\MDivision','seccion_id');

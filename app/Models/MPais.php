@@ -9,4 +9,6 @@ class MPais extends Model
 {
     use HasFactory;
     protected $table='m_paises';
+    public $timestamps = false;
+    
 }
