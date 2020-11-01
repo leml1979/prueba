@@ -17,10 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/registro', function () {
+    return view('registro');
+})->name('registro');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/seniat', [App\Http\Controllers\SeniatController::class, 'index'])->name('seniat');
 Route::post('/seniat/guardar', [App\Http\Controllers\SeniatController::class, 'store'])->name('seniat.guardar');
-
+Route::post('/registro/validar', [App\Http\Controllers\TUsuariosTemporalController::class, 'store'])->name('registro.validar');

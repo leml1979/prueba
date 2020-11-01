@@ -3,17 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\TUsuariosTemporal;
 use App\Models\ESeniat;
-use App\Models\MSujeto;
-use Auth;
 
-class SeniatController extends Controller
+
+class TUsuariosTemporalController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +16,7 @@ class SeniatController extends Controller
      */
     public function index()
     {
-        $datosseniat = ESeniat::where('rif',Auth::user()->rif)->limit(1)->get();
-        //dd($datosseniat);
-        return view("informacion_general.seniat.listar",compact('datosseniat'));
+        //
     }
 
     /**
@@ -44,11 +37,28 @@ class SeniatController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump(Auth::user()->rif);
-        $sujeto= MSujeto::all();
-        dd($sujeto);
-        flash('probando');
-        return redirect()->route('seniat'); 
+        $tUsuariosTemporal = TUsuariosTemporal::where("rif",$request->rif)->get();
+
+        if($tUsuariosTemporal->count()){
+            flash("Ya ha solicitado un registro, por favor verifique su correo");
+            return redirect()->route('registro'); 
+        }
+
+        $seniat = ESeniat::where("rif",$request->rif)->get();
+
+        if($seniat->count()){
+            //existe en la tabla e_seniat el rif
+            TUsuariosTemporal::create([
+                'rif' => $request->rif,
+                'email' => $request['email'],
+                'hash' => Hash::make($request->rif),
+            ]);
+
+        }else{
+            flash("El RIF no se encuentra registrado, Dirigirse al SENIAT");
+            return redirect()->route('registro');
+        }
+
     }
 
     /**

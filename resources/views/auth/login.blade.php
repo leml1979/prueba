@@ -69,7 +69,7 @@
                             <div class="col-md-4">
                                 @if (Route::has('password.request'))
                                     
-                                    <a class="btn btn-link" href="{{ route('register') }}">
+                                    <a class="btn btn-link" href="{{ route('registro') }}">
                                        <i class="fas fa-user-plus"></i>
                                     </a>
                                 @endif

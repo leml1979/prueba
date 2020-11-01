@@ -8,6 +8,10 @@ Información Seniat
 Información Seniat
 @endsection
 
+@section('css')
+<link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -39,19 +43,37 @@ Información Seniat
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>¿Esta usted de acuerdo con la información mostrada? <br /> <input type="radio" name="acuerdo" value="Si"> Si <input type="radio" name="acuerdo" value="No"> No</td>
-                                    <td><input type="submit" name="guardar" value="Guardar" class="btn btn-primary"></td>
+                                    <td><div class="form-group clearfix">
+                                      <div class="icheck-primary d-inline">
+                                        <input type="radio" id="radioPrimary1" name="r1" checked>
+                                        <label for="radioPrimary1">
+                                        </label>
+                                    </div>
+                                    <div class="icheck-primary d-inline">
+                                        <input type="radio" id="radioPrimary2" name="r1">
+                                        <label for="radioPrimary2">
+                                        </label>
+                                    </div>
+                                    <div class="icheck-primary d-inline">
+                                        <input type="radio" id="radioPrimary3" name="r1" disabled>
+                                        <label for="radioPrimary3">
+                                          Primary radio
+                                      </label>
+                                  </div>
+                              </div>¿Esta usted de acuerdo con la información mostrada? <br /> <input type="radio" name="acuerdo" value="Si"> Si <input type="radio" name="acuerdo" value="No"> No</td>
+                              <td><input type="submit" name="guardar" value="Guardar" class="btn btn-primary"></td>
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="">
-        @include('flash::message')
-    </div>
+                          </tr>
+                      </tbody>
+                  </table>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="">
+    @include('flash::message')
+</div>
 </div>
 @endsection
+
