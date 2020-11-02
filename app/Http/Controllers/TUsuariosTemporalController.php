@@ -80,7 +80,7 @@ class TUsuariosTemporalController extends Controller
                 'rif' => $request->rif,
                 'email' => $request->email,
                 'hash' => $hash,
-                'estatus'=>1,
+                'estatus'=>0,
                 'seniat_id'=>$seniat[0]->id,
             ])){
                 $subject = "Inscripción de Nuevo Usuario";
