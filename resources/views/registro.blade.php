@@ -16,7 +16,8 @@
                 <div class="card-header">{{ __('Registro') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('registro.validar') }}">
+                    {!! Form::open(['route' => 'registro.validar', 'method' => 'post']) !!}
+                   <!-- <form method="POST" action="{{ route('registro.validar') }}">-->
                         @csrf
 
                         <div class="form-group row">
@@ -49,7 +50,8 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                        {!! Form::close() !!}
+                    <!--</form>-->
                 </div>
             </div>
         </div>

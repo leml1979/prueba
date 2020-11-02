@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\TUsuariosTemporal;
 use App\Models\ESeniat;
+use Carbon\Carbon;
+use App\Http\Requests\RegistroRequest;
+
+
 
 
 class TUsuariosTemporalController extends Controller
@@ -35,9 +39,10 @@ class TUsuariosTemporalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RegistroRequest $request)
     {
-        $tUsuariosTemporal = TUsuariosTemporal::where("rif",$request->rif)->get();
+        dd($request);
+        /*$tUsuariosTemporal = TUsuariosTemporal::where("rif",$request->rif)->get();
 
         if($tUsuariosTemporal->count()){
             flash("Ya ha solicitado un registro, por favor verifique su correo");
@@ -47,6 +52,8 @@ class TUsuariosTemporalController extends Controller
         $seniat = ESeniat::where("rif",$request->rif)->get();
 
         if($seniat->count()){
+            $date = Carbon::now();
+            dd($date);
             //existe en la tabla e_seniat el rif
             TUsuariosTemporal::create([
                 'rif' => $request->rif,
@@ -57,7 +64,7 @@ class TUsuariosTemporalController extends Controller
         }else{
             flash("El RIF no se encuentra registrado, Dirigirse al SENIAT");
             return redirect()->route('registro');
-        }
+        }*/
 
     }
 
