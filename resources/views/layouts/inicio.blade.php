@@ -8,9 +8,9 @@
   <title>RUPDAE</title>
 
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
@@ -58,12 +58,11 @@
             <div class="col-sm-8">
               <div class="row">
               <a href="http://www.sundde.gob.ve" target="_BLANK" class="img-logo">
-                <img src="img/logoRupdae.png" height="150px" style="margin-top:16px;"  > 
+                <img src="{{asset('img/logoRupdae.png')}}" height="150px" style="margin-top:16px;"  > 
               </a>
               </div>
               <div class="row">
-              <a href="http://www.sundde.gob.ve" target="_BLANK" class="img-logo">
-                <img src="img/logo.png" height="150px" style="margin-top:16px;"  > 
+                <img src="{{asset('img/logo.png')}}" height="150px" style="margin-top:16px;"  > 
               </a>
               </div>
 
@@ -92,19 +91,19 @@
 
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
+<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
 <!-- Bootstrap -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
+<script src="{{asset('dist/js/adminlte.js')}}"></script>
 
 <!-- OPTIONAL SCRIPTS -->
 
 <!-- PAGE PLUGINS -->
 <!-- jQuery Mapael -->
-<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script src="{{asset('plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
 @yield('js')
 </body>
 </html>

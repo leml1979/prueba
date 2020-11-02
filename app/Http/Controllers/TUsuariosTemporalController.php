@@ -7,7 +7,9 @@ use App\Models\TUsuariosTemporal;
 use App\Models\ESeniat;
 use Carbon\Carbon;
 use App\Http\Requests\RegistroRequest;
-
+use Mail;
+use App\Models\User;
+use Hash;
 
 
 
@@ -18,9 +20,20 @@ class TUsuariosTemporalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function guardarUsuario(Request $request)
     {
-        //
+        
+        $this->validate($request, [
+           'password'  => 'required|min:4|max:10',
+           'password_confirmar' => 'required|same:password',
+           'email'=> 'unique:users,email',
+           'rif' => 'unique:users,rif'
+       ]);
+        $usuario = new User();
+        $usuario->rif=$request->rif;
+        $usuario->email=$request->email;
+        $usuario->password= Hash::make($request->password);
+        dd($usuario);
     }
 
     /**
@@ -28,9 +41,16 @@ class TUsuariosTemporalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function verificar($hash)
     {
-        //
+      $tUsuariosTemporal = TUsuariosTemporal::where('hash',$hash)->get();
+      if($tUsuariosTemporal->count()){
+
+        return view("registro.password",compact('tUsuariosTemporal'));
+      }
+      else{
+        return "no valido el hash";
+      }
     }
 
     /**
@@ -55,14 +75,21 @@ class TUsuariosTemporalController extends Controller
             $date = Carbon::now();
             //dd(sha1($request->rif));
             //existe en la tabla e_seniat el rif
+            $hash=sha1($request->rif.$date->format('d-m-y h:m:s'));
             if(TUsuariosTemporal::create([
                 'rif' => $request->rif,
-                'email' => $request['email'],
-                'hash' => sha1($request->rif.$date->format('d-m-y h:m:s')),
+                'email' => $request->email,
+                'hash' => $hash,
                 'estatus'=>1,
                 'seniat_id'=>$seniat[0]->id,
             ])){
-                
+                $subject = "Inscripción de Nuevo Usuario";
+                $for = $request->email;
+                Mail::send('mails.registro',['rif'=>$request->rif,'email'=>$request->email,'hash'=>$hash,'razon_social'=> mb_strtoupper($seniat[0]['razon_social'],'UTF-8')], function($msj) use($subject,$for){
+                    $msj->from("noresponder@sundde.gob.ve","Superintendencia de Precios Justos");
+                    $msj->subject($subject);
+                    $msj->to($for);
+                });
                 return redirect()->route('login');
             }
             
