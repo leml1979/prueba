@@ -41,8 +41,8 @@ class TUsuariosTemporalController extends Controller
      */
     public function store(RegistroRequest $request)
     {
-        dd($request);
-        /*$tUsuariosTemporal = TUsuariosTemporal::where("rif",$request->rif)->get();
+        //dd($request);
+        $tUsuariosTemporal = TUsuariosTemporal::where("rif",$request->rif)->get();
 
         if($tUsuariosTemporal->count()){
             flash("Ya ha solicitado un registro, por favor verifique su correo");
@@ -50,21 +50,27 @@ class TUsuariosTemporalController extends Controller
         }
 
         $seniat = ESeniat::where("rif",$request->rif)->get();
-
+//dd($seniat[0]->rif);
         if($seniat->count()){
             $date = Carbon::now();
-            dd($date);
+            //dd(sha1($request->rif));
             //existe en la tabla e_seniat el rif
-            TUsuariosTemporal::create([
+            if(TUsuariosTemporal::create([
                 'rif' => $request->rif,
                 'email' => $request['email'],
-                'hash' => Hash::make($request->rif),
-            ]);
+                'hash' => sha1($request->rif.$date->format('d-m-y h:m:s')),
+                'estatus'=>1,
+                'seniat_id'=>$seniat[0]->id,
+            ])){
+                
+                return redirect()->route('login');
+            }
+            
 
         }else{
             flash("El RIF no se encuentra registrado, Dirigirse al SENIAT");
             return redirect()->route('registro');
-        }*/
+        }
 
     }
 

@@ -22,7 +22,7 @@
 
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <input id="rif" type="text" class="form-control @error('rif') is-invalid @enderror" name="rif" value="{{ old('rif') }}" required autocomplete="rif" autofocus placeholder="RIF">
+                                <input id="rif" type="text" class="form-control @error('rif') is-invalid @enderror" name="rif" value="{{ old('rif') }}" required autocomplete="rif" autofocus placeholder="RIF" maxlength="10">
 
                                 @error('rif')
                                 <span class="invalid-feedback" role="alert">
