@@ -1,6 +1,6 @@
-<p>Inscripción de Usuario</p>
+<p><h2>Inscripción de Usuario</h2></p>
 
-<p>El usuario {{$razon_social}}, identificado con el número de RIF {{$rif}}, ha completado el primer paso para la inscripción ante el Registro Único de Personas que Desarrollan Actividades Económicas, para culminar el proceso deberá hacer click en el botón Activar Nuevo Usuario y proporcionar los datos de Configuración de Seguridad allí solicitados.</p>
+<p style="text-align: justify;">El usuario {{$razon_social}}, identificado con el número de RIF {{$rif}}, ha completado el primer paso para la inscripción ante el Registro Único de Personas que Desarrollan Actividades Económicas, para culminar el proceso deberá hacer click en el botón Activar Nuevo Usuario y proporcionar los datos de Configuración de Seguridad allí solicitados.</p>
 
 <p>
 	<table style="border-radius:1px;background-color:#004bab" cellspacing="0" cellpadding="0" border="0">

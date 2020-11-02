@@ -32,3 +32,8 @@ Route::post('/registro/validar', [App\Http\Controllers\TUsuariosTemporalControll
 Route::get('/usuarios/verificar/{hash}', [App\Http\Controllers\TUsuariosTemporalController::class, 'verificar'])->name('usuario.verificar');
 
 Route::post('/password', [App\Http\Controllers\TUsuariosTemporalController::class, 'guardarUsuario'])->name('registro.password');
+
+
+Route::get('/mensaje', function () {
+    return view('registro.registroMensaje');
+})->name('registroMensaje');

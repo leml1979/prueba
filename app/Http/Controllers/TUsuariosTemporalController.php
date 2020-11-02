@@ -90,7 +90,7 @@ class TUsuariosTemporalController extends Controller
                     $msj->subject($subject);
                     $msj->to($for);
                 });
-                return redirect()->route('login');
+                return redirect()->route('registroMensaje');
             }
             
 
