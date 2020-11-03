@@ -40,3 +40,7 @@ Route::get('/mensaje', function () {
 
 //informacion adicional
 Route::get('/adicional', [App\Http\Controllers\AdicionalController::class, 'create'])->name('adicional.create');
+
+
+//accionistas
+Route::get('/accionista', [App\Http\Controllers\AccionistaController::class, 'index'])->name('accionista.index');
