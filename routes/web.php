@@ -37,3 +37,6 @@ Route::post('/password', [App\Http\Controllers\TUsuariosTemporalController::clas
 Route::get('/mensaje', function () {
     return view('registro.registroMensaje');
 })->name('registroMensaje');
+
+//informacion adicional
+Route::get('/adicional', [App\Http\Controllers\AdicionalController::class, 'create'])->name('adicional.create');
