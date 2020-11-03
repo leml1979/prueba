@@ -33,7 +33,17 @@ class TUsuariosTemporalController extends Controller
         $usuario->rif=$request->rif;
         $usuario->email=$request->email;
         $usuario->password= Hash::make($request->password);
-        dd($usuario);
+        $usuario->estatus= 1;
+        $usuario->name=$request->razon_social;
+        if($usuario->save()){
+            flash("Ingrese al sistema con el usuario: ".$usuario->email. " y la contraseña creada")->success();
+            return redirect()->route('login');
+        }else{
+            flash("Intente nuevamente")->error()->important();
+            return redirect()->route('login');
+        }
+
+        
     }
 
     /**
@@ -45,8 +55,8 @@ class TUsuariosTemporalController extends Controller
     {
       $tUsuariosTemporal = TUsuariosTemporal::where('hash',$hash)->get();
       if($tUsuariosTemporal->count()){
-
-        return view("registro.password",compact('tUsuariosTemporal'));
+        $seniat = ESeniat::where("rif",$tUsuariosTemporal[0]['rif'])->get("razon_social");
+        return view("registro.password",compact('tUsuariosTemporal','seniat'));
       }
       else{
         return "no valido el hash";
