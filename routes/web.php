@@ -44,3 +44,8 @@ Route::get('/adicional', [App\Http\Controllers\AdicionalController::class, 'crea
 
 //accionistas
 Route::get('/accionista', [App\Http\Controllers\AccionistaController::class, 'index'])->name('accionista.index');
+
+
+//proveedores
+Route::get('/proveedores', [App\Http\Controllers\ProveedorController::class, 'index'])->name('proveedor.index');
+Route::get('/proveedores/create', [App\Http\Controllers\ProveedorController::class, 'create'])->name('proveedor.create');

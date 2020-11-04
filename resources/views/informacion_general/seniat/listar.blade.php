@@ -59,7 +59,7 @@ Información Seniat
                         </label>
                       </div>
                       
-                    </div>
+                    </div></td>
                     <td><input type="submit" name="guardar" value="Guardar" class="btn btn-primary"></td>
 
                   </tr>
