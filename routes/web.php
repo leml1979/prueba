@@ -21,6 +21,10 @@ Route::get('/registro', function () {
     return view('registro');
 })->name('registro');
 
+Route::get('/declaracionjurada', function () {
+    return view('registro.declaracionJurada');
+})->name('declaracionjurada');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -38,6 +42,9 @@ Route::get('/mensaje', function () {
     return view('registro.registroMensaje');
 })->name('registroMensaje');
 
+//declaracion jurada
+Route::post('/declaracionjurada', [App\Http\Controllers\TUsuariosTemporalController::class, 'guardarDeclaracion'])->name('declaracionjurada');
+
 //informacion adicional
 Route::get('/adicional', [App\Http\Controllers\AdicionalController::class, 'create'])->name('adicional.create');
 
@@ -49,3 +56,5 @@ Route::get('/accionista', [App\Http\Controllers\AccionistaController::class, 'in
 //proveedores
 Route::get('/proveedores', [App\Http\Controllers\ProveedorController::class, 'index'])->name('proveedor.index');
 Route::get('/proveedores/create', [App\Http\Controllers\ProveedorController::class, 'create'])->name('proveedor.create');
+
+

@@ -2,6 +2,11 @@
 @section('css')
 <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+<style type="text/css">
+	#pais{
+		height: calc(2.25rem + 2px);
+	}
+</style>
 
 @endsection
 @section('breadcrumb')
@@ -56,7 +61,7 @@ Gestión de Proveedores
 							<label>Registro de Información Fiscal</label>
 							<span class="control-obligatorio">*</span>
 							<div class="input-group">
-								<input ID="txtPassword" type="tet" Class="form-control" name="rif">
+								<input ID="rif" type="text" Class="form-control" name="rif">
 								<button id="buscar" class="btn btn-primary" type="button"> 
 									<span class="fa fa-search icon"></span>
 								</button>
@@ -97,22 +102,22 @@ Gestión de Proveedores
 					<div class="col-sm-4">
 						<div class="form-group">
 							<label>País</label>
-							<select name="pais" class="form-control select2-single">
-								<option value="A">A</option>
-								<option value="A">H</option>
-								<option value="A">G</option>
-								<option value="A">F</option>
-								<option value="A">E</option>
-								<option value="A">D</option>
-								<option value="A">C</option>
-								<option value="A">B</option>
-							</select>
-						</div>
+							<select id="pais" name="pais" class="form-control select2" style="width: 100%; height: calc(2.25rem + 2px);">
+							<option value="A">A</option>
+							<option value="A">H</option>
+							<option value="A">G</option>
+							<option value="A">F</option>
+							<option value="A">E</option>
+							<option value="A">D</option>
+							<option value="A">C</option>
+							<option value="A">B</option>
+						</select>
 					</div>
 				</div>
-			</fieldset>
-		</div>
+			</div>
+		</fieldset>
 	</div>
+</div>
 </div>
 
 @endsection

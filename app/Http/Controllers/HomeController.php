@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        
+        if(Auth::user()->declaracion_jurada && (Auth::user()->texto_declaracion_jurada==null || Auth::user()->texto_declaracion_jurada==='NO ESTOY DE ACUERDO')){
+            return view('registro.declaracionJurada');
+        }elseif(Auth::user()->declaracion_jurada && Auth::user()->texto_declaracion_jurada==='ESTOY DE ACUERDO'){
+            return view('home');
+        }
+        dd(Auth::user());
     }
 }
