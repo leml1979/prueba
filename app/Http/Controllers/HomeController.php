@@ -25,11 +25,13 @@ class HomeController extends Controller
     public function index()
     {
         
-        if(Auth::user()->declaracion_jurada && (Auth::user()->texto_declaracion_jurada==null || Auth::user()->texto_declaracion_jurada==='NO ESTOY DE ACUERDO')){
+        if(Auth::user()->declaracion_jurada && (Auth::user()->texto_declaracion_jurada==null || Auth::user()->texto_declaracion_jurada!=='ESTOY DE ACUERDO')){
             return view('registro.declaracionJurada');
         }elseif(Auth::user()->declaracion_jurada && Auth::user()->texto_declaracion_jurada==='ESTOY DE ACUERDO'){
             return view('home');
+        }else{
+            return redirect()->route('login');
         }
-        dd(Auth::user());
+        
     }
 }
