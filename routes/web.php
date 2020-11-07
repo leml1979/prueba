@@ -43,7 +43,7 @@ Route::get('/mensaje', function () {
 })->name('registroMensaje');
 
 //declaracion jurada
-Route::post('/declaracionjurada', [App\Http\Controllers\TUsuariosTemporalController::class, 'guardarDeclaracion'])->name('declaracionjurada');
+Route::post('/declaracionjurada', [App\Http\Controllers\HomeController::class, 'guardarDeclaracion'])->name('declaracionjurada');
 
 //informacion adicional
 Route::get('/adicional', [App\Http\Controllers\AdicionalController::class, 'create'])->name('adicional.create');

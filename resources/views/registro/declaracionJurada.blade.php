@@ -20,8 +20,8 @@
 				<div class="col-sm-12">
 					<div class="input-group">
 
-						<input type="text" name="texto" class="form-control">
-						<button type="submit" class="btn btn-primary" placeholder="Escriba su Desición">Guardar</button>
+						<input type="text" id="texto" maxlength="20" name="texto" class="form-control" required="true" placeholder="Escriba su Desición" onkeyup="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" autocomplete="off">
+						<button type="submit" class="btn btn-primary">Guardar</button>
 
 					</div>
 				</div>

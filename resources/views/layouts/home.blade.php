@@ -83,7 +83,7 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        @if(Auth::user()->declaracion_jurada && Auth::user()->texto_declaracion_jurada==='ESTOY DE ACUERDO')
+        @if(Auth::user()->declaracion_jurada && Auth::user()->respuesta_declaracion_jurada==='ESTOY DE ACUERDO')
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
             <a href="#" class="nav-link">
