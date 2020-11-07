@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ESeniat extends Model
 {
-    use HasFactory;
-    public $timestamps = false;
+	use HasFactory;
+	public $timestamps = false;
+
 }

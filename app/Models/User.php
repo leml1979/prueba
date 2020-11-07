@@ -47,4 +47,8 @@ class User extends Authenticatable
     {
         return $this->password;
     }
+
+    public function seniat() {
+        return $this->hasOne('App\Models\ESeniat','seniat_id');
+    }
 }

@@ -22,7 +22,6 @@ class TUsuariosTemporalController extends Controller
      */
     public function guardarUsuario(Request $request)
     {
-        
         $this->validate($request, [
            'password'  => 'required|min:4|max:10',
            'password_confirmar' => 'required|same:password',
@@ -35,6 +34,7 @@ class TUsuariosTemporalController extends Controller
         $usuario->password= Hash::make($request->password);
         $usuario->estatus= 1;
         $usuario->name=$request->razon_social;
+        $usuario->seniat_id=$request->seniat_id;
         if($usuario->save()){
             flash("Ingrese al sistema con el usuario: ".$usuario->email. " y la contraseña creada")->success();
             return redirect()->route('login');
@@ -55,7 +55,7 @@ class TUsuariosTemporalController extends Controller
     {
       $tUsuariosTemporal = TUsuariosTemporal::where('hash',$hash)->get();
       if($tUsuariosTemporal->count()){
-        $seniat = ESeniat::where("rif",$tUsuariosTemporal[0]['rif'])->get("razon_social");
+        $seniat = ESeniat::where("rif",$tUsuariosTemporal[0]['rif'])->get(["razon_social","id"]);
         return view("registro.password",compact('tUsuariosTemporal','seniat'));
       }
       else{

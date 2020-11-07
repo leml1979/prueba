@@ -47,7 +47,7 @@ Información Seniat
                     ¿Esta usted de acuerdo con la información mostrada? <br /> 
                     <div class="form-group clearfix">
                       <div class="icheck-primary d-inline">
-                        <input type="radio" id="radioPrimary1" name="acuerdo" checked value="si">
+                        <input type="radio" id="radioPrimary1" name="acuerdo" value="si">
                         <label for="radioPrimary1">
                           Sí
                         </label>

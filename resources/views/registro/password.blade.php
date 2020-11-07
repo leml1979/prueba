@@ -54,6 +54,7 @@
 						<input id="email" type="hidden" name="email" value="{{ $tUsuariosTemporal[0]['email'] }}">
 						<input id="rif" type="hidden" name="rif" value="{{ $tUsuariosTemporal[0]['rif']}}">
 						<input id="razon_social" type="hidden" name="razon_social" value="{{ $seniat[0]['razon_social']}}">
+						<input id="seniat_id" type="hidden" name="seniat_id" value="{{ $seniat[0]['id']}}">
 						{!! Form::close() !!}
 						<!--</form>-->
 					</div>

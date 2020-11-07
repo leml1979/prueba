@@ -45,7 +45,7 @@ class SeniatController extends Controller
     public function store(Request $request)
     {
         var_dump(Auth::user()->rif);
-        $sujeto= MSujeto::all();
+        $sujeto= MSujeto::where();
         dd($sujeto);
         flash('probando');
         return redirect()->route('seniat'); 
