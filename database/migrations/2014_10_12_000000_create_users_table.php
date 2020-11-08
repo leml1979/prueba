@@ -20,7 +20,15 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->string('rif')->length(12);
+            $table->unsignedInteger('estatus')->default(1);
+            $table->boolean('declaracion_jurada')->default(true);
+            $table->string('respuesta_declaracion_jurada')->length(20)->nullable();
+            $table->unsignedInteger('seniat_id');
             $table->timestamps();
+            
+            $table->foreign('seniat_id')->references('id')->on('e_seniats')->onDelete('NO ACTION');
+            
         });
     }
 

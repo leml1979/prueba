@@ -58,7 +58,6 @@ Información Seniat
                           No
                         </label>
                       </div>
-                      
                     </div></td>
                     <td><input type="submit" name="guardar" value="Guardar" class="btn btn-primary"></td>
 
@@ -66,13 +65,23 @@ Información Seniat
                 </tbody>
               </table>
             </form>
+            <div class="">
+              @include('flash::message')
+            </div>
           </div>
         </div>
       </div>
+
     </div>
-    <div class="">
-      @include('flash::message')
-    </div>
+    
   </div>
   @endsection
 
+  @section('js')
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("input")
+
+    });
+  </script>
+  @endsection

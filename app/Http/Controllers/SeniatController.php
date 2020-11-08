@@ -44,10 +44,31 @@ class SeniatController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump(Auth::user()->rif);
-        $sujeto= MSujeto::where();
-        dd($sujeto);
-        flash('probando');
+
+        $this->validate($request, [
+           'acuerdo'  => 'required|in:si,no',
+       ]);
+        $sujeto= MSujeto::where("rif",Auth::user()->rif)->limit(1)->get();
+        if($sujeto->count()){
+            if($request->acuerdo=="no"){
+                $sujeto[0]->informacion_seniat=false;
+                $sujeto[0]->estatus_seniat=1;
+                $mensaje="Debe dirigirse al SENIAT para actualizar sus datos";
+                flash($mensaje)->warning()->important();
+            }else{
+                $sujeto[0]->informacion_seniat=true;
+                $sujeto[0]->estatus_seniat=1;
+                $mensaje="Actualizado satisfactoriamente";
+                flash($mensaje)->success()->important(); 
+            }
+            
+            if(!$sujeto[0]->save()){
+                flash("Intente nuevamente, no se registro su solicitud")->error()->important();
+            }
+        }else{
+            flash("Intente nuevamente")->error()->important();
+        }
+        
         return redirect()->route('seniat'); 
     }
 

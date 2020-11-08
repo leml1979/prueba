@@ -56,5 +56,3 @@ Route::get('/accionista', [App\Http\Controllers\AccionistaController::class, 'in
 //proveedores
 Route::get('/proveedores', [App\Http\Controllers\ProveedorController::class, 'index'])->name('proveedor.index');
 Route::get('/proveedores/create', [App\Http\Controllers\ProveedorController::class, 'create'])->name('proveedor.create');
-
-
