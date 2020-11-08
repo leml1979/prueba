@@ -48,21 +48,21 @@ class SeniatController extends Controller
         $this->validate($request, [
            'acuerdo'  => 'required|in:si,no',
        ]);
-        $sujeto= MSujeto::where("rif",Auth::user()->rif)->limit(1)->get();
+        $sujeto= MSujeto::where("rif",Auth::user()->rif)->firstOrFail();
         if($sujeto->count()){
             if($request->acuerdo=="no"){
-                $sujeto[0]->informacion_seniat=false;
-                $sujeto[0]->estatus_seniat=1;
+                $sujeto->informacion_seniat=false;
+                $sujeto->estatus_seniat=1;
                 $mensaje="Debe dirigirse al SENIAT para actualizar sus datos";
                 flash($mensaje)->warning()->important();
             }else{
-                $sujeto[0]->informacion_seniat=true;
-                $sujeto[0]->estatus_seniat=1;
+                $sujeto->informacion_seniat=true;
+                $sujeto->estatus_seniat=1;
                 $mensaje="Actualizado satisfactoriamente";
                 flash($mensaje)->success()->important(); 
             }
             
-            if(!$sujeto[0]->save()){
+            if(!$sujeto->save()){
                 flash("Intente nuevamente, no se registro su solicitud")->error()->important();
             }
         }else{

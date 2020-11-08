@@ -3,6 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\Models\MSujeto;
+use App\Models\MContacto;
+use App\Models\RAccionistasEmpresa;
+use App\Models\ESaime;
+use App\Models\MPais;
+use App\Models\MPersonalidad;
+use App\Models\MTiposRelacionEmpresa;
+
 
 class AccionistaController extends Controller
 {
@@ -17,7 +26,13 @@ class AccionistaController extends Controller
      */
     public function index()
     {
-        return view("informacion_general.accionistas.listar");
+        //$sujeto = MSujeto::find("rif",Auth::user()->rif);
+        
+        $sujeto = MSujeto::where("rif",Auth::user()->rif)->firstOrFail();
+        $accionistas = RAccionistasEmpresa::where("sujeto_id",$sujeto->id)->get();
+       // dd($accionistas);
+        
+        return view("informacion_general.accionistas.listar", compact("accionistas"));
     }
 
     /**
@@ -27,7 +42,10 @@ class AccionistaController extends Controller
      */
     public function create()
     {
-        //
+        $paises = MPais::orderBy("pais")->pluck("pais","id");
+        $personalidades = MPersonalidad::orderBy("id")->pluck("personalidad", "id");
+        $tipoRelacionEmpresa = MTiposRelacionEmpresa::orderBy("id")->pluck("tipo_relacion_empresa","id");
+        return view("informacion_general.accionistas.agregar",compact("paises","personalidades","tipoRelacionEmpresa"));
     }
 
     /**
@@ -84,5 +102,15 @@ class AccionistaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function buscar(Request $request){
+       // dd($request->all());
+        $persona = ESaime::where(["cedula"=>$request->documento_identidad,"tipo"=>$request->tipo])->firstOrFail();
+        $encontrado=true;$paises = MPais::orderBy("pais")->pluck("pais","id");
+        $personalidades = MPersonalidad::orderBy("id")->pluck("personalidad", "id");
+        $tipoRelacionEmpresa = MTiposRelacionEmpresa::orderBy("id")->pluck("tipo_relacion_empresa","id");
+        $mensaje=true;
+        return view("informacion_general.accionistas.agregar",compact("paises","personalidades","tipoRelacionEmpresa","persona","mensaje"));
     }
 }

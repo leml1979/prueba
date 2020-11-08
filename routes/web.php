@@ -51,6 +51,11 @@ Route::get('/adicional', [App\Http\Controllers\AdicionalController::class, 'crea
 
 //accionistas
 Route::get('/accionista', [App\Http\Controllers\AccionistaController::class, 'index'])->name('accionista.index');
+Route::get('/accionista-agregar', [App\Http\Controllers\AccionistaController::class, 'create'])->name('accionista.create');
+Route::post('/buscar', [App\Http\Controllers\AccionistaController::class, 'buscar'])->name('accionista.buscar');
+Route::post('/store', [App\Http\Controllers\AccionistaController::class, 'store'])->name('accionista.store');
+
+
 
 
 //proveedores

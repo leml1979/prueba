@@ -20,14 +20,18 @@
 					<th>Opciones</th>
 				</thead>
 				<tbody>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					@foreach($accionistas as $accionista)
+					<tr>
+						<td>{!! $loop->iteration !!}</td>
+						<td>{!!$accionista->sujetos->sujeto !!}</td>
+						<td>{!!$accionista->personalidades->personalidad !!}</td>
+						<td>{!!$accionista->tiposRelacionEmpresas->tipo_relacion_empresa !!}</td>
+						<td>{!!$accionista->paises->pais !!}</td>
+						<td>{!!$accionista->correo !!}</td>
+						<td>{!!$accionista->cantidad_acciones !!}</td>
+						<td>editar, eliminar</td>
+					</tr>
+					@endforeach
 				</tbody>
 			</table>
 			
@@ -35,7 +39,7 @@
 		
 	</div>
 	<div class="row pull-right">
-		<a href="" class="btn btn-primary">Agregar Accionista</a>
+		<a href="{{url('accionista-agregar')}}" class="btn btn-primary">Agregar Accionista</a>
 	</div>
 	
 </div>

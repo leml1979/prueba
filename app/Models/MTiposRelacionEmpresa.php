@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MPais extends Model
+class MTiposRelacionEmpresa extends Model
 {
     use HasFactory;
-    protected $table='m_paises';
+
+    protected $table="m_tipos_relacion_empresas";
     public $timestamps = false;
 
-    public function accionistas(){
-		return $this->hasMany('App\Models\RAccionistasEmpresa','pais_id');
-	}
     
 }
