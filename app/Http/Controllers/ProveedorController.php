@@ -51,9 +51,9 @@ class ProveedorController extends Controller
         $sujeto = MSujeto::where("rif",Auth::user()->rif)->first();
         if($request->tipo_proveedor=='1'){
             $request->validate([
-             'rif'  => 'required|max:10|min:9',
-             'tipo' => 'required|in:V,E,G,P,N,J'
-         ],);
+               'rif'  => 'required|max:10|min:9',
+               'tipo' => 'required|in:V,E,G,P,N,J'
+           ],);
             $proveedor = new MProveedor;
             $proveedor->rif_codigo = $request->rif;
             $proveedor->proveedor =  mb_strtoupper($request->razon_social,"UTF-8");
@@ -79,9 +79,9 @@ class ProveedorController extends Controller
         }
         if($request->tipo_proveedor=='2'){
             $request->validate([
-               'nombre_proveedor'  => 'required',
-               'pais' => 'required|exists:m_paises,id'
-           ]);
+             'nombre_proveedor'  => 'required',
+             'pais' => 'required|exists:m_paises,id'
+         ]);
 
             //guardar el proveedor extranjero
             $proveedor = new MProveedor;
@@ -154,37 +154,11 @@ class ProveedorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($request->tipo_proveedor=='1'){
-            $request->validate([
-             'rif'  => 'required|max:10|min:9',
-             'tipo' => 'required|in:V,E,G,P,N,J'
-         ],);
-            $proveedor = new MProveedor;
-            $proveedor->rif_codigo = $request->rif;
-            $proveedor->proveedor =  mb_strtoupper($request->razon_social,"UTF-8");
-            $proveedor->tipo_proveedor = 1;
-            $proveedor->usuario_creador_id = Auth::user()->id;
-            $proveedor->usuario_modificador_id = Auth::user()->id;
-            if($proveedor->save()){
-                $proveedor_sujeto = new RProveedorSujeto;
-                
-                $proveedor_sujeto->estatus=1;
-                $proveedor_sujeto->proveedor_id=$proveedor->id;
-                $proveedor_sujeto->sujeto_id=$sujeto->id;
-                $proveedor_sujeto->id_usuario_creador = Auth::user()->id;
-                $proveedor_sujeto->id_usuario_modificador = Auth::user()->id;
-                if($proveedor_sujeto->save()){
-                    return redirect()->route('proveedores.index');
-                }
-
-            }
-
-        }
         if($request->tipo_proveedor=='2'){
             $request->validate([
-               'nombre_proveedor'  => 'required',
-               'pais' => 'required|exists:m_paises,id'
-           ]);
+             'nombre_proveedor'  => 'required',
+             'pais' => 'required|exists:m_paises,id'
+         ]);
             $proveedor_sujeto =  RProveedorSujeto::find($id);
             $proveedor = $proveedor_sujeto->proveedor;
             //guardar el proveedor extranjero
@@ -196,6 +170,8 @@ class ProveedorController extends Controller
                 $proveedor_sujeto->pais_id=$request->pais;
                 $proveedor_sujeto->id_usuario_modificador = Auth::user()->id;
                 if($proveedor_sujeto->update()){
+                    $mensaje="El Proveedor extranjero ".$request->nombre_proveedor." se a actualizado";
+                    flash($mensaje)->success()->important();
                     return redirect()->route('proveedores.index');
                 }
             }
@@ -212,8 +188,11 @@ class ProveedorController extends Controller
     {
         $proveedorSujetos = RProveedorSujeto::find($id);
         $proveedor = $proveedorSujetos->proveedor;
+        $mensaje="El Proveedor ".$proveedor->proveedor." se a eliminado";
         $proveedorSujetos->delete();
         $proveedor->delete();
+
+        flash($mensaje)->error()->important();
         return redirect()->route('proveedores.index');
     }
 
