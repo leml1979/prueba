@@ -40,8 +40,8 @@ Gestión de Proveedores
 			<div class="pull-right text-danger"><span>*</span>Campos Obligatorios</div>
 		</div>
 	</div>
-	{!! Form::open(['url' => '/proveedores/'.$proveedorSujetos->id, 'method' => 'path','id'=>'proveedor-form'])!!}
-
+	{!! Form::open(['route' => ["proveedores.update",$proveedorSujetos->id], 'method' => 'post','id'=>'proveedor-form'])!!}
+	@method('PATCH')
 	@csrf
 	<div class="row">
 		<div class="row" id="extranjero">
@@ -52,30 +52,33 @@ Gestión de Proveedores
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label>Código</label>
-								{!! Form::text('codigo',null, ["class"=>"form-control","placeholder"=>"Código"]) !!}						
+								{!! Form::text('codigo',$proveedorSujetos->proveedor->rif_codigo, ["class"=>"form-control","placeholder"=>"Código"]) !!}						
 							</div>
 						</div>
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label>Nombre del Proveedor</label>
 								<span class="control-obligatorio">*</span>
-								{!! Form::text('nombre_proveedor',null, ["class"=>"form-control","placeholder"=>"Nombre del Proveedor"]) !!}						
+								{!! Form::text('nombre_proveedor',$proveedorSujetos->proveedor->proveedor, ["class"=>"form-control","placeholder"=>"Nombre del Proveedor"]) !!}						
 							</div>
 						</div>
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label>País</label>
 								<span class="control-obligatorio">*</span> 
-								{!! Form::select('pais',$paises,null, ["id"=>"pais","class"=>"form-control input-lg select2","style"=>"width: 100%; height: calc(2.25rem + 2px);","placeholder"=>"Seleccione...."]) !!}
+								{!! Form::select('pais',$paises,$proveedorSujetos->paises->id, ["id"=>"pais","class"=>"form-control input-lg select2","placeholder"=>"Seleccione...."]) !!}
 							</div>
 						</div>
 					</div>
 				</fieldset>
 			</div>
 		</div>
-		<button type="submit" class="btn btn-primary" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
-		<input type='hidden' name='razon_social' value='' id="razon_social">
+
 	</div>
+	<div class="row">
+		<button type="submit" class="btn btn-primary" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
+	</div>
+	<input type="hidden" name="tipo_proveedor" value="2">
 	{!! Form::close() !!}
 </div>
 
@@ -84,8 +87,6 @@ Gestión de Proveedores
 @section('js')
 <script type="text/javascript" src="{{asset('plugins/select2/js/select2.min.js')}}"></script>
 <script type="text/javascript">
-	$('#btn-guardar').hide();
-	$('input[name="tipo_proveedor"]').prop('checked', false);
 	$(document).ready(function(){
 		$("select").select2();
 	});
