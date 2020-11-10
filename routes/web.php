@@ -55,9 +55,10 @@ Route::get('/accionista-agregar', [App\Http\Controllers\AccionistaController::cl
 Route::post('/buscar', [App\Http\Controllers\AccionistaController::class, 'buscar'])->name('accionista.buscar');
 Route::post('/store', [App\Http\Controllers\AccionistaController::class, 'store'])->name('accionista.store');
 
-
-
-
 //proveedores
-Route::get('/proveedores', [App\Http\Controllers\ProveedorController::class, 'index'])->name('proveedor.index');
-Route::get('/proveedores/create', [App\Http\Controllers\ProveedorController::class, 'create'])->name('proveedor.create');
+Route::resource('/proveedores', '\App\Http\Controllers\ProveedorController');
+
+Route::post('/proveedores/buscarDatos', [App\Http\Controllers\ProveedorController::class, 'buscarDatos'])->name('proveedor.buscarDatos');
+
+Route::get('/proveedores/eliminar/{id}', [App\Http\Controllers\ProveedorController::class, 'destroy'])->name('proveedor.eliminar');
+

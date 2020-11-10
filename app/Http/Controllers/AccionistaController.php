@@ -11,6 +11,7 @@ use App\Models\ESaime;
 use App\Models\MPais;
 use App\Models\MPersonalidad;
 use App\Models\MTiposRelacionEmpresa;
+use DB;
 
 
 class AccionistaController extends Controller
@@ -27,7 +28,7 @@ class AccionistaController extends Controller
     public function index()
     {
         //$sujeto = MSujeto::find("rif",Auth::user()->rif);
-        
+
         $sujeto = MSujeto::where("rif",Auth::user()->rif)->firstOrFail();
         $accionistas = RAccionistasEmpresa::where("sujeto_id",$sujeto->id)->get();
        // dd($accionistas);
@@ -56,7 +57,33 @@ class AccionistaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sujeto= MSujeto::where("rif",Auth::user()->rif)->firstOrFail();
+        DB::transaction(function() use ($request,$sujeto){
+            $contacto = new MContacto();
+            $accionista = new RAccionistasEmpresa();
+            $contacto->tipo_documento=$request->tipo_documento;
+            $contacto->documento_identificacion = $request->documento_identificacion;
+            $contacto->primer_apellido = $request->primer_apellido;
+            $contacto->primer_nombre = $request->primer_nombre;
+            $contacto->segundo_apellido = $request->segundo_apellido;
+            $contacto->segundo_nombre = $request->segundo_nombre;
+            $contacto->id_usuario_creador = Auth::user()->id;
+            $contacto->id_usuario_modificador = Auth::user()->id;
+            $contacto->rif=$request->rif;
+            $contacto->save();
+
+            $accionista->cantidad_acciones = $request->cantidad_acciones;
+            $accionista->contacto_id = $contacto->id;
+            $accionista->pais->id = $request->pais;
+            $accionista->personalidad_id = $request->personalidad;
+            $accionista->correo = $request->correo;
+            $accionista->tipo_relacion_empresa_id = $request->tipo_relacion_empresa;
+            $accionista->seniat_id = Auth::user()->seniat_id;
+            $accionista->sujeto_id = $sujeto->id;
+            $accionista->save();
+        });
+        
+
     }
 
     /**

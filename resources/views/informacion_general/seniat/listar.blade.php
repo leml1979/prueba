@@ -80,7 +80,7 @@ Información Seniat
   @section('js')
   <script type="text/javascript">
     $(document).ready(function(){
-      $("input")
+     // $("input")
 
     });
   </script>

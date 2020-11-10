@@ -19,6 +19,16 @@
 		{!! Form::text('cantidad_acciones',null, ["class"=>"form-control","placeholder"=>"Cantidad de Acciones"]) !!}
 
 	</div>
+	<div class="col-sm-4">
+		{!! Form::label('Correo', 'Correo:', array('class' => 'negrita')) !!}
+		{!! Form::text('correo',null, ["class"=>"form-control","placeholder"=>"Correo Electronico"]) !!}
+
+	</div>
+	<div class="col-sm-4">
+		{!! Form::label('rif', 'rif:', array('class' => 'negrita')) !!}
+		{!! Form::text('rif',null, ["class"=>"form-control","placeholder"=>"rif"]) !!}
+
+	</div>
 	
 </div>
 {!! Form::text('primer_apellido',$persona->apellido1, ["class"=>"form-control","placeholder"=>"Cantidad de Acciones"]) !!}

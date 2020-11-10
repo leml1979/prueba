@@ -14,5 +14,9 @@ class MPais extends Model
     public function accionistas(){
 		return $this->hasMany('App\Models\RAccionistasEmpresa','pais_id');
 	}
+
+	public function proveedores(){
+		return $this->hasMany('App\Models\RProveedorSujeto','pais_id');
+	}
     
 }
