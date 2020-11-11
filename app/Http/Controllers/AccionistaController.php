@@ -148,7 +148,7 @@ class AccionistaController extends Controller
             $sujeto->update();
         }
         flash($mensaje)->error()->important();
-        return redirect()->route('accionistaes.index');
+        return redirect()->route('accionista.index');
     }
 
     public function buscar(Request $request){
