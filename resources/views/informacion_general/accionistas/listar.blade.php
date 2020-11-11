@@ -32,7 +32,8 @@
 						<td>{!!$accionista->paises->pais !!}</td>
 						<td>{!!$accionista->correo !!}</td>
 						<td>{!!$accionista->cantidad_acciones !!}</td>
-						<td>editar, eliminar</td>
+						<td><a href="{{url('accionista/'.$accionista->id.'/edit ')}}" alt="Editar Proveedor"><span class="fa fa-edit"></span></a> 
+							<a href="{{url('accionista/eliminar/'.$accionista->id)}}" alt="Eliminar"><span class="fa fa-trash-alt"></span></a></td>
 					</tr>
 					@endforeach
 				</tbody>

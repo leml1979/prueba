@@ -53,6 +53,7 @@ Route::post("parroquias",[App\Http\Controllers\AdicionalController::class, 'parr
 //accionistas
 Route::resource('/accionista', '\App\Http\Controllers\AccionistaController');
 Route::post('/buscarpersona', [App\Http\Controllers\AccionistaController::class, 'buscar'])->name('accionista.buscar');
+Route::get('/accionista/eliminar/{id}', [App\Http\Controllers\AccionistaController::class, 'destroy'])->name('accionista.eliminar');
 
 //proveedores
 Route::resource('/proveedores', '\App\Http\Controllers\ProveedorController');

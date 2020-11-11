@@ -84,6 +84,8 @@ class AccionistaController extends Controller
             $accionista->seniat_id = $request->seniatsaime;
         }
         if($accionista->save()){
+            $sujeto->estatus_accionista=1;
+            $sujeto->update();
             $mensaje="El(la) accionista se a registrado";
             flash($mensaje)->success()->important();
             return redirect()->route('accionista.index');
@@ -136,7 +138,17 @@ class AccionistaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sujeto = MSujeto::where("rif",Auth::user()->rif)->first();
+        $accionista = RAccionistasEmpresa::find($id);
+        $mensaje="El(la) Accionista  se a eliminado";
+        $accionista->delete();
+        $sujetoaccionista = RAccionistasEmpresa::where("sujeto_id",$sujeto->id)->count();
+        if(!$sujetoaccionista){
+            $sujeto->estatus_accionista=0;
+            $sujeto->update();
+        }
+        flash($mensaje)->error()->important();
+        return redirect()->route('accionistaes.index');
     }
 
     public function buscar(Request $request){
