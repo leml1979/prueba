@@ -25,8 +25,7 @@
 
 	</div>
 	<div class="col-sm-4">
-		{!! Form::label('rif', 'rif:', array('class' => 'negrita')) !!}
-		{!! Form::text('rif',null, ["class"=>"form-control","placeholder"=>"rif"]) !!}
+		
 
 	</div>
 	

@@ -10,4 +10,7 @@ class ESeniat extends Model
 	use HasFactory;
 	public $timestamps = false;
 
+	public function accionista(){
+		return $this->hasMany('App\Models\RAccionistasEmpresa','saime_id');
+	}
 }

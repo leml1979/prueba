@@ -36,4 +36,14 @@ class RAccionistasEmpresa extends Model
     {
         return $this->belongsTo('App\Models\MTiposRelacionEmpresa','tipo_relacion_empresa_id');
     }
+
+    public function saime()
+    {
+        return $this->belongsTo('App\Models\ESaime','saime_id','id_saime');
+    }
+
+    public function seniat()
+    {
+        return $this->belongsTo('App\Models\ESeniat','seniat_id');
+    }
 }

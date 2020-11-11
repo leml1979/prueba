@@ -26,7 +26,12 @@
 					@foreach($accionistas as $accionista)
 					<tr>
 						<td>{!! $loop->iteration !!}</td>
-						<td>{!!$accionista->sujetos->sujeto !!}</td>
+						<td>@if($accionista->seniat_id)
+							{{ $accionista->seniat->razon_social}}
+							@else
+								{{ $accionista->saime->nombre1. " ".$accionista->saime->nombre2. " ".$accionista->saime->apellido1. " ".$accionista->saime->apellido2 }}
+							@endif
+						</td>
 						<td>{!!$accionista->personalidades->personalidad !!}</td>
 						<td>{!!$accionista->tiposRelacionEmpresas->tipo_relacion_empresa !!}</td>
 						<td>{!!$accionista->paises->pais !!}</td>

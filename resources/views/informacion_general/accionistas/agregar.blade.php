@@ -68,6 +68,7 @@ Accionistas Agregar
 	$( document ).ready(function(){
 		$("#error").hide();
 		$("select").select2();
+		$("#btn-guardar").prop("disabled",true);
 		$("#buscar").on("click",function(event){
 			event.preventDefault();
 			$("#datos").empty();
@@ -93,10 +94,18 @@ Accionistas Agregar
 				url: "{{url('buscarpersona')}}",
 				method: 'POST',
 				data: {documento_identidad:documento_identidad,tipo:tipo, _token:token},
+				beforeSend: function (){
+					$("#datos").html('<div class="alert alert-info"><span>Consultando, por favor espere</span></div>');
+				},
+				error: function(){
+					$("#datos").html('<div class="alert alert-danger"><span>Ocurrio un error, intente mas tarde...</span></div>');
+					$("#btn-guardar").prop("disabled",true);
+				},
 				success: function(data) {
 					if(data.encontrado==1){
 						$("#datos").html("Datos encontrado: "+data.nombre1.toUpperCase()+" "+data.nombre2 + " "+data.apellido1 + " "+data.apellido2);
 						$("#seniatsaime").val(data.codigo);
+						$("#btn-guardar").prop("disabled",false);
 
 					}
 				}

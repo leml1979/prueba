@@ -59,6 +59,7 @@ class AccionistaController extends Controller
      */
     public function store(Request $request)
     {   
+
         $request->validate([
             "tipo"=>"required|in:V,E,P,J,G,C,N",
             "documento_identidad"=>"required|min:8|max:10",

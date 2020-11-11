@@ -14,5 +14,8 @@ class ESaime extends Model
     public $primarykey="id_saime";
 
 
+    public function accionista(){
+		return $this->hasMany('App\Models\RAccionistasEmpresa','saime_id');
+	}
     
 }
