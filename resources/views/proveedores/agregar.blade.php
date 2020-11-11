@@ -43,8 +43,8 @@ Gestión de Proveedores
 		</div>
 	</div>
 	{!! Form::open(['url' => '/proveedores', 'method' => 'post','id'=>'proveedor-form'])!!}
-		
-		@csrf
+	
+	@csrf
 	<div class="row">
 		
 		<div class="col-sm-12">
@@ -175,26 +175,19 @@ Gestión de Proveedores
 				success: function (data) {
 					msjUser.empty();
 					if (data.mensajes == 1) {
-							msjUser.html(data.razon_social);
-							$("#razon_social").val(data.razon_social);
-							$("#btn-guardar").prop("disabled",false);
+						msjUser.html(data.razon_social);
+						$("#razon_social").val(data.razon_social);
+						$("#btn-guardar").prop("disabled",false);
 					} else {
 						msjUser.empty();
 						msjUser.html('<div class="alert alert-danger"><span>El RIF no se encuentra registrado en el Seniat</span></div>');
 						$("#btn-guardar").prop("disabled",true);
 					}
-   // console.log(data);
-
-}
-});
-			
+				}
+			});
 			$('#datos_proveedor').show();
 		});
-
-		
 		$("select").select2();
-
-
 	});
 </script>
 

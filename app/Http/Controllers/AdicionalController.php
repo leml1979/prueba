@@ -3,6 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\Models\MEstado;
+use App\Models\MMunicipio;
+use App\Models\MParroquia;
+use App\Models\MSeccion;
+use App\Models\MGrupo;
+use App\Models\MDivision;
+use App\Models\MClase;
 
 class AdicionalController extends Controller
 {
@@ -27,7 +35,14 @@ class AdicionalController extends Controller
      */
     public function create()
     {
-        return view('informacion_general.informacion_adicional.agregar');
+        $estados = MEstado::orderBy("estado")->pluck("estado","id");
+        $municipios = MMunicipio::orderBy("municipio")->pluck("municipio","id");
+        $parroquias = MParroquia::orderBy("parroquia")->pluck("parroquia","id");
+        $secciones = MSeccion::orderBy("seccion")->pluck("seccion","id");
+        $divisiones = MDivision::orderBy("division")->pluck("division","id");
+        $grupos = MGrupo::orderBy("grupo")->pluck("grupo","id");
+        $clases = MClase::orderBy("clase")->pluck("clase","id");
+        return view('informacion_general.informacion_adicional.agregar',compact("estados","municipios","parroquias","secciones","divisiones","grupos","clases"));
     }
 
     /**
@@ -84,5 +99,20 @@ class AdicionalController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function municipio(Request $request){
+        $municipios = MMunicipio::orderBy('municipio')->where("estado_id",$request->id_estado)->get();
+        echo "<option value=''>Seleccione....</option>";
+        foreach ($municipios as $resMuni) {
+            echo "<option value='" . $resMuni->id . "'>" . $resMuni->municipio . "</option>";
+        }
+    }
+
+    public function parroquia(Request $request){
+        $parroquias = MParroquia::orderBy('parroquia')->where("municipio_id",$request->id_municipio)->get();
+        echo "<option value=''>Seleccione....</option>";
+        foreach ($parroquias as $resParroquia) {
+            echo "<option value='" . $resParroquia->id . "'>" . $resParroquia->parroquia . "</option>";
+        }
     }
 }

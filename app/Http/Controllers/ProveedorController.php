@@ -68,7 +68,10 @@ class ProveedorController extends Controller
                 $proveedor_sujeto->sujeto_id=$sujeto->id;
                 $proveedor_sujeto->id_usuario_creador = Auth::user()->id;
                 $proveedor_sujeto->id_usuario_modificador = Auth::user()->id;
+
                 if($proveedor_sujeto->save()){
+                    $sujeto->estatus_proveedor = 1;
+                    $sujeto->update();
                     $mensaje="El Proveedor nacional ".$request->razon_social." se a registrado";
                     flash($mensaje)->success()->important();
                     return redirect()->route('proveedores.index');
@@ -101,6 +104,8 @@ class ProveedorController extends Controller
                 $proveedor_sujeto->id_usuario_creador = Auth::user()->id;
                 $proveedor_sujeto->id_usuario_modificador = Auth::user()->id;
                 if($proveedor_sujeto->save()){
+                    $sujeto->estatus_proveedor = 1;
+                    $sujeto->update();
                     $mensaje="El Proveedor extranjero ".$request->nombre_proveedor." se a registrado";
                     flash($mensaje)->success()->important();
                     return redirect()->route('proveedores.index');
@@ -186,12 +191,17 @@ class ProveedorController extends Controller
      */
     public function destroy($id)
     {
+        $sujeto = MSujeto::where("rif",Auth::user()->rif)->first();
         $proveedorSujetos = RProveedorSujeto::find($id);
         $proveedor = $proveedorSujetos->proveedor;
         $mensaje="El Proveedor ".$proveedor->proveedor." se a eliminado";
         $proveedorSujetos->delete();
         $proveedor->delete();
-
+        $sujetoProveedor = RProveedorSujeto::where("sujeto_id",$sujeto->id)->count();
+        if(!$sujetoProveedor){
+            $sujeto->estatus_proveedor=0;
+            $sujeto->update();
+        }
         flash($mensaje)->error()->important();
         return redirect()->route('proveedores.index');
     }

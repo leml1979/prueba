@@ -46,14 +46,13 @@ Route::get('/mensaje', function () {
 Route::post('/declaracionjurada', [App\Http\Controllers\HomeController::class, 'guardarDeclaracion'])->name('declaracionjurada');
 
 //informacion adicional
-Route::get('/adicional', [App\Http\Controllers\AdicionalController::class, 'create'])->name('adicional.create');
-
+Route::resource('/adicional', '\App\Http\Controllers\AdicionalController');
+Route::post("municipios",[App\Http\Controllers\AdicionalController::class, 'municipio'])->name("municipios");
+Route::post("parroquias",[App\Http\Controllers\AdicionalController::class, 'parroquia'])->name("parroquias");
 
 //accionistas
-Route::get('/accionista', [App\Http\Controllers\AccionistaController::class, 'index'])->name('accionista.index');
-Route::get('/accionista-agregar', [App\Http\Controllers\AccionistaController::class, 'create'])->name('accionista.create');
+Route::resource('/accionista', '\App\Http\Controllers\AdicionalController');
 Route::post('/buscar', [App\Http\Controllers\AccionistaController::class, 'buscar'])->name('accionista.buscar');
-Route::post('/store', [App\Http\Controllers\AccionistaController::class, 'store'])->name('accionista.store');
 
 //proveedores
 Route::resource('/proveedores', '\App\Http\Controllers\ProveedorController');
