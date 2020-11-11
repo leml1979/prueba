@@ -25,7 +25,7 @@ class RegistroRequest extends FormRequest
     public function rules()
     {
         return [
-            'rif' => ['required', 'string','min:10', 'max:10','regex:/(^([VJGNPE]+)(\d+)?$)/u','unique:users,rif'],
+            'rif' => ['required', 'string','min:10', 'max:10','regex:/(^([VJGNPEC]+)(\d+)?$)/u','unique:users,rif'],
             //'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email:dns','unique:users,email'],
         ];

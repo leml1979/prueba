@@ -51,8 +51,8 @@ Route::post("municipios",[App\Http\Controllers\AdicionalController::class, 'muni
 Route::post("parroquias",[App\Http\Controllers\AdicionalController::class, 'parroquia'])->name("parroquias");
 
 //accionistas
-Route::resource('/accionista', '\App\Http\Controllers\AdicionalController');
-Route::post('/buscar', [App\Http\Controllers\AccionistaController::class, 'buscar'])->name('accionista.buscar');
+Route::resource('/accionista', '\App\Http\Controllers\AccionistaController');
+Route::post('/buscarpersona', [App\Http\Controllers\AccionistaController::class, 'buscar'])->name('accionista.buscar');
 
 //proveedores
 Route::resource('/proveedores', '\App\Http\Controllers\ProveedorController');

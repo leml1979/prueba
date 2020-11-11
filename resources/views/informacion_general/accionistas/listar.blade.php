@@ -6,6 +6,9 @@
 
 @section('content')
 <div class="content">
+	<div class="row">
+		@include('flash::message')
+	</div>
 	<div class="row text-center">
 		<div class="table table-responsive">
 			<table>
@@ -39,7 +42,7 @@
 		
 	</div>
 	<div class="row pull-right">
-		<a href="{{url('accionista-agregar')}}" class="btn btn-primary">Agregar Accionista</a>
+		<a href="{{url('accionista/create')}}" class="btn btn-primary">Agregar Accionista</a>
 	</div>
 	
 </div>

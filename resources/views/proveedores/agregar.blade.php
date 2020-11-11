@@ -26,16 +26,7 @@ Gestión de Proveedores
 @endsection
 
 @section('content')
-@if ($errors->any())
-
-<div class="alert alert-danger col-sm-3">
-	<ul>
-		@foreach ($errors->all() as $message)
-		<li>{{ $message }}</li>
-		@endforeach
-	</ul>
-</div>
-@endif
+@include('partials.errores')
 <div class="content">
 	<div class="row">
 		<div class="col-sm-12">

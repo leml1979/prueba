@@ -52,7 +52,7 @@ class ProveedorController extends Controller
         if($request->tipo_proveedor=='1'){
             $request->validate([
                'rif'  => 'required|max:10|min:9',
-               'tipo' => 'required|in:V,E,G,P,N,J'
+               'tipo' => 'required|in:V,E,G,P,N,J,C'
            ],);
             $proveedor = new MProveedor;
             $proveedor->rif_codigo = $request->rif;

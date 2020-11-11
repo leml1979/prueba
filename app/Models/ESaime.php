@@ -11,4 +11,8 @@ class ESaime extends Model
 
     protected $table="e_saime";
     public $timestamps = false;
+    public $primarykey="id_saime";
+
+
+    
 }
