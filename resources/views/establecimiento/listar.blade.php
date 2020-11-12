@@ -8,7 +8,7 @@ Listar
 @endsection
 
 @section('titulo')
-Listado de Representante Legal
+Listado de Estabecimientos
 @endsection
 
 @section('content')
@@ -21,22 +21,26 @@ Listado de Representante Legal
 			<table>
 				<thead>
 					<th></th>
-					<th>Nombres</th>
-					<th>Apellidos</th>
-					<th>Cargo</th>
+					<th>Establecimiento</th>
+					<th>Sede</th>
+					<th>Estado</th>
+					<th>Municipio</th>
+					<th>Parroquia</th>
+					<th>Contacto Cargado</th>
 					<th>Opciones</th>
 				</thead>
 				<tbody>
-					@foreach($representantes as $representante)
+					@foreach($establecimientos as $establecimiento)
 					<tr>
 						<td>{!! $loop->iteration !!}</td>
 						<td>
-								{{ $representante->saime->nombre1. " ".$representante->saime->nombre2 }} 
+								{{ $establecimiento->establecimiento}} 
 						</td>
-						<td>{!! $representante->saime->apellido1. " ".$representante->saime->apellido2 !!}</td>
-						<td>{!!$representante->cargo !!}</td>
-						<td><a href="{{url('representante/'.$representante->id.'/edit ')}}" alt="Editar Proveedor"><span class="fa fa-edit"></span></a> 
-							<a href="{{url('representante/eliminar/'.$representante->id)}}" alt="Eliminar"><span class="fa fa-trash-alt"></span></a></td>
+						<td>{!! $establecimiento->sede_id!!}</td>
+						<td>{!!$establecimiento->cargo !!}</td>
+						<td><a href="{{url('establecimiento/'.$establecimiento->id.'/edit ')}}" alt="Editar Proveedor"><span class="fa fa-edit"></span></a> 
+							<a href="{{url('establecimiento/'.$establecimiento->id.'/edit ')}}" alt="Editar Proveedor"><span class="fa fa-user-alt"></span></a> 
+							<a href="{{url('establecimiento/eliminar/'.$establecimiento->id)}}" alt="Eliminar"><span class="fa fa-trash-alt"></span></a></td>
 					</tr>
 					@endforeach
 				</tbody>
