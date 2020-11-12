@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\Models\TEstablecimiento;
+use App\Models\MSujeto;
+use App\Models\ESeniat;
 
 class EstablecimientoController extends Controller
 {
@@ -13,7 +17,10 @@ class EstablecimientoController extends Controller
      */
     public function index()
     {
-        //
+        $sujeto = MSujeto::where("rif",Auth::user()->rif)->firstOrFail();
+        $establecimientos = TEstablecimiento::where("sujeto_id",$sujeto->id)->get();
+        return view("establecimiento.listar", compact("establecimientos"));
+        
     }
 
     /**
