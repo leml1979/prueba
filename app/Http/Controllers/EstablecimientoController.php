@@ -7,6 +7,8 @@ use Auth;
 use App\Models\TEstablecimiento;
 use App\Models\MSujeto;
 use App\Models\ESeniat;
+use App\Models\MEstado;
+
 
 class EstablecimientoController extends Controller
 {
@@ -30,7 +32,8 @@ class EstablecimientoController extends Controller
      */
     public function create()
     {
-        //
+        $estados = MEstado::orderBy("estado")->pluck("estado","id");
+        return view("establecimiento.agregar",compact("estados"));
     }
 
     /**

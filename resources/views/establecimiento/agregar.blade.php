@@ -18,11 +18,11 @@
 @endsection
 
 @section('breadcrumb')
-Representante Legal
+Establecimiento
 
 @endsection
 @section('titulo')
-Gestion de Representante Legal
+Gestion de Establecimiento
 @endsection
 
 @section('content')
@@ -31,27 +31,45 @@ Gestion de Representante Legal
 
 <div class="content">
 	<div class="row">
-		{!! Form::open(['route' => 'representante.store', 'method' => 'post','id'=>'representante-form']) !!}
+		{!! Form::open(['route' => 'establecimiento.store', 'method' => 'post','id'=>'establecimiento-form']) !!}
 		
 		@csrf
 		
-		<div class="input-group col-sm-6">
-			{!! Form::select('tipo',["V"=>"V","E"=>"E"],null, ["class"=>"form-control","placeholder"=>"Seleccione....","required"=>"required","id"=>"tipo"]) !!}
-
-			{!! Form::text('documento_identidad',null, ["class"=>"form-control","placeholder"=>"Buscar Persona","required"=>"required","id"=>"documento_identidad", "maxlength"=>"10"]) !!}
-			<span class="input-group-btn">
-				<a class="btn btn-primary" href="" id="buscar"><span class="fa fa-search"></span>buscar
-				</a>
-			</span>
-		</div>
+		
 		<div class="row" style="margin-top: 3%" id="datos"></div>
 		<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:2em">
-			<span class="fa fa-pencil-alt"></span>Información del Representante Legal
+			<span class="fa fa-pencil-alt"></span>Datos Basicos
 			
 		</div>
 		<hr />
+		<div class="row">
+			<div class="col-sm-6">
+				<label>Tipo Sede</label>
+				{!! Form::select("tipo_sede",[],null,["class"=>"form-control select2", "required"=>"required"])!!}
+			</div>
+			<div class="col-sm-6">
+				<label>Establecimiento</label>
+				{!! Form::text("establecimiento",null,["class"=>"form-control", "required"=>"required"])!!}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<label>Tipo de Establecimiento</label>
+				{!! Form::select("tipo_establecimiento",[],null,["class"=>"form-control select2", "required"=>"required"])!!}
+			</div>
+			<div class="col-sm-6">
+				<label>Relacion de Dependencia</label>
+				{!! Form::select("relacion_dependencia",[],null,["class"=>"form-control select2", "required"=>"required"])!!}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<label>Actividad</label>
+				{!! Form::textarea("actividad",null,["class"=>"form-control",'rows' => 4, 'cols' => 54, "required"=>"required"])!!}
+			</div>
+			
+		</div>
 
-		@include('representante_legal.partials.form')
 
 		<button type="submit" class="btn btn-primary" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
 		<input type='hidden' name='seniatsaime' value='' id="seniatsaime">

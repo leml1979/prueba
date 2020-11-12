@@ -36,8 +36,8 @@ Listado de Estabecimientos
 						<td>
 								{{ $establecimiento->establecimiento}} 
 						</td>
-						<td>{!! $establecimiento->sede_id!!}</td>
-						<td>{!!$establecimiento->cargo !!}</td>
+						<td>{!! $establecimiento->id!!}</td>
+						<td>{!!$establecimiento->id !!}</td>
 						<td><a href="{{url('establecimiento/'.$establecimiento->id.'/edit ')}}" alt="Editar Proveedor"><span class="fa fa-edit"></span></a> 
 							<a href="{{url('establecimiento/'.$establecimiento->id.'/edit ')}}" alt="Editar Proveedor"><span class="fa fa-user-alt"></span></a> 
 							<a href="{{url('establecimiento/eliminar/'.$establecimiento->id)}}" alt="Eliminar"><span class="fa fa-trash-alt"></span></a></td>
@@ -50,7 +50,7 @@ Listado de Estabecimientos
 		
 	</div>
 	<div class="row pull-right">
-		<a href="{{url('representante/create')}}" class="btn btn-primary">Agregar Representante</a>
+		<a href="{{url('establecimiento/create')}}" class="btn btn-primary">Agregar Establecimiento</a>
 	</div>
 	
 </div>
