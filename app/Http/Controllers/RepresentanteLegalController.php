@@ -44,38 +44,46 @@ class RepresentanteLegalController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
             "tipo"=>"required|in:V,E",
-            "documento_identidad"=>"required",
-            "cargo"=>"required",
+            "documento_identidad"=>"required|min:8|max:10",
             "telefono"=>"required|regex:/[0-9]{11}/|starts_with:02",
-            "celular"=>"required|regex:/[0-9]{11}/|starts_with:04",
             "correo"=>"required|email:rfc,dns",
-        ]);
+        ];
+        if($request->celular!=null){
+            $rules=Arr::add($rules, "celular","regex:/[0-9]{11}/|starts_with:04");
+        }
+        $request->validate([$rules]);
 
-        $sujeto= MSujeto::where("rif",Auth::user()->rif)->first();
-        $representante = new RRepresentanteLegal();
-        $representante->cargo = $request->cargo;
-        $representante->correo = $request->correo;
-        $representante->telefono = $request->telefono;
-        $representante->celular = $request->celular;
-        $representante->estatus = 1;
-        $representante->sujeto_id = $sujeto->id;
-        $representante->id_usuario_creador=Auth::user()->id;
-        $representante->id_usuario_modificador=Auth::user()->id;
-        $representante->saime_id = $request->seniatsaime;
-        if($representante->save()){
-            $sujeto->estatus_accionista=1;
-            $sujeto->update();
-            $mensaje="El(la) representante legal se a registrado";
-            flash($mensaje)->success()->important();
-            return redirect()->route('representante.index');
+        if($request->seniatsaime!=null){
+
+            $sujeto= MSujeto::where("rif",Auth::user()->rif)->first();
+            $representante = new RRepresentanteLegal();
+            $representante->cargo = $request->cargo;
+            $representante->correo = $request->correo;
+            $representante->telefono = $request->telefono;
+            $representante->celular = $request->celular;
+            $representante->estatus = 1;
+            $representante->sujeto_id = $sujeto->id;
+            $representante->id_usuario_creador=Auth::user()->id;
+            $representante->id_usuario_modificador=Auth::user()->id;
+            $representante->saime_id = $request->seniatsaime;
+            if($representante->save()){
+                $sujeto->estatus_accionista=1;
+                $sujeto->update();
+                $mensaje="El(la) representante legal se a registrado";
+                flash($mensaje)->success()->important();
+                return redirect()->route('representante.index');
+            }else{
+                $mensaje="El(la) representante no se a registrado";
+                flash($mensaje)->error()->important();
+                return redirect()->route('representante.index');
+            }
         }else{
-            $mensaje="El(la) representante no se a registrado";
+            $mensaje="Debe Consultar una cedula";
             flash($mensaje)->error()->important();
             return redirect()->route('representante.index');
         }
-        dd($request->all());
     }
 
     /**

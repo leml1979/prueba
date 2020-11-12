@@ -18,11 +18,11 @@
 @endsection
 
 @section('breadcrumb')
-Gestión de Accionistas
+Gestión de Contactos
 
 @endsection
 @section('titulo')
-Accionistas Agregar
+Contactos Agregar
 @endsection
 
 @section('content')
@@ -37,15 +37,16 @@ Accionistas Agregar
 		</div>
 	</div>
 	<div class="row">
-		{!! Form::open(['route' => 'accionista.store', 'method' => 'post','id'=>'accionista-form']) !!}
+		{!! Form::open(['route' => 'establecimiento-contacto.store', 'method' => 'post','id'=>'establecimiento-contacto-form']) !!}
+		
 		@csrf
-		<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:2em">
+		<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:1.5em">
 			<span class="fa fa-search"></span>Consulta de Cédula 
+			
 		</div>
 		<hr />
-		
 		<div class="input-group col-sm-6">
-			{!! Form::select('tipo',["V"=>"V","E"=>"E","P"=>"P","N"=>"N","J"=>"J","G"=>"G"],null, ["class"=>"form-control","placeholder"=>"Seleccione....","required"=>"required","id"=>"tipo"]) !!}
+			{!! Form::select('tipo',["V"=>"V","E"=>"E"],null, ["class"=>"form-control","placeholder"=>"Seleccione....","required"=>"required","id"=>"tipo"]) !!}
 
 			{!! Form::text('documento_identidad',null, ["class"=>"form-control","placeholder"=>"Buscar Persona","required"=>"required","id"=>"documento_identidad", "maxlength"=>"10"]) !!}
 			<span class="input-group-btn">
@@ -54,17 +55,17 @@ Accionistas Agregar
 			</span>
 		</div>
 		<div class="row" style="margin-top: 3%" id="datos"></div>
-		<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:2em">
+		<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:1.5em">
 			<span class="fa fa-pencil-alt"></span>Datos Adicionales
 			
 		</div>
 		<hr />
 
-		@include('informacion_general.accionistas.partials.form')
+		@include('establecimiento.contactos.partials.form')
 
 		<button type="submit" class="btn btn-primary" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
 		<input type='hidden' name='seniatsaime' value='' id="seniatsaime">
-
+		<input type='hidden' name='establecimiento_id' value='{!! $id !!}' id="establecimiento_id">
 		{!! Form::close() !!}
 	</div>
 </div>

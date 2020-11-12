@@ -34,25 +34,31 @@ Listado de Estabecimientos
 					<tr>
 						<td>{!! $loop->iteration !!}</td>
 						<td>
-								{{ $establecimiento->establecimiento}} 
+							{{ $establecimiento->establecimiento}} 
 						</td>
-						<td>{!! $establecimiento->id!!}</td>
-						<td>{!!$establecimiento->id !!}</td>
-						<td><a href="{{url('establecimiento/'.$establecimiento->id.'/edit ')}}" alt="Editar Proveedor"><span class="fa fa-edit"></span></a> 
-							<a href="{{url('establecimiento/'.$establecimiento->id.'/edit ')}}" alt="Editar Proveedor"><span class="fa fa-user-alt"></span></a> 
+						<td>{!! $establecimiento->sede->sede!!}</td>
+						<td>{!! $establecimiento->estado->estado!!}</td>
+						<td>{!! mb_strtoupper($establecimiento->municipio->municipio,"UTF-8")!!}</td>
+						<td>{!! mb_strtoupper($establecimiento->parroquia->parroquia,"UTF-8")!!}</td>
+						<td>@if($establecimiento->estatus_contacto)
+							SI 
+							@else NO 
+						@endif</td>
+						<td><a href="{{url('establecimiento/'.$establecimiento->id.'/edit ')}}" alt="Editar Establecimiento"><span class="fa fa-edit"></span></a> 
+							<a href="{{url('establecimiento/'.$establecimiento->id.'/contacto ')}}" alt="Agregar Contacto"><span class="fa fa-user-alt"></span></a> 
 							<a href="{{url('establecimiento/eliminar/'.$establecimiento->id)}}" alt="Eliminar"><span class="fa fa-trash-alt"></span></a></td>
-					</tr>
-					@endforeach
-				</tbody>
-			</table>
-			
-		</div>
-		
-	</div>
-	<div class="row pull-right">
-		<a href="{{url('establecimiento/create')}}" class="btn btn-primary">Agregar Establecimiento</a>
-	</div>
-	
-</div>
+						</tr>
+						@endforeach
+					</tbody>
+				</table>
 
-@endsection
+			</div>
+
+		</div>
+		<div class="row pull-right">
+			<a href="{{url('establecimiento/create')}}" class="btn btn-primary">Agregar Establecimiento</a>
+		</div>
+
+	</div>
+
+	@endsection

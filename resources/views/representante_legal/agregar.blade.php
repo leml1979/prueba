@@ -31,9 +31,20 @@ Gestion de Representante Legal
 
 <div class="content">
 	<div class="row">
+		<div class="col-sm-12">
+			<div class="pull-right text-danger"><span>*</span>Campos Obligatorios</div>
+
+		</div>
+	</div>
+	<div class="row">
 		{!! Form::open(['route' => 'representante.store', 'method' => 'post','id'=>'representante-form']) !!}
 		
 		@csrf
+		<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:1.5em">
+			<span class="fa fa-search"></span>Consulta de Cédula 
+			
+		</div>
+		<hr />
 		
 		<div class="input-group col-sm-6">
 			{!! Form::select('tipo',["V"=>"V","E"=>"E"],null, ["class"=>"form-control","placeholder"=>"Seleccione....","required"=>"required","id"=>"tipo"]) !!}

@@ -43,37 +43,85 @@ Gestion de Establecimiento
 		</div>
 		<hr />
 		<div class="row">
-			<div class="col-sm-6">
-				<label>Tipo Sede</label>
-				{!! Form::select("tipo_sede",[],null,["class"=>"form-control select2", "required"=>"required"])!!}
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label>Tipo Sede</label>
+					<span class="control-obligatorio">*</span>
+					{!! Form::select("tipo_sede",$tipoSedes,null,["class"=>"form-control select2", "required"=>"required","placeholder"=>"Seleccione ..."])!!}
+				</div>
 			</div>
-			<div class="col-sm-6">
-				<label>Establecimiento</label>
-				{!! Form::text("establecimiento",null,["class"=>"form-control", "required"=>"required"])!!}
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label>Establecimiento</label>
+					<span class="control-obligatorio">*</span>
+					{!! Form::text("establecimiento",null,["class"=>"form-control", "required"=>"required","placeholder"=>"Establecimiento"])!!}
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-6">
+			<div class="col-sm-3">
 				<label>Tipo de Establecimiento</label>
-				{!! Form::select("tipo_establecimiento",[],null,["class"=>"form-control select2", "required"=>"required"])!!}
+				<span class="control-obligatorio">*</span>
+				{!! Form::select("tipo_establecimiento",$infraestructuras,null,["class"=>"form-control select2", "required"=>"required","placeholder"=>"Seleccione ..."])!!}
 			</div>
-			<div class="col-sm-6">
+			<div class="col-sm-3">
 				<label>Relacion de Dependencia</label>
-				{!! Form::select("relacion_dependencia",[],null,["class"=>"form-control select2", "required"=>"required"])!!}
+				<span class="control-obligatorio">*</span>
+				{!! Form::select("relacion_dependencia",$relacion_dependencia,null,["class"=>"form-control select2", "required"=>"required","placeholder"=>"Seleccione ..."])!!}
 			</div>
-		</div>
-		<div class="row">
 			<div class="col-sm-12">
 				<label>Actividad</label>
+				<span class="control-obligatorio">*</span>
 				{!! Form::textarea("actividad",null,["class"=>"form-control",'rows' => 4, 'cols' => 54, "required"=>"required"])!!}
 			</div>
+		</div>
+		<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:2em">
+			<span class="fa fa-pencil-alt"></span>Dirección
 			
 		</div>
-
-
+		<hr />
+		<div class="row">
+			@include("partials.estado_municipio_parroquia")
+		</div>
+		@include("partials.direccion")
+		<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:2em">
+			<span class="fa fa-pencil-alt"></span>Inmueble
+		</div>
+		<div class="row">
+			
+			<div class="col-sm-3">
+				<label>Tenencia</label>
+				<span class="control-obligatorio">*</span>
+				{!! Form::select("tenencia",$tenencias,null,["class"=>"form-control select2", "required"=>"required","placeholder"=>"Seleccione...."])!!}
+			</div>
+			<div class="col-sm-3">
+				<label>Tipo de Inmueble</label>
+				<span class="control-obligatorio">*</span>
+				{!! Form::select("tipo_inmueble",$inmuebles,null,["class"=>"form-control select2", "required"=>"required","placeholder"=>"Seleccione...."])!!}
+			</div>
+			<div class="col-sm-3">
+				<label>Nombre del Inmueble</label>
+				<span class="control-obligatorio">*</span>
+				{!! Form::text("nombre_inmueble",null,["class"=>"form-control","required"=>"required","placeholder"=>"Nombre del Inmueble"])!!}
+			</div>
+			<div class="col-sm-3">
+				<label>Capacidad</label>
+				<span class="control-obligatorio">*</span>
+				{!! Form::text("capacidad",null,["class"=>"form-control","required"=>"required","placeholder"=>"Capacidad"])!!}
+			</div>
+			<div class="col-sm-6">
+				<label>Apartamento/Local/Oficina</label>
+				<span class="control-obligatorio">*</span>
+				{!! Form::text("apartamento",null,["class"=>"form-control","required"=>"required","placeholder"=>"Apartamento/Local/Oficina"])!!}
+			</div>
+			<div class="col-sm-3">
+				<label>Piso</label>
+				{!! Form::text("piso",null,["class"=>"form-control","placeholder"=>"Piso"])!!}
+			</div>
+			<div class="col-sm-3">
+				<label>Nivel</label>
+				{!! Form::text("nivel",null,["class"=>"form-control","placeholder"=>"Nivel"])!!}
+			</div>
+		</div>
 		<button type="submit" class="btn btn-primary" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
-		<input type='hidden' name='seniatsaime' value='' id="seniatsaime">
-
 		{!! Form::close() !!}
 	</div>
 </div>
@@ -86,50 +134,52 @@ Gestion de Establecimiento
 	$( document ).ready(function(){
 		$("#error").hide();
 		$("select").select2();
-		$("#btn-guardar").prop("disabled",true);
-		$("#buscar").on("click",function(event){
+		
+		$("#estado_id").on("change",function(event){
 			event.preventDefault();
-			$("#datos").empty();
-			if($("#tipo").val()==""){
-				$("#error").html("Seleccione el tipo de persona");
-				$("#error").show();
-				$("#tipo").focus();
-				return false;
-			}else {
-				if($("#documento_identidad").val().trim()==""){
-
-					$("#error").html("introduzca documento identidad de persona");
-					$("#error").show();
-					$("#documento_identidad").focus();
-					return false;
-				}
-			}
-			$("#error").hide();
-			var documento_identidad = $("#documento_identidad").val();
-			var tipo = $("#tipo").val()
-			var token = $("input[name='_token']").val();
-			$.ajax({
-				url: "{{url('buscarpersona')}}",
-				method: 'POST',
-				data: {documento_identidad:documento_identidad,tipo:tipo, _token:token},
-				beforeSend: function (){
-					$("#datos").html('<div class="alert alert-info"><span>Consultando, por favor espere</span></div>');
-				},
-				error: function(){
-					$("#datos").html('<div class="alert alert-danger"><span>Ocurrio un error, intente mas tarde...</span></div>');
-					$("#btn-guardar").prop("disabled",true);
-				},
-				success: function(data) {
-					if(data.encontrado==1){
-						$("#datos").html("Datos encontrado: "+data.nombre1.toUpperCase()+" "+data.nombre2 + " "+data.apellido1 + " "+data.apellido2);
-						$("#seniatsaime").val(data.codigo);
-						$("#btn-guardar").prop("disabled",false);
-
-					}else{
-						$("#datos").html('<div class="alert alert-danger"><span>Datos no encontrado,vuelva a intentar</span></div>');
+			if($(this).val()!=""){
+				var id_estado = $(this).val();
+				var token = $("input[name='_token']").val();
+				$.ajax({
+					url: "{{url('municipios')}}",
+					method: 'POST',
+					data: {id_estado:id_estado, _token:token},
+					//headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+					success: function(data) {
+						$("#municipio_id").html(data);
+						$("#municipio_id").prop("disabled", false);
+						$("#municipio_id").html(data).selectpicker('refresh');
+						$("#municipio_id").change();
 					}
-				}
-			});
+				});
+
+			}else{
+				$("#municipio_id").prop("disabled", true);
+				$("#parroquia_id").prop("disabled", true);
+			}
+		});
+
+		$("#municipio_id").on("change",function(event){
+			event.preventDefault();
+			if($(this).val()!=""){
+				var id_municipio = $(this).val();
+				var token = $("input[name='_token']").val();
+				$.ajax({
+					url: "{{url('parroquias')}}",
+					method: 'POST',
+					data: {id_municipio:id_municipio, _token:token},
+					//headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+					success: function(data) {
+						$("#parroquia_id").html(data);
+						$("#parroquia_id").prop("disabled", false);
+						$("#parroquia_id").html(data).selectpicker('refresh');
+						$("#parroquia_id").change();
+					}
+				});
+
+			}else{
+				$("#parroquia_id").prop("disabled", true);
+			}
 		});
 	});
 </script>

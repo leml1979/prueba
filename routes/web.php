@@ -68,12 +68,13 @@ Route::get('/representante/eliminar/{id}', [App\Http\Controllers\RepresentanteLe
 //establecimiento
 Route::resource('/establecimiento', '\App\Http\Controllers\EstablecimientoController');
 Route::get('/establecimiento/eliminar/{id}', [App\Http\Controllers\EstablecimientoController::class, 'destroy'])->name('establecimiento.eliminar');
-Route::get('/establecimiento/contacto/{id}', [App\Http\Controllers\EstablecimientoController::class, 'contacto'])->name('establecimiento.contacto');
+Route::get('/establecimiento/{id}/contacto', [App\Http\Controllers\ContactoEstablecimientoController::class, 'index'])->name('establecimiento.contacto');
 
 
 //establecimiento contacto
 Route::resource('/establecimiento-contacto', '\App\Http\Controllers\ContactoEstablecimientoController');
-Route::get('/establecimiento-contacto/eliminar/{id}', [App\Http\Controllers\EstablecimientoController::class, 'destroy'])->name('establecimiento.eliminar');
+Route::get('/establecimiento-contacto/{id}/create',[App\Http\Controllers\ContactoEstablecimientoController::class, 'create']);
+Route::get('/contactos/eliminar/{id}/{establecimiento_id}', [App\Http\Controllers\ContactoEstablecimientoController::class, 'destroy'])->name('establecimiento-contacto.eliminar');
 
 
 
