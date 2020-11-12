@@ -57,8 +57,23 @@ Route::get('/accionista/eliminar/{id}', [App\Http\Controllers\AccionistaControll
 
 //proveedores
 Route::resource('/proveedores', '\App\Http\Controllers\ProveedorController');
-
 Route::post('/proveedores/buscarDatos', [App\Http\Controllers\ProveedorController::class, 'buscarDatos'])->name('proveedor.buscarDatos');
 
 Route::get('/proveedores/eliminar/{id}', [App\Http\Controllers\ProveedorController::class, 'destroy'])->name('proveedor.eliminar');
+
+//representante legal
+Route::resource('/representante', '\App\Http\Controllers\RepresentanteLegalController');
+Route::get('/representante/eliminar/{id}', [App\Http\Controllers\RepresentanteLegalController::class, 'destroy'])->name('representante.eliminar');
+
+//establecimiento
+Route::resource('/establecimiento', '\App\Http\Controllers\EstablecimientoController');
+Route::get('/establecimiento/eliminar/{id}', [App\Http\Controllers\EstablecimientoController::class, 'destroy'])->name('establecimiento.eliminar');
+Route::get('/establecimiento/contacto/{id}', [App\Http\Controllers\EstablecimientoController::class, 'contacto'])->name('establecimiento.contacto');
+
+
+//establecimiento contacto
+Route::resource('/establecimiento-contacto', '\App\Http\Controllers\ContactoEstablecimientoController');
+Route::get('/establecimiento-contacto/eliminar/{id}', [App\Http\Controllers\EstablecimientoController::class, 'destroy'])->name('establecimiento.eliminar');
+
+
 

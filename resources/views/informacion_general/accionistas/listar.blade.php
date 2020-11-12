@@ -3,6 +3,13 @@
 @section('css')
 
 @endsection
+@section('breadcrumb')
+Listar
+@endsection
+
+@section('titulo')
+Listado de Accionistas
+@endsection
 
 @section('content')
 <div class="content">
