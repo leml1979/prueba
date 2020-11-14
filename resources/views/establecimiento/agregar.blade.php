@@ -28,16 +28,19 @@ Gestion de Establecimiento
 @section('content')
 @include('partials.errores')
 <div class="alert alert-danger col-sm-4" id="error"></div>
+<div class="row">
+		<div class="col-sm-12">
+			<div class="float-right text-danger"><span>*</span>Campos Obligatorios</div>
 
+		</div>
+	</div>
 <div class="content">
 	<div class="row">
 		{!! Form::open(['route' => 'establecimiento.store', 'method' => 'post','id'=>'establecimiento-form']) !!}
 		
 		@csrf
 		
-		
-		<div class="row" style="margin-top: 3%" id="datos"></div>
-		<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:2em">
+		<div class="row" style="margin-bottom: 2%;margin-top: 3%; font-size:1.5em">
 			<span class="fa fa-pencil-alt"></span>Datos Basicos
 			
 		</div>
@@ -73,7 +76,7 @@ Gestion de Establecimiento
 				{!! Form::textarea("actividad",null,["class"=>"form-control",'rows' => 4, 'cols' => 54, "required"=>"required"])!!}
 			</div>
 		</div>
-		<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:2em">
+		<div class="row" style="margin-bottom: 2%;margin-top: 3%; font-size:1.5em">
 			<span class="fa fa-pencil-alt"></span>Dirección
 			
 		</div>
@@ -82,7 +85,7 @@ Gestion de Establecimiento
 			@include("partials.estado_municipio_parroquia")
 		</div>
 		@include("partials.direccion")
-		<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:2em">
+		<div class="row" style="margin-bottom: 2%;margin-top: 3%; font-size:1.5em">
 			<span class="fa fa-pencil-alt"></span>Inmueble
 		</div>
 		<div class="row">

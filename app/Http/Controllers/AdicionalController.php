@@ -11,6 +11,7 @@ use App\Models\MSeccion;
 use App\Models\MGrupo;
 use App\Models\MDivision;
 use App\Models\MClase;
+use App\Models\MSujeto;
 
 class AdicionalController extends Controller
 {
@@ -53,7 +54,39 @@ class AdicionalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sujeto = MSujeto::where("rif",Auth::user()->rif)->first();
+        if($request->posse=='si'){
+            $sujeto->numero_registro = $request->numero_expediente;
+            $sujeto->fecha_registro = $request->fecha_registro;
+            $sujeto->nombre_comercial = $request->nombre_comercial;
+            $sujeto->tomo = $request->tomo;
+            $sujeto->folio = $request->folio;
+            $sujeto->capital_pagado = $request->capital_pagado;
+            $sujeto->capital_suscrito = $request->capital_suscrito;
+            $sujeto->explicacion_estatus = $request->explicacion_estatus;
+            $sujeto->fecha_estatus = $request->fecha_desde;
+        }
+        $sujeto->clase_id=$request->clase_id;
+        $sujeto->division_id=$request->division_id;
+        $sujeto->grupo_id=$request->grupo_id;
+        $sujeto->seccion_id=$request->seccion_id;
+        $sujeto->estado_id=$request->estado;
+        $sujeto->municipio_id=$request->municipio;
+        $sujeto->parroquia_id=$request->parroquia;
+        $sujeto->ciudad=$request->ciudad;
+        $sujeto->productora=$request->productora;
+        $sujeto->importadora=$request->importadora;
+        $sujeto->comercializadora=$request->comercializadora;
+        $sujeto->servicios=$request->servicios;
+        $sujeto->punto_referencia=$request->punto_referencia;
+        $sujeto->descripcion_actividad=$request->descripcion;
+        $sujeto->zona_postal=$request->zona_postal;
+        $sujeto->telefono=$request->telefono;
+        $sujeto->urbanizacion_barrio=$request->urbanizacion;
+        $sujeto->avenida=$request->avenida;
+        $sujeto->fax=$request->fax;
+        $sujeto->estatus_empresa=$request->estatus_empresa;
+        dd($sujeto);
     }
 
     /**
@@ -115,4 +148,29 @@ class AdicionalController extends Controller
             echo "<option value='" . $resParroquia->id . "'>" . $resParroquia->parroquia . "</option>";
         }
     }
+
+    public function divisiones(Request $request){
+        $divisiones = MDivision::orderBy('division')->where("seccion_id",$request->seccion_id)->get();
+        echo "<option value=''>Seleccione....</option>";
+        foreach ($divisiones as $resDivisiones) {
+            echo "<option value='" . $resDivisiones->id . "'>" . $resDivisiones->division . "</option>";
+        }
+    }
+
+    public function grupos(Request $request){
+        $grupos = MGrupo::orderBy('grupo')->where("division_id",$request->divisiones_id)->get();
+        echo "<option value=''>Seleccione....</option>";
+        foreach ($grupos as $resGrupos) {
+            echo "<option value='" . $resGrupos->id . "'>" . $resGrupos->grupo . "</option>";
+        }
+    }
+
+    public function clases(Request $request){
+        $clases = MClase::orderBy('clase')->where("grupo_id",$request->grupo_id)->get();
+        echo "<option value=''>Seleccione....</option>";
+        foreach ($clases as $resclase) {
+            echo "<option value='" . $resclase->id . "'>" . $resclase->clase . "</option>";
+        }
+    }
+
 }

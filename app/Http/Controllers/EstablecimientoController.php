@@ -19,6 +19,10 @@ use App\Models\MRelacionesDependencia;
 
 class EstablecimientoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -73,7 +77,7 @@ class EstablecimientoController extends Controller
             "urbanizacion"=>"required",
             "punto_referencia"=>"required",
             "tenencia"=>"required|exists:m_tenencias,id",
-            "tipo_inmueble"=>"required|exists:m_tenencias,id",
+            "tipo_inmueble"=>"required|exists:m_infraestructuras,id",
             "nombre_inmueble"=>"required",
             "capacidad"=>"numeric",
             "apartamento"=>"required",

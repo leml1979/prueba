@@ -32,7 +32,7 @@ Gestion de Representante Legal
 <div class="content">
 	<div class="row">
 		<div class="col-sm-12">
-			<div class="pull-right text-danger"><span>*</span>Campos Obligatorios</div>
+			<div class="float-right text-danger"><span>*</span>Campos Obligatorios</div>
 
 		</div>
 	</div>

@@ -26,10 +26,13 @@ Información Adicional
 @endsection
 
 @section('content')
+<div class="">
+	@include('flash::message')
+</div>
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12">
-			<div class="pull-right text-danger"><span>*</span>Campos Obligatorios</div>
+			<div class="float-right text-danger"><span>*</span>Campos Obligatorios</div>
 
 		</div>
 	</div>
@@ -53,7 +56,6 @@ Información Adicional
 							No
 						</label>
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -62,34 +64,37 @@ Información Adicional
 		<div class="row">
 			<div class="col-sm-12">
 				<fieldset class="fieldset-collapse">
-					<legend><span class="glyphicon glyphicon-check"></span>Registro Mercantil</legend>
+					<legend>
+						<span class="fa fa-check"></span>Registro Mercantil
+					</legend>
+					<hr />
 					<div class="row">
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label>Numero de Expediente</label>
 								<span class="control-obligatorio">*</span>
-								<input type="text" name="numero_expediente" class="form-control" placeholder="Expediente">
+								{!! Form::text("numero_expediente",null,["class"=>"form-control","placeholder"=>"Expediente", "id"=>"numero_expediente"])!!}
 							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label>Fecha Registro</label>
 								<span class="control-obligatorio">*</span>
-								<input type="text" name="fecha_registro" class="form-control" placeholder="Fecha Registro">
+								{!! Form::date("fecha_registro",null,["class"=>"form-control","placeholder"=>"Fecha Registro"])!!}
 							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label>Tomo</label>
 								<span class="control-obligatorio">*</span>
-								<input type="text" name="tomo" class="form-control" placeholder="Tomo" required="true">
+								{!! Form::text("tomo",null,["class"=>"form-control","placeholder"=>"Tomo"])!!}
 							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label>Folio</label>
 								<span class="control-obligatorio">*</span>
-								<input type="text" name="folio" class="form-control" placeholder="Folio" required="true">
+								{!! Form::text("folio",null,["class"=>"form-control","placeholder"=>"Folio"])!!}
 							</div>
 						</div>
 					</div>
@@ -97,39 +102,38 @@ Información Adicional
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label>Nombre Comercial</label>
-								<input type="text" name="nombre_comercial" class="form-control" placeholder="Nombre Comercial">
+								{!! Form::text("nombre_comercial",null,["class"=>"form-control","placeholder"=>"Nombre Comercial"])!!}
 							</div>
 						</div>
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label>Capital Suscrito</label>
 								<span class="control-obligatorio">*</span>
-								<input type="text" name="capital_suscrito" class="form-control" placeholder="Capital Suscrito">
+								{!! Form::text("capital_suscrito",null,["class"=>"form-control","placeholder"=>"Capital Suscrito"])!!}
 							</div>
 						</div>
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label>Capital Pagado</label>
 								<span class="control-obligatorio">*</span>
-								<input type="text" name="capital_pagado" class="form-control" placeholder="Capital Pagado">
+								{!! Form::text("capital_pagado",null,["class"=>"form-control","placeholder"=>"Capital Pagado"])!!}
 							</div>
 						</div>
-						
 					</div>
 				</fieldset>
-
 			</div>
 		</div>
 		<div class="row" id="estatus_empresa">
 			<div class="col-sm-12">
 				<fieldset class="fieldset-collapse">
-					<legend><span class="glyphicon glyphicon-check"></span>Estatus de Empresa</legend>
+					<legend><span class="fa fa-check"></span>Estatus de Empresa</legend>
+					<hr />
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label>Fecha desde:</label>
 								<span class="control-obligatorio">*</span>
-								<input type="text" name="fecha_desde" class="form-control" placeholder="Fecha Desde" readonly="" required="true">
+								{!! Form::date("fecha_desde",null,["class"=>"form-control","placeholder"=>"Fecha desde"])!!}
 							</div>
 						</div>
 						<div class="col-sm-6">
@@ -148,7 +152,7 @@ Información Adicional
 							<div class="form-group">
 								<label>Explicación del Estatus</label>
 								<span class="control-obligatorio">*</span>
-								<textarea name="explicacion" rows="4"  class="form-control"></textarea>
+								{!! Form::textarea("explicacion_estatus",null,["class"=>"form-control","placeholder"=>"Explicacion","rows"=>4])!!}
 							</div>
 						</div>
 					</div>
@@ -156,23 +160,25 @@ Información Adicional
 			</div>
 		</div>
 	</div>
+
 	<div class="row" id="actividad_economica">
 		<div class="col-sm-12">
 			<fieldset class="fieldset-collapse">
-				<legend><span class="glyphicon glyphicon-check"></span>Clasificación Industrial (Actividad Económica de la Empresa según CIIU Rev. 4)</legend>
+				<legend><span class="fa fa-check"></span>Clasificación Industrial (Actividad Económica de la Empresa según CIIU Rev. 4)</legend>
+				<hr />
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label>Sección</label>
 							<span class="control-obligatorio">*</span>
-							{!! Form::select("seccion",$secciones,null,["class"=>"form-control select2", "placeholder"=>"Seleccione...."]) !!}
+							{!! Form::select("seccion_id",$secciones,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required","id"=>"seccion_id"]) !!}
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label>División</label>
 							<span class="control-obligatorio">*</span>
-							{!! Form::select("division",$divisiones,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "id"=>"divisiones_id"])!!}
+							{!! Form::select("division_id",$divisiones,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "id"=>"divisiones_id"])!!}
 						</div>
 					</div>
 
@@ -182,14 +188,14 @@ Información Adicional
 						<div class="form-group">
 							<label>Grupo</label>
 							<span class="control-obligatorio">*</span>
-							{!! Form::select("grupo",$grupos,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "id"=>"grupo_id"])!!}
+							{!! Form::select("grupo_id",$grupos,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "id"=>"grupo_id"])!!}
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label>Clase</label>
 							<span class="control-obligatorio">*</span>
-							{!! Form::select("clase",$clases,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "id"=>"clase_id"])!!}
+							{!! Form::select("clase_id",$clases,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "id"=>"clase_id"])!!}
 						</div>
 					</div>
 				</div>
@@ -198,7 +204,7 @@ Información Adicional
 						<div class="form-group">
 							<label>Descripción específica</label>
 							<span class="control-obligatorio">*</span>
-							<textarea name="explicacion" rows="4"  class="form-control" required="required"></textarea>
+							{!! Form::textarea("descripcion",null,["class"=>"form-control","placeholder"=>"Descripcion","rows"=>4,"required"=>"required"])!!}
 						</div>
 					</div>
 				</div>
@@ -208,7 +214,7 @@ Información Adicional
 	<div class="row" id="direccion_fiscal">
 		<div class="col-sm-12">
 			<fieldset class="fieldset-collapse">
-				<legend><span class="glyphicon glyphicon-check"></span>Dirección Fiscal</legend>
+				<legend><span class="fa fa-check"></span>Dirección Fiscal</legend>
 				<div class="row">
 					@include("partials.estado_municipio_parroquia")
 				</div>
@@ -217,13 +223,13 @@ Información Adicional
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label>Teléfono</label>
-							<input type="text" name="telefono" class="form-control" placeholder="Teléfono">
+							{!! Form::text("telefono",null,["class"=>"form-control","placeholder"=>"Teléfono"])!!}
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label>Fax</label>
-							<input type="text" name="fax" class="form-control" placeholder="Fax">
+							{!! Form::text("fax",null,["class"=>"form-control","placeholder"=>"Fax"])!!}
 						</div>
 					</div>
 				</div>
@@ -238,7 +244,7 @@ Información Adicional
 					<div class="col-sm-12">
 						<div class="form-group">
 							<label>Sitio de Internet</label>
-							<input type="text" name="sitio_internet" class="form-control" placeholder="Página WEB">
+							{!! Form::text("sitio_internet",null,["class"=>"form-control","placeholder"=>"Página WEB"])!!}
 						</div>
 					</div>
 				</div>
@@ -267,7 +273,6 @@ Información Adicional
 										No
 									</label>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -288,7 +293,6 @@ Información Adicional
 										No
 									</label>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -309,7 +313,6 @@ Información Adicional
 										No
 									</label>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -330,7 +333,6 @@ Información Adicional
 										No
 									</label>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -338,10 +340,8 @@ Información Adicional
 			</fieldset>
 		</div>
 	</div>
+	<button class="btn btn-primary" type="submit">Guardar</button>
 	{!! Form::close() !!}
-</div>
-<div class="">
-	@include('flash::message')
 </div>
 @endsection
 
@@ -352,11 +352,14 @@ Información Adicional
 		$('input[name="posse"]').prop('checked', false);
 		$("select").select2();
 		$("#registro_mercantil").hide();
-
+		$("#divisiones_id").prop("disabled", true);
+		$("#grupo_id").prop("disabled", true);
+		$("#clase_id").prop("disabled", true);
 		$('input:radio[name=posse]').change(function () {
 			$('#btn-guardar').show();
 			if ($("input[name='posse']:checked").val() == 'si') {
 				$('#registro_mercantil').show();
+				$("#")
 				$('#extranjero').hide();
 			}
 			if ($("input[name='posse']:checked").val() == 'no') {
@@ -409,6 +412,73 @@ Información Adicional
 
 			}else{
 				$("#parroquia_id").prop("disabled", true);
+			}
+		});
+		$("#seccion_id").on("change",function(event){
+			event.preventDefault();
+			if($(this).val()!=""){
+				var seccion_id = $(this).val();
+				var token = $("input[name='_token']").val();
+				$.ajax({
+					url: "{{url('division')}}",
+					method: 'POST',
+					data: {seccion_id:seccion_id, _token:token},
+					//headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+					success: function(data) {
+						$("#divisiones_id").html(data);
+						$("#divisiones_id").prop("disabled", false);
+						$("#divisiones_id").html(data).selectpicker('refresh');
+						$("#divisiones_id").change();
+					}
+				});
+
+			}else{
+				$("#divisiones_id").prop("disabled", true);
+			}
+		});
+		$("#divisiones_id").on("change",function(event){
+			event.preventDefault();
+			if($(this).val()!=""){
+				var divisiones_id = $(this).val();
+				var token = $("input[name='_token']").val();
+				$.ajax({
+					url: "{{url('grupo')}}",
+					method: 'POST',
+					data: {divisiones_id:divisiones_id, _token:token},
+					//headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+					success: function(data) {
+						$("#grupo_id").html(data);
+						$("#grupo_id").prop("disabled", false);
+						$("#grupo_id").html(data).selectpicker('refresh');
+						$("#grupo_id").change();
+					}
+				});
+
+			}else{
+				$("#grupo_id").prop("disabled", true);
+			}
+		});
+		$("#grupo_id").on("change",function(event){
+			event.preventDefault();
+			if($(this).val()!=""){
+				var grupo_id = $(this).val();
+				var token = $("input[name='_token']").val();
+				$.ajax({
+					url: "{{url('clase')}}",
+					method: 'POST',
+					data: {grupo_id:grupo_id, _token:token},
+					//headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+					success: function(data) {
+						$("#clase_id").html(data);
+						$("#clase_id").prop("disabled", false);
+						$("#clase_id").html(data).selectpicker('refresh');
+						$("#clase_id").change();
+					}
+				});
+
+			}else{
+				$('#clase_id option[value=""]').attr('selected', true)
+				$("#clase_id").prop("disabled", true);
 			}
 		});
 	});

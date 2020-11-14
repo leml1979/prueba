@@ -49,6 +49,9 @@ Route::post('/declaracionjurada', [App\Http\Controllers\HomeController::class, '
 Route::resource('/adicional', '\App\Http\Controllers\AdicionalController');
 Route::post("municipios",[App\Http\Controllers\AdicionalController::class, 'municipio'])->name("municipios");
 Route::post("parroquias",[App\Http\Controllers\AdicionalController::class, 'parroquia'])->name("parroquias");
+Route::post("division",[App\Http\Controllers\AdicionalController::class, 'divisiones'])->name("division");
+Route::post("grupo",[App\Http\Controllers\AdicionalController::class, 'grupos'])->name("grupos");
+Route::post("clase",[App\Http\Controllers\AdicionalController::class, 'clases'])->name("clases");
 
 //accionistas
 Route::resource('/accionista', '\App\Http\Controllers\AccionistaController');
