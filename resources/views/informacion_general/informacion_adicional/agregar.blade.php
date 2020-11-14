@@ -109,14 +109,14 @@ Información Adicional
 							<div class="form-group">
 								<label>Capital Suscrito</label>
 								<span class="control-obligatorio">*</span>
-								{!! Form::text("capital_suscrito",null,["class"=>"form-control","placeholder"=>"Capital Suscrito"])!!}
+								{!! Form::text("capital_suscrito",null,["class"=>"form-control","placeholder"=>"Capital Suscrito","id"=>"capital_suscrito"])!!}
 							</div>
 						</div>
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label>Capital Pagado</label>
 								<span class="control-obligatorio">*</span>
-								{!! Form::text("capital_pagado",null,["class"=>"form-control","placeholder"=>"Capital Pagado"])!!}
+								{!! Form::text("capital_pagado",null,["class"=>"form-control","placeholder"=>"Capital Pagado","id"=>"capital_pagado"])!!}
 							</div>
 						</div>
 					</div>
@@ -140,9 +140,7 @@ Información Adicional
 							<div class="form-group">
 								<label>Estatus</label>
 								<span class="control-obligatorio">*</span>
-								<select name="estatus_empresa" class="form-control" placeholder="introduca">
-									<option value="A">Activa</option>
-								</select>
+								{!! Form::select("estatus_empresa",$estatus_empresa,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required","id"=>"estatus_empresa_id"]) !!}
 							</div>
 						</div>
 
@@ -223,13 +221,13 @@ Información Adicional
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label>Teléfono</label>
-							{!! Form::text("telefono",null,["class"=>"form-control","placeholder"=>"Teléfono","maxlength"=>"11"])!!}
+							{!! Form::text("telefono",null,["class"=>"form-control","placeholder"=>"Teléfono","maxlength"=>"15","id"=>"telefono"])!!}
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label>Fax</label>
-							{!! Form::text("fax",null,["class"=>"form-control","placeholder"=>"Fax","maxlength"=>"11"])!!}
+							{!! Form::text("fax",null,["class"=>"form-control","placeholder"=>"Fax","maxlength"=>"15","id"=>"fax"])!!}
 						</div>
 					</div>
 				</div>
@@ -347,8 +345,14 @@ Información Adicional
 
 @section('js')
 <script type="text/javascript" src="{{asset('plugins/select2/js/select2.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('plugins/inputmask/jquery.inputmask.min.js')}}"></script>
 <script type="text/javascript">
 	$( document ).ready(function(){
+		$('#telefono').inputmask("(9999) 999-9999");
+		$('#fax').inputmask("(9999) 999-9999");
+		//$('#capital_pagado').inputmask('###.###.###,##', { reverse: true });
+		
+		
 		$('input[name="posse"]').prop('checked', false);
 		$("select").select2();
 		$("#registro_mercantil").hide();
@@ -359,7 +363,6 @@ Información Adicional
 			$('#btn-guardar').show();
 			if ($("input[name='posse']:checked").val() == 'si') {
 				$('#registro_mercantil').show();
-				$("#")
 				$('#extranjero').hide();
 			}
 			if ($("input[name='posse']:checked").val() == 'no') {

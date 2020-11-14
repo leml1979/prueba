@@ -12,6 +12,8 @@ use App\Models\MGrupo;
 use App\Models\MDivision;
 use App\Models\MClase;
 use App\Models\MSujeto;
+use App\Models\MEstatusEmpresa;
+
 
 class AdicionalController extends Controller
 {
@@ -43,7 +45,8 @@ class AdicionalController extends Controller
         $divisiones = MDivision::orderBy("division")->pluck("division","id");
         $grupos = MGrupo::orderBy("grupo")->pluck("grupo","id");
         $clases = MClase::orderBy("clase")->pluck("clase","id");
-        return view('informacion_general.informacion_adicional.agregar',compact("estados","municipios","parroquias","secciones","divisiones","grupos","clases"));
+        $estatus_empresa = MEstatusEmpresa::orderBy("estatu_empresa")->pluck("estatu_empresa","id");
+        return view('informacion_general.informacion_adicional.agregar',compact("estados","municipios","parroquias","secciones","divisiones","grupos","clases","estatus_empresa"));
     }
 
     /**
@@ -57,14 +60,15 @@ class AdicionalController extends Controller
         $sujeto = MSujeto::where("rif",Auth::user()->rif)->first();
         if($request->posse=='si'){
             $sujeto->numero_registro = $request->numero_expediente;
-            $sujeto->fecha_registro = $request->fecha_registro;
+            $sujeto->fecha_registros = $request->fecha_registro;
             $sujeto->nombre_comercial = $request->nombre_comercial;
             $sujeto->tomo = $request->tomo;
             $sujeto->folio = $request->folio;
             $sujeto->capital_pagado = $request->capital_pagado;
             $sujeto->capital_suscrito = $request->capital_suscrito;
             $sujeto->explicacion_estatus = $request->explicacion_estatus;
-            $sujeto->fecha_estatus = $request->fecha_desde;
+            $sujeto->fecha_estatus_desde = $request->fecha_desde;
+            $sujeto->estatus_empresa_adicional_id=$request->estatus_empresa;
         }
         $sujeto->clase_id=$request->clase_id;
         $sujeto->division_id=$request->division_id;
@@ -85,7 +89,7 @@ class AdicionalController extends Controller
         $sujeto->urbanizacion_barrio=$request->urbanizacion;
         $sujeto->avenida=$request->avenida;
         $sujeto->fax=$request->fax;
-        $sujeto->estatus_empresa=$request->estatus_empresa;
+        $sujeto->estatus_adicional=1;
         $sujeto->update();
         dd($sujeto);
     }
