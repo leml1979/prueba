@@ -223,13 +223,13 @@ Información Adicional
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label>Teléfono</label>
-							{!! Form::text("telefono",null,["class"=>"form-control","placeholder"=>"Teléfono"])!!}
+							{!! Form::text("telefono",null,["class"=>"form-control","placeholder"=>"Teléfono","maxlength"=>"11"])!!}
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label>Fax</label>
-							{!! Form::text("fax",null,["class"=>"form-control","placeholder"=>"Fax"])!!}
+							{!! Form::text("fax",null,["class"=>"form-control","placeholder"=>"Fax","maxlength"=>"11"])!!}
 						</div>
 					</div>
 				</div>
@@ -268,8 +268,8 @@ Información Adicional
 									</label>
 								</div>
 								<div class="icheck-primary d-inline">
-									<input type="radio" id="servicios2" name="servicios" value="2">
-									<label for="servicios2">
+									<input type="radio" id="servicios2" name="servicios" value="0">
+									<label for="servicios0">
 										No
 									</label>
 								</div>
@@ -288,8 +288,8 @@ Información Adicional
 									</label>
 								</div>
 								<div class="icheck-primary d-inline">
-									<input type="radio" id="comercializadora2" name="comercializadora" value="2">
-									<label for="comercializadora2">
+									<input type="radio" id="comercializadora0" name="comercializadora" value="0">
+									<label for="comercializadora0">
 										No
 									</label>
 								</div>
@@ -308,8 +308,8 @@ Información Adicional
 									</label>
 								</div>
 								<div class="icheck-primary d-inline">
-									<input type="radio" id="productora2" name="productora" value="2">
-									<label for="productora2">
+									<input type="radio" id="productora0" name="productora" value="0">
+									<label for="productora0">
 										No
 									</label>
 								</div>
@@ -328,8 +328,8 @@ Información Adicional
 									</label>
 								</div>
 								<div class="icheck-primary d-inline">
-									<input type="radio" id="importadora2" name="importadora" value="2">
-									<label for="importadora2">
+									<input type="radio" id="importadora0" name="importadora" value="0">
+									<label for="importadora0">
 										No
 									</label>
 								</div>

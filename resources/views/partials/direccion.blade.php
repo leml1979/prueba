@@ -3,7 +3,7 @@
 		<div class="form-group">
 			<label>Zona Postal</label>
 			<span class="control-obligatorio">*</span>
-			{!! Form::text("zona_postal",null,["class"=>"form-control","required"=>"required"])!!}
+			{!! Form::text("zona_postal",null,["class"=>"form-control","required"=>"required","maxlength"=>"6"])!!}
 		</div>
 	</div>
 	<div class="col-sm-9">

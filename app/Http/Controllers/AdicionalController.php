@@ -86,6 +86,7 @@ class AdicionalController extends Controller
         $sujeto->avenida=$request->avenida;
         $sujeto->fax=$request->fax;
         $sujeto->estatus_empresa=$request->estatus_empresa;
+        $sujeto->update();
         dd($sujeto);
     }
 
