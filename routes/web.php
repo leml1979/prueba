@@ -80,4 +80,10 @@ Route::get('/establecimiento-contacto/{id}/create',[App\Http\Controllers\Contact
 Route::get('/contactos/eliminar/{id}/{establecimiento_id}', [App\Http\Controllers\ContactoEstablecimientoController::class, 'destroy'])->name('establecimiento-contacto.eliminar');
 
 
+//certificados
+Route::resource('/certificados', '\App\Http\Controllers\CertificadoController');
+//generar pdf
+Route::get('/certificado/matriz',[App\Http\Controllers\CertificadoController::class, 'pdf'])->name("pdf.matriz");
+Route::get('/certificado/establecimiento/pdf/{id}',[App\Http\Controllers\CertificadoController::class, 'pdfEstablecimiento'])->name("pdf.establecimiento");
+Route::get('/certificado/{id}/certificar',[App\Http\Controllers\CertificadoController::class, 'certificarEstablecimiento'])->name("certificar.establecimiento");
 

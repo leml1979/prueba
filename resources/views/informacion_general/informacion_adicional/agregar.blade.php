@@ -82,21 +82,21 @@ Información Adicional
 							<div class="form-group">
 								<label>Fecha Registro</label>
 								<span class="control-obligatorio">*</span>
-								{!! Form::date("fecha_registro",null,["class"=>"form-control","placeholder"=>"Fecha Registro"])!!}
+								{!! Form::date("fecha_registro",null,["class"=>"form-control","placeholder"=>"Fecha Registro", "id"=>"fecha_registro"])!!}
 							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label>Tomo</label>
 								<span class="control-obligatorio">*</span>
-								{!! Form::text("tomo",null,["class"=>"form-control","placeholder"=>"Tomo"])!!}
+								{!! Form::text("tomo",null,["class"=>"form-control","placeholder"=>"Tomo", "id"=>"tomo"])!!}
 							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label>Folio</label>
 								<span class="control-obligatorio">*</span>
-								{!! Form::text("folio",null,["class"=>"form-control","placeholder"=>"Folio"])!!}
+								{!! Form::text("folio",null,["class"=>"form-control","placeholder"=>"Folio", "id"=>"folio"])!!}
 							</div>
 						</div>
 					</div>
@@ -135,14 +135,14 @@ Información Adicional
 							<div class="form-group">
 								<label>Fecha desde:</label>
 								<span class="control-obligatorio">*</span>
-								{!! Form::date("fecha_desde",null,["class"=>"form-control","placeholder"=>"Fecha desde"])!!}
+								{!! Form::date("fecha_desde",null,["class"=>"form-control","placeholder"=>"Fecha desde", "id"=>"fecha_desde"])!!}
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group">
 								<label>Estatus</label>
 								<span class="control-obligatorio">*</span>
-								{!! Form::select("estatus_empresa",$estatus_empresa,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","id"=>"estatus_empresa_id"]) !!}
+								{!! Form::select("estatus_empresa",$estatus_empresa,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","id"=>"estatus_empresa"]) !!}
 							</div>
 						</div>
 
@@ -152,7 +152,7 @@ Información Adicional
 							<div class="form-group">
 								<label>Explicación del Estatus</label>
 								<span class="control-obligatorio">*</span>
-								{!! Form::textarea("explicacion_estatus",null,["class"=>"form-control","placeholder"=>"Explicacion","rows"=>4])!!}
+								{!! Form::textarea("explicacion_estatus",null,["class"=>"form-control","placeholder"=>"Explicacion","rows"=>4, "id"=>"explicacion_estatus"])!!}
 							</div>
 						</div>
 					</div>
@@ -369,8 +369,8 @@ Información Adicional
 				$("#capital_pagado").prop("required", true);
 				$("#capital_suscrito").prop("required", true);
 				$("#fecha_desde").prop("required", true);
-				$("#estatus_empresa").prop("required", true);
-				$("#descripcion").prop("required", true);
+				//$("#estatus_empresa").removeAttr("required");
+				$("#explicacion_estatus").prop("required", true);
 				$('#registro_mercantil').show();
 				$('#extranjero').hide();
 			}
@@ -382,8 +382,8 @@ Información Adicional
 				$("#capital_pagado").prop("required", false);
 				$("#capital_suscrito").prop("required", false);
 				$("#fecha_desde").prop("required", false);
-				$("#estatus_empresa").prop("required", false);
-				$("#descripcion").prop("required", false);
+				//$("#estatus_empresa").removeAttr("required");
+				$("#explicacion_estatus").prop("required", false);
 				$('#registro_mercantil').hide();
 				$('#extranjero').show();
 			}

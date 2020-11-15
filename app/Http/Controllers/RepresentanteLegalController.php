@@ -7,6 +7,7 @@ use Auth;
 use App\Models\MSujeto;
 use App\Models\RRepresentanteLegal;
 use App\Models\ESaime;
+use Arr;
 
 class RepresentanteLegalController extends Controller
 {
@@ -69,7 +70,7 @@ class RepresentanteLegalController extends Controller
             $representante->id_usuario_modificador=Auth::user()->id;
             $representante->saime_id = $request->seniatsaime;
             if($representante->save()){
-                $sujeto->estatus_accionista=1;
+                $sujeto->estatus_representante_legal=1;
                 $sujeto->update();
                 $mensaje="El(la) representante legal se a registrado";
                 flash($mensaje)->success()->important();
@@ -134,7 +135,7 @@ class RepresentanteLegalController extends Controller
         $representante->delete();
         $sujetoRepresentante = RRepresentanteLegal::where("sujeto_id",$sujeto->id)->count();
         if(!$sujetoRepresentante){
-            $sujeto->estatus_accionista=0;
+            $sujeto->estatus_representante_legal=0;
             $sujeto->update();
         }
         flash($mensaje)->error()->important();

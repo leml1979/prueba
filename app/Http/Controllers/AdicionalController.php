@@ -59,7 +59,7 @@ class AdicionalController extends Controller
     {
         var_dump($request->all());
         if($request->servicios=='0' &&  $request->comercializadora=='0' && $request->productora=='0' && $request->importadora=='0'){
-            flash("No");
+            flash("No")->error();
             return redirect()->back(); 
         }
 
