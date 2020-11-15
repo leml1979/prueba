@@ -57,6 +57,13 @@ class AdicionalController extends Controller
      */
     public function store(Request $request)
     {
+        var_dump($request->all());
+        if($request->servicios=='0' &&  $request->comercializadora=='0' && $request->productora=='0' && $request->importadora=='0'){
+            flash("No");
+            return redirect()->back(); 
+        }
+
+dd("aaa");
         $sujeto = MSujeto::where("rif",Auth::user()->rif)->first();
         if($request->posse=='si'){
             $sujeto->numero_registro = $request->numero_expediente;
@@ -90,6 +97,7 @@ class AdicionalController extends Controller
         $sujeto->avenida=$request->avenida;
         $sujeto->fax=$request->fax;
         $sujeto->estatus_adicional=1;
+        $sujeto->pagina_web=$request->sitio_internet;
         $sujeto->update();
         dd($sujeto);
     }

@@ -3,6 +3,7 @@
 @section('css')
 <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+<link href="{{asset('dist/css/bootstrap-select.min.css')}}" rel='stylesheet' type='text/css'>
 <style type="text/css">
 	.select2-container .select2-selection--single{
 		height: calc(2.25rem + 2px);
@@ -29,6 +30,7 @@ Información Adicional
 <div class="">
 	@include('flash::message')
 </div>
+@include('partials.errores')
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12">
@@ -45,7 +47,7 @@ Información Adicional
 				<span class="control-obligatorio">*</span>
 				<div class="form-group clearfix">
 					<div class="icheck-primary d-inline">
-						<input type="radio" id="radioPrimary1" name="posse" value="si">
+						<input type="radio" id="radioPrimary1" name="posse" value="si" required>
 						<label for="radioPrimary1">
 							Sí
 						</label>
@@ -140,7 +142,7 @@ Información Adicional
 							<div class="form-group">
 								<label>Estatus</label>
 								<span class="control-obligatorio">*</span>
-								{!! Form::select("estatus_empresa",$estatus_empresa,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required","id"=>"estatus_empresa_id"]) !!}
+								{!! Form::select("estatus_empresa",$estatus_empresa,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","id"=>"estatus_empresa_id"]) !!}
 							</div>
 						</div>
 
@@ -176,7 +178,7 @@ Información Adicional
 						<div class="form-group">
 							<label>División</label>
 							<span class="control-obligatorio">*</span>
-							{!! Form::select("division_id",$divisiones,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "id"=>"divisiones_id"])!!}
+							{!! Form::select("division_id",$divisiones,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required","disabled"=>true,  "id"=>"divisiones_id"])!!}
 						</div>
 					</div>
 
@@ -186,14 +188,14 @@ Información Adicional
 						<div class="form-group">
 							<label>Grupo</label>
 							<span class="control-obligatorio">*</span>
-							{!! Form::select("grupo_id",$grupos,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "id"=>"grupo_id"])!!}
+							{!! Form::select("grupo_id",$grupos,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "disabled"=>true, "id"=>"grupo_id"])!!}
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label>Clase</label>
 							<span class="control-obligatorio">*</span>
-							{!! Form::select("clase_id",$clases,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "id"=>"clase_id"])!!}
+							{!! Form::select("clase_id",$clases,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "disabled"=>true, "id"=>"clase_id"])!!}
 						</div>
 					</div>
 				</div>
@@ -260,13 +262,13 @@ Información Adicional
 							<span class="control-obligatorio">*</span>
 							<div class="form-group clearfix">
 								<div class="icheck-primary d-inline">
-									<input type="radio" id="servicios1" name="servicios" value="1">
+									<input type="radio" id="servicios1" name="servicios" value="1" required>
 									<label for="servicios1">
 										Sí
 									</label>
 								</div>
 								<div class="icheck-primary d-inline">
-									<input type="radio" id="servicios2" name="servicios" value="0">
+									<input type="radio" id="servicios0" name="servicios" value="0">
 									<label for="servicios0">
 										No
 									</label>
@@ -280,7 +282,7 @@ Información Adicional
 							<span class="control-obligatorio">*</span>
 							<div class="form-group clearfix">
 								<div class="icheck-primary d-inline">
-									<input type="radio" id="comercializadora1" name="comercializadora" value="1">
+									<input type="radio" id="comercializadora1" name="comercializadora" value="1" required>
 									<label for="comercializadora1">
 										Sí
 									</label>
@@ -300,7 +302,7 @@ Información Adicional
 							<span class="control-obligatorio">*</span>
 							<div class="form-group clearfix">
 								<div class="icheck-primary d-inline">
-									<input type="radio" id="productora1" name="productora" value="1">
+									<input type="radio" id="productora1" name="productora" value="1" required>
 									<label for="productora1">
 										Sí
 									</label>
@@ -320,7 +322,7 @@ Información Adicional
 							<span class="control-obligatorio">*</span>
 							<div class="form-group clearfix">
 								<div class="icheck-primary d-inline">
-									<input type="radio" id="importadora1" name="importadora" value="1">
+									<input type="radio" id="importadora1" name="importadora" value="1" required>
 									<label for="importadora1">
 										Sí
 									</label>
@@ -346,26 +348,42 @@ Información Adicional
 @section('js')
 <script type="text/javascript" src="{{asset('plugins/select2/js/select2.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('plugins/inputmask/jquery.inputmask.min.js')}}"></script>
+<script src="{{asset('dist/js/bootstrap-select.min.js')}}"></script>
 <script type="text/javascript">
 	$( document ).ready(function(){
-		$('#telefono').inputmask("(9999) 999-9999");
-		$('#fax').inputmask("(9999) 999-9999");
+		//$('#telefono').inputmask("(9999) 999-9999");
+		//$('#fax').inputmask("(9999) 999-9999");
 		//$('#capital_pagado').inputmask('###.###.###,##', { reverse: true });
 		
 		
 		$('input[name="posse"]').prop('checked', false);
 		$("select").select2();
 		$("#registro_mercantil").hide();
-		$("#divisiones_id").prop("disabled", true);
-		$("#grupo_id").prop("disabled", true);
-		$("#clase_id").prop("disabled", true);
 		$('input:radio[name=posse]').change(function () {
 			$('#btn-guardar').show();
 			if ($("input[name='posse']:checked").val() == 'si') {
+				$("#numero_expediente").prop("required", true);
+				$("#tomo").prop("required", true);
+				$("#fecha_registro").prop("required", true);
+				$("#folio").prop("required", true);
+				$("#capital_pagado").prop("required", true);
+				$("#capital_suscrito").prop("required", true);
+				$("#fecha_desde").prop("required", true);
+				$("#estatus_empresa").prop("required", true);
+				$("#descripcion").prop("required", true);
 				$('#registro_mercantil').show();
 				$('#extranjero').hide();
 			}
 			if ($("input[name='posse']:checked").val() == 'no') {
+				$("#numero_expediente").prop("required", false);
+				$("#tomo").prop("required", false);
+				$("#fecha_registro").prop("required", false);
+				$("#folio").prop("required", false);
+				$("#capital_pagado").prop("required", false);
+				$("#capital_suscrito").prop("required", false);
+				$("#fecha_desde").prop("required", false);
+				$("#estatus_empresa").prop("required", false);
+				$("#descripcion").prop("required", false);
 				$('#registro_mercantil').hide();
 				$('#extranjero').show();
 			}
