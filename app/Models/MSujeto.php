@@ -30,4 +30,8 @@ class MSujeto extends Model
 	{
 		return $this->belongsTo('App\Models\MTenencia','tenencia_id');
 	}
+	public function clase()
+	{
+		return $this->belongsTo('App\Models\MClase','clase_id');
+	}
 }

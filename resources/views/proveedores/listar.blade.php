@@ -19,8 +19,8 @@ Proveedores
 		@include('flash::message')
 	</div>
 	<div class="row">
-		<div class="table table-responsive">
-			<table class="table table-responsive table-hover">
+		<div class="table-responsive">
+			<table class="table table-hover">
 				<thead>
 					<th></th>
 					<th>Rif/Código</th>

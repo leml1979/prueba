@@ -1,7 +1,12 @@
 @extends('layouts.home')
 
 @section('css')
-
+<style type="text/css">
+	caption{
+		text-align: center;
+		caption-side: top;
+	}
+</style>
 @endsection
 @section('breadcrumb')
 Listar
@@ -17,8 +22,9 @@ Certificados
 		@include('flash::message')
 	</div>
 	<div class="row text-center">
-		<div class="table table-responsive">
-			<table>
+		<div class="table-responsive">
+			<table class="table">
+				<caption>ESTABLECIMIENTOS</caption>
 				<thead>
 					<th></th>
 					<th>Establecimiento</th>
@@ -34,7 +40,7 @@ Certificados
 					<tr>
 						<td>{!! $loop->iteration !!}</td>
 						<td>
-							{{ $establecimiento->establecimiento}} 
+							{!! mb_strtoupper($establecimiento->establecimiento,"UTF-8") !!} 
 						</td>
 						<td>{!! $establecimiento->sede->sede!!}</td>
 						<td>{!! $establecimiento->estado->estado!!}</td>
@@ -47,36 +53,41 @@ Certificados
 						<td>@if($establecimiento->certificado==0)<a href="{{url('certificado/'.$establecimiento->id.'/certificar ')}}" alt="Editar Establecimiento"><span class="fa fa-edit"></span></a>
 							@else
 							<a href="{{url('/certificado/establecimiento/pdf/'.$establecimiento->id)}}" alt="Descargar Certificado Establecimiento"><span class="fa fa-file-pdf"></span></a>
-						
-						@endif
-					</td>
-				</tr>
-				@endforeach
-			</tbody>
-		</table>
+
+							@endif
+						</td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
+		</div>
+		<div class="row table-responsive" style="margin-top: 10%">
+			<table class="table caption-top">
+				<caption>SUJETO DE APLICACION</caption>
+				<thead>
+					<th></th>
+					<th>RIF</th>
+					<th>NOMBRE</th>
+					<th>Certificar</th>
+				</thead>
+				<tbody>
+					<tr>
+						<td></td>
+						<td>
+							{{ $sujeto->rif}} 
+						</td>
+						<td>{!! mb_strtoupper($sujeto->sujeto,"UTF-8")!!}</td>
+						<td>@if($sujeto->estatus_culminacion_registro==0)
+							<a href="{{route('certificar.matriz',$sujeto->id)}}" alt="Certificar Matriz"><span class="fa fa-edit"></span></a>
+							@else
+							<a href="{{url('certificado-matriz/'.$sujeto->id.'/pdf ')}}" alt="Certificar Matriz"><span class="fa fa-file-pdf"></span></a>
+							@endif
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
-	<div class="row table table-responsive" style="margin-top: 10%">
-		<table>
-			<thead>
-				<th></th>
-				<th>RIF</th>
-				<th>NOMBRE</th>
-				<th>Certificar</th>
-			</thead>
-			<tbody>
-				<tr>
-					<td></td>
-					<td>
-						{{ $sujeto->rif}} 
-					</td>
-					<td>{!! $sujeto->sujeto!!}</td>
-					<td><a href="{{url('certificado-matriz/'.$sujeto->id.'/edit ')}}" alt="Certificar Matriz"><span class="fa fa-edit"></span></a> 
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</div>
 </div>
 
 @endsection

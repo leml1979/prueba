@@ -8,7 +8,7 @@ Listar
 @endsection
 
 @section('titulo')
-Listado de Estabecimientos
+Establecimientos
 @endsection
 
 @section('content')
@@ -17,8 +17,8 @@ Listado de Estabecimientos
 		@include('flash::message')
 	</div>
 	<div class="row text-center">
-		<div class="table table-responsive">
-			<table>
+		<div class="table-responsive">
+			<table class="table  table-hover">
 				<thead>
 					<th></th>
 					<th>Establecimiento</th>
@@ -34,7 +34,7 @@ Listado de Estabecimientos
 					<tr>
 						<td>{!! $loop->iteration !!}</td>
 						<td>
-							{{ $establecimiento->establecimiento}} 
+							{{ mb_strtoupper($establecimiento->establecimiento,"UTF-8")}} 
 						</td>
 						<td>{!! $establecimiento->sede->sede!!}</td>
 						<td>{!! $establecimiento->estado->estado!!}</td>
@@ -46,7 +46,9 @@ Listado de Estabecimientos
 						@endif</td>
 						<td><a href="{{url('establecimiento/'.$establecimiento->id.'/edit ')}}" alt="Editar Establecimiento"><span class="fa fa-edit"></span></a> 
 							<a href="{{url('establecimiento/'.$establecimiento->id.'/contacto ')}}" alt="Agregar Contacto"><span class="fa fa-user-alt"></span></a> 
+							@if($establecimiento->certificado==0)
 							<a href="{{url('establecimiento/eliminar/'.$establecimiento->id)}}" alt="Eliminar"><span class="fa fa-trash-alt"></span></a></td>
+							@endif
 						</tr>
 						@endforeach
 					</tbody>

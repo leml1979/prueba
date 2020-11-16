@@ -13,7 +13,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Registro') }}</div>
+                <div class="card-header text-right"><img src="{{asset('img/logoRupdae.png')}}" height="60px" class="float-left"> {{ __('Registro') }}</div>
 
                 <div class="card-body">
                     {!! Form::open(['route' => 'registro.validar', 'method' => 'post']) !!}
@@ -45,7 +45,7 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-12 offset-md-0">
-                                <button type="submit" class="btn btn-danger btn-lg btn-block">
+                                <button type="submit" class="btn btn-info btn-lg btn-block">
                                     {{ __('Registrar') }}
                                 </button>
                             </div>

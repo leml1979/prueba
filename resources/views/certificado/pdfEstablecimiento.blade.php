@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>PDF Demo in Laravel 8</title>
+  <title>Certificado Establecimiento</title>
   <link rel="stylesheet" href="{{public_path('dist/css/adminlte.min.css')}}">
   <style>
     /** 
@@ -19,9 +19,9 @@
     /** Define now the real margins of every page in the PDF **/
     body {
       margin-top: 4cm;
-      margin-left: 4cm;
-      margin-right: 3cm;
-      margin-bottom: 3cm;
+      margin-left: 3cm;
+      margin-right: 2cm;
+      margin-bottom: 2cm;
     }
 
     /** Define the header rules **/
@@ -55,7 +55,9 @@
     <p style="margin-bottom: 10%">
       <img id="qrcode" class="float-right" src="data:image/png;base64, {!! $qrcode !!}">
     </p>
-    <p class="text-center" style="margin-top: 30%">
+    <p></p>
+    <br />
+    <p class="text-center" style="margin-top: 10%">
       <b>CERTIFICADO DE INSCRIPCIÓN<br />
       EN EL REGISTRO ÚNICO DE PERSONAS QUE DESARROLLAN <br />ACTIVIDADES ECONÓMICAS (RUPDAE)</b>
     </p>
@@ -64,9 +66,9 @@
     <p class="text-justify">
       La validez del presente certificado electrónico puede ser consultada en el registro principal de RUPDAE, en la opción Validar Registro. No obstante, sin perjuicio de lo declarado en el presente instrumento, la información suministrada por el Sujeto de Aplicación a través del Registro Único de Personas que Desarrollan Actividades Económicas estará sujeta a verificación y evaluación por parte de la Superintendencia Nacional para la Defensa de los Derechos Socioecónomicos de conformidad con lo previsto en el Decreto con Rango, Valor y Fuerza de Ley de Costos y Precios Justos, el Reglamento Parcial sobre la Superintendencia Nacional de Costos y Precios y El Sistema Nacional Integrado de Administración de Precios y demás normativas aplicables.
     </p>
-    <p class="text-center">
+    <p class="text-center" style="margin-top: 5%">
       ENEIDA LAYA LUGO<br />
-      SUPERINTENDENTA NACIONAL
+      SUPERINTENDENTA NACIONAL <br>
       PARA LA DEFENSA DE LOS DERECHOS SOCIO ECONÓMICOS<br />
       Decreto Nº 4.016, de fecha 29-10-2019<br />
       Gaceta Oficial Nº 41.748, de fecha 29-10-2019

@@ -83,7 +83,8 @@ Route::get('/contactos/eliminar/{id}/{establecimiento_id}', [App\Http\Controller
 //certificados
 Route::resource('/certificados', '\App\Http\Controllers\CertificadoController');
 //generar pdf
-Route::get('/certificado/matriz',[App\Http\Controllers\CertificadoController::class, 'pdf'])->name("pdf.matriz");
+Route::get('/certificado-matriz/{id}/pdf',[App\Http\Controllers\CertificadoController::class, 'pdf'])->name("pdf.matriz");
+Route::get('/certificado/matriz/{id}/certificar',[App\Http\Controllers\CertificadoController::class, 'certificarSujeto'])->name("certificar.matriz");
 Route::get('/certificado/establecimiento/pdf/{id}',[App\Http\Controllers\CertificadoController::class, 'pdfEstablecimiento'])->name("pdf.establecimiento");
 Route::get('/certificado/{id}/certificar',[App\Http\Controllers\CertificadoController::class, 'certificarEstablecimiento'])->name("certificar.establecimiento");
 

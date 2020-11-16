@@ -8,7 +8,7 @@ Listar
 @endsection
 
 @section('titulo')
-Listado de Representante Legal
+Representante Legal
 @endsection
 
 @section('content')
@@ -17,8 +17,8 @@ Listado de Representante Legal
 		@include('flash::message')
 	</div>
 	<div class="row text-center">
-		<div class="table table-responsive">
-			<table>
+		<div class="table-responsive">
+			<table class="table  table-hover">
 				<thead>
 					<th></th>
 					<th>Nombres</th>

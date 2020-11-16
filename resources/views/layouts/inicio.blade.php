@@ -56,13 +56,13 @@
         <div class="row">
           
             <div class="col-sm-8">
-              <div class="row">
-              <a href="http://www.sundde.gob.ve" target="_BLANK" class="img-logo">
-                <img src="{{asset('img/logoRupdae.png')}}" height="150px" style="margin-top:16px;"  > 
+              <!--<div class="row">
+              <a href="http://www.sundde.gob.ve" target="_BLANK" class="img-logo img img-rounded">
+                <img src="{{asset('img/logoRupdae.png')}}" height="150px" style="margin-top:2px;"  > 
               </a>
-              </div>
+              </div>-->
               <div class="row">
-                <img src="{{asset('img/logo.png')}}" height="150px" style="margin-top:16px;"  > 
+                <img src="{{asset('img/rupdae.png')}}" class="img img-responsive img-rounded" style="margin-top:5px;"  > 
               </a>
               </div>
 

@@ -18,6 +18,7 @@ use App\Models\MTiposSede;
 use App\Models\MInfraestructura;
 use App\Models\MRelacionesDependencia;
 use Carbon\Carbon;
+use Storage;
 
 class CertificadoController extends Controller
 {
@@ -47,91 +48,29 @@ class CertificadoController extends Controller
             $estatus="Debe Completar la Información Representante Legal";
             return view("certificado.estatus",compact("estatus"));
         }elseif ($sujeto->estatus_seniat==0 ) {
-         $estatus="Debe Completar la Información Representante Legal";
-         return view("certificado.estatus",compact("estatus"));
-     } 
-     $establecimientos = TEstablecimiento::where("sujeto_id",$sujeto->id)->get();
-     return view("certificado.listar", compact("establecimientos","sujeto"));
+            $estatus="Debe Completar la Información Representante Legal";
+            return view("certificado.estatus",compact("estatus"));
+        } 
+        $establecimientos = TEstablecimiento::where("sujeto_id",$sujeto->id)->get();
+        return view("certificado.listar", compact("establecimientos","sujeto"));
         //return view("certificado.index");
- }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     public function pdf(){
-        $sujeto = MSujeto::where("rif", Auth::user()->rif)->get();
+        $sujeto = MSujeto::where("rif", Auth::user()->rif)->first();
+        //dd($sujeto);
         $qrcode = base64_encode(QrCode::format('png')->size(100)->errorCorrection('H')->generate('string'));
-        $pdf = PDF::loadView('certificado.pdf', compact("sujeto","qrcode"));
+        Carbon::setLocale('es');
+        $fecha = Carbon::now();
+        $fecha->diffForHumans();
+        $pdf = PDF::loadView('certificado.pdf', compact("sujeto","qrcode","fecha"));
 
       // download PDF file with download method
         return $pdf->download('certificado.pdf');
     }
 
     public function pdfEstablecimiento($id){
-        //$sujeto = MSujeto::where("rif", Auth::user()->rif)->get();
+            //$sujeto = MSujeto::where("rif", Auth::user()->rif)->get();
         $establecimiento = TEstablecimiento::find($id);
         Carbon::setLocale('es');
         $fecha = Carbon::now();
@@ -139,7 +78,7 @@ class CertificadoController extends Controller
         $qrcode = base64_encode(QrCode::format('png')->size(100)->errorCorrection('H')->generate($establecimiento->codigo_certificado));
         $pdf = PDF::loadView('certificado.pdfEstablecimiento', compact("establecimiento","qrcode","fecha"));
 
-      // download PDF file with download method
+          // download PDF file with download method
         return $pdf->download('certificadoEstablecimiento_'.$establecimiento->establecimiento.'.pdf');
     }
 
@@ -151,13 +90,31 @@ class CertificadoController extends Controller
             flash("Certificado el Establecimiento ". $establecimientos->establecimiento )->success();
             return redirect()->back();
         }catch(\Illuminate\Database\QueryException $e){
+            Storage::put('logcertificado'.Carbon::now().'.txt', $e->getMessage());
             flash("No se pudo certificar el registro")->error();
             return redirect()->back();
         } catch (PDOException $e) {
+            Storage::put('logcertificado'.Carbon::now().'.txt', $e->getMessage());
+            flash("No se pudo certificar el registro")->error();
+            return redirect()->back();
+        }  
+    }
+    public function certificarSujeto($id){
+        $sujeto = MSujeto::find($id);
+        $sujeto->estatus_culminacion_registro=1;
+        try{
+            $sujeto->update(); 
+            flash("Certificado el Sujeto de Aplicacion ". $sujeto->sujeto )->success();
+            return redirect()->back();
+        }catch(\Illuminate\Database\QueryException $e){
+            Storage::put('logcertificado'.Carbon::now().'.txt', $e->getMessage());
+            flash("No se pudo certificar el registro")->error();
+            return redirect()->back();
+        } catch (PDOException $e) {
+            Storage::put('logcertificado'.Carbon::now().'.txt', $e->getMessage());
             flash("No se pudo certificar el registro")->error();
             return redirect()->back();
         }   
-        
-        dd($id);
+
     }
 }
