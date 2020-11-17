@@ -59,7 +59,7 @@ class CertificadoController extends Controller
     public function pdf(){
         $sujeto = MSujeto::where("rif", Auth::user()->rif)->first();
         //dd($sujeto);
-        $qrcode = base64_encode(QrCode::format('png')->size(100)->errorCorrection('H')->generate('string'));
+        $qrcode = base64_encode(QrCode::format('png')->size(100)->errorCorrection('H')->generate("www.sundde.gob.ve/rupdae/".$sujeto->codigo_certificado));
         Carbon::setLocale('es');
         $fecha = Carbon::now();
         $fecha->diffForHumans();
@@ -75,7 +75,7 @@ class CertificadoController extends Controller
         Carbon::setLocale('es');
         $fecha = Carbon::now();
         $fecha->diffForHumans();
-        $qrcode = base64_encode(QrCode::format('png')->size(100)->errorCorrection('H')->generate($establecimiento->codigo_certificado));
+        $qrcode = base64_encode(QrCode::format('png')->size(100)->errorCorrection('H')->generate("www.sundde.gob.ve/rupdae/".$establecimiento->codigo_certificado));
         $pdf = PDF::loadView('certificado.pdfEstablecimiento', compact("establecimiento","qrcode","fecha"));
 
           // download PDF file with download method
@@ -84,7 +84,7 @@ class CertificadoController extends Controller
 
     public function certificarEstablecimiento($id){
         $establecimientos = TEstablecimiento::find($id);
-        $establecimientos->certificado=1;
+        $establecimientos->cierre=1;
         try{
             $establecimientos->update(); 
             flash("Certificado el Establecimiento ". $establecimientos->establecimiento )->success();

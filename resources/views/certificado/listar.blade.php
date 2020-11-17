@@ -50,7 +50,7 @@ Certificados
 							SI 
 							@else NO 
 						@endif</td>
-						<td>@if($establecimiento->certificado==0)<a href="{{url('certificado/'.$establecimiento->id.'/certificar ')}}" alt="Editar Establecimiento"><span class="fa fa-edit"></span></a>
+						<td>@if($establecimiento->cierre==0)<a href="{{url('certificado/'.$establecimiento->id.'/certificar ')}}" alt="Editar Establecimiento"><span class="fa fa-edit"></span></a>
 							@else
 							<a href="{{url('/certificado/establecimiento/pdf/'.$establecimiento->id)}}" alt="Descargar Certificado Establecimiento"><span class="fa fa-file-pdf"></span></a>
 
@@ -61,7 +61,7 @@ Certificados
 				</tbody>
 			</table>
 		</div>
-		<div class="row table-responsive" style="margin-top: 10%">
+		<div class="row table-responsive" style="margin-top: 5%">
 			<table class="table caption-top">
 				<caption>SUJETO DE APLICACION</caption>
 				<thead>
