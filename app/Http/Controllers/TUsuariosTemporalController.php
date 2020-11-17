@@ -36,6 +36,8 @@ class TUsuariosTemporalController extends Controller
         $usuario->name=$request->razon_social;
         $usuario->seniat_id=$request->seniat_id;
         if($usuario->save()){
+            $usuario_temporal = TUsuariosTemporal::where("email",$usuario->email)->first();
+            $usuario_temporal->delete();
             flash("Ingrese al sistema con el usuario: ".$usuario->email. " y la contraseña creada")->success();
             return redirect()->route('login');
         }else{
@@ -59,7 +61,7 @@ class TUsuariosTemporalController extends Controller
         return view("registro.password",compact('tUsuariosTemporal','seniat'));
       }
       else{
-        return "no valido el hash";
+        return view("registro.novalido");
       }
     }
 
