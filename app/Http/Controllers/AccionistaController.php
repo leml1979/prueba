@@ -163,6 +163,7 @@ class AccionistaController extends Controller
                     "nombre2" => $persona->nombre2,
                     "apellido1"=>$persona->apellido1,
                     "apellido2" => $persona->apellido2,
+                    "sexo"=> ($persona->sexo=='M')?"Masculino":"Femenino",
                     "encontrado" => 1,
                 ];
             }else{
@@ -172,6 +173,7 @@ class AccionistaController extends Controller
                     "nombre2" => "",
                     "apellido1"=>"",
                     "apellido2" => "",
+                    "sexo"=>"",
                     "encontrado" => 0,
                 ]; 
             }

@@ -112,7 +112,7 @@ Accionistas Agregar
 				},
 				success: function(data) {
 					if(data.encontrado==1){
-						$("#datos").html("Datos encontrado: "+data.nombre1.toUpperCase()+" "+data.nombre2 + " "+data.apellido1 + " "+data.apellido2);
+						$("#datos").html("Datos encontrado: "+data.nombre1.toUpperCase()+" "+data.nombre2 + " "+data.apellido1 + " "+data.apellido2 +", Sexo: "+data.sexo);
 						$("#seniatsaime").val(data.codigo);
 						$("#btn-guardar").prop("disabled",false);
 
