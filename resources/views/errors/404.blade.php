@@ -1,39 +1,19 @@
-<!--@extends('errors::illustrated-layout')
+@extends('layouts.inicio')
 
-@section('code', '419')
-@section('title', __('Sesion invalida'))
+@section('content')
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">{{ __('Pagina Prohibida') }}</div>
 
-@section('image')
-<style>
-    #apartado-derecho{
-        text-align:center;
-    }
-    ul{
-        text-decoration: none !important;
-        list-style: none;
-        color: black;
-        font-weight: bold;
-    }
-</style>
-<div id="apartado-derecho" style="background-color: #F5716C;" class="absolute pin bg-cover bg-no-repeat md:bg-left lg:bg-center">
-    <h2>Encuentra lo que buscas en nuestro menú:</h2>
-    <ul>
-        <li><a href="/">Inicio</a></li>
-        <li><a href="/">Blog</a></li>
-        <li><a href="/">Dónde estamos</a></li>
+                <div class="card-body">
+                    <p class="text-justify">Usted ha ingresado a un sitio no autorizado, regrese al sistema.
+                    </p>
 
-    </ul>
-@endsection-->
-
-@section('message', __('No hemos encontrado la página que buscas.'))
-@extends('errors::illustrated-layout')
-
-@section('code', '404')
-@section('title', __('Pagina prohibidad'))
-
-@section('image')
-    <div style="background-image: url({{ asset('/svg/403.svg') }});" class="absolute pin bg-cover bg-no-repeat md:bg-left lg:bg-center">
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 @endsection
-
-@section('message', __('Esta pagina es no accesible.'))

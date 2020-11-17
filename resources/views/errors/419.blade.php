@@ -1,11 +1,19 @@
-@extends('errors::illustrated-layout')
+@extends('layouts.inicio')
 
-@section('code', '419')
-@section('title', __('Page Expired'))
+@section('content')
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">{{ __('Pagina Prohibida') }}</div>
 
-@section('image')
-    <div style="background-image: url({{ asset('/svg/403.svg') }});" class="absolute pin bg-cover bg-no-repeat md:bg-left lg:bg-center">
+                <div class="card-body">
+                    <p class="text-justify">Usted ha ingresado a un sitio no autorizado, regrese al sistema.
+                    </p>
+
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 @endsection
-
-@section('message', __('Sorry, your session has expired. Please refresh and try again.'))
