@@ -256,7 +256,7 @@ Información Adicional
 			<fieldset class="fieldset-collapse">
 				<legend><span class="glyphicon glyphicon-check"></span>Tipología de la Empresa</legend>
 				<div class="row">
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<div class="form-group">
 							<label>Servicios</label>
 							<span class="control-obligatorio">*</span>
@@ -276,7 +276,7 @@ Información Adicional
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<div class="form-group">
 							<label>Comercializadora</label>
 							<span class="control-obligatorio">*</span>
@@ -296,7 +296,7 @@ Información Adicional
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<div class="form-group">
 							<label>Productora</label>
 							<span class="control-obligatorio">*</span>
@@ -316,7 +316,47 @@ Información Adicional
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label>Distribuidora</label>
+							<span class="control-obligatorio">*</span>
+							<div class="form-group clearfix">
+								<div class="icheck-primary d-inline">
+									<input type="radio" id="distribuidora1" name="distribuidora" value="1" required>
+									<label for="distribuidora1">
+										Sí
+									</label>
+								</div>
+								<div class="icheck-primary d-inline">
+									<input type="radio" id="distribuidora0" name="distribuidora" value="0">
+									<label for="distribuidora0">
+										No
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label>Exportadora</label>
+							<span class="control-obligatorio">*</span>
+							<div class="form-group clearfix">
+								<div class="icheck-primary d-inline">
+									<input type="radio" id="exportadora1" name="exportadora" value="1" required>
+									<label for="exportadora1">
+										Sí
+									</label>
+								</div>
+								<div class="icheck-primary d-inline">
+									<input type="radio" id="exportadora0" name="exportadora" value="0">
+									<label for="exportadora0">
+										No
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-2">
 						<div class="form-group">
 							<label>Importadora</label>
 							<span class="control-obligatorio">*</span>

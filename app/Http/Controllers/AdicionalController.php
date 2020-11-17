@@ -57,13 +57,12 @@ class AdicionalController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump($request->all());
         if($request->servicios=='0' &&  $request->comercializadora=='0' && $request->productora=='0' && $request->importadora=='0'){
             flash("No")->error();
             return redirect()->back(); 
         }
 
-dd("aaa");
+dd($request->all());
         $sujeto = MSujeto::where("rif",Auth::user()->rif)->first();
         if($request->posse=='si'){
             $sujeto->numero_registro = $request->numero_expediente;
