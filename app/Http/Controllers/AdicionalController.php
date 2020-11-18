@@ -13,6 +13,7 @@ use App\Models\MDivision;
 use App\Models\MClase;
 use App\Models\MSujeto;
 use App\Models\MEstatusEmpresa;
+use Arr;
 
 
 class AdicionalController extends Controller
@@ -59,10 +60,42 @@ class AdicionalController extends Controller
     {
         if($request->servicios=='0' &&  $request->comercializadora=='0' && $request->productora=='0' && $request->importadora=='0'){
             flash("No")->error();
-            return redirect()->back(); 
+            return back(); 
         }
+        $rules=[
+            "clase_id"=>"required|exists:m_clases,id",
+            "division_id"=>"required|exists:m_divisiones,id",
+            "grupo_id"=>"required|exists:m_grupos,id",
+            "seccion_id"=>"required|exists:m_secciones,id",
+            "estado"=>"required|exists:m_estados,id",
+            "municipio"=>"required|exists:m_municipios,id",
+            "parroquia"=>"required|exists:m_parroquias,id",
+            "ciudad"=>"required",
+            "productora"=>"required",
+            "importadora"=>"required",
+            "comercializadora"=>"required",
+            "servicios"=>"required",
+            "punto_referencia"=>"required",
+            "descripcion"=>"required",
+            "zona_postal"=>"required|integer|min:4",
+            "urbanizacion"=>"required",
+            "avenida"=>"required",
+        ];
+        if($request->posse=='si'){
+            $rules=Arr::add($rules, "numero_expediente","required");
+            $rules=Arr::add($rules, "fecha_registro","required|date");
+            $rules=Arr::add($rules, "tomo","required");
+            $rules=Arr::add($rules, "folio","required");
+            $rules=Arr::add($rules, "capital_pagado","required");
+            $rules=Arr::add($rules, "capital_suscrito","required");
+            $rules=Arr::add($rules, "explicacion_estatus","required");
+            $rules=Arr::add($rules, "fecha_desde","required|date");
+            $rules=Arr::add($rules, "estatus_empresa","required");
+        }
+        $request->validate($rules);
 
-dd($request->all());
+
+//dd($request->all());
         $sujeto = MSujeto::where("rif",Auth::user()->rif)->first();
         if($request->posse=='si'){
             $sujeto->numero_registro = $request->numero_expediente;
@@ -98,7 +131,7 @@ dd($request->all());
         $sujeto->estatus_adicional=1;
         $sujeto->pagina_web=$request->sitio_internet;
         $sujeto->update();
-        dd($sujeto);
+        return redirect()->route("adicional.edit",$sujeto->id);
     }
 
     /**
@@ -120,7 +153,16 @@ dd($request->all());
      */
     public function edit($id)
     {
-        //
+        $sujeto = MSujeto::find($id);
+        $estados = MEstado::orderBy("estado")->pluck("estado","id");
+        $municipios = MMunicipio::orderBy("municipio")->pluck("municipio","id");
+        $parroquias = MParroquia::orderBy("parroquia")->pluck("parroquia","id");
+        $secciones = MSeccion::orderBy("seccion")->pluck("seccion","id");
+        $divisiones = MDivision::orderBy("division")->pluck("division","id");
+        $grupos = MGrupo::orderBy("grupo")->pluck("grupo","id");
+        $clases = MClase::orderBy("clase")->pluck("clase","id");
+        $estatus_empresa = MEstatusEmpresa::orderBy("estatu_empresa")->pluck("estatu_empresa","id");
+        return view('informacion_general.informacion_adicional.editar',compact("estados","municipios","parroquias","secciones","divisiones","grupos","clases","estatus_empresa","sujeto"));
     }
 
     /**
