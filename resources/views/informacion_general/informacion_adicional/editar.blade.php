@@ -146,45 +146,13 @@ Información Adicional
 			<fieldset class="fieldset-collapse">
 				<legend><span class="fa fa-check"></span>Clasificación Industrial (Actividad Económica de la Empresa según CIIU Rev. 4)</legend>
 				<hr />
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label>Sección</label>
-							<span class="control-obligatorio">*</span>
-							{!! Form::select("seccion_id",$secciones,$sujeto->seccion_id,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required","id"=>"seccion_id"]) !!}
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label>División</label>
-							<span class="control-obligatorio">*</span>
-							{!! Form::select("division_id",$divisiones,$sujeto->division_id,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required","disabled"=>true,  "id"=>"divisiones_id"])!!}
-						</div>
-					</div>
-
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label>Grupo</label>
-							<span class="control-obligatorio">*</span>
-							{!! Form::select("grupo_id",$grupos,$sujeto->grupo_id,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "disabled"=>true, "id"=>"grupo_id"])!!}
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label>Clase</label>
-							<span class="control-obligatorio">*</span>
-							{!! Form::select("clase_id",$clases,$sujeto->clase_id,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "disabled"=>true, "id"=>"clase_id"])!!}
-						</div>
-					</div>
-				</div>
+				@include("partials.clasificacion")
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="form-group">
 							<label>Descripción específica</label>
 							<span class="control-obligatorio">*</span>
-							{!! Form::textarea("descripcion",null,["class"=>"form-control","placeholder"=>"Descripcion","rows"=>4,"required"=>"required"])!!}
+							{!! Form::textarea("descripcion",$sujeto->descripcion_actividad,["class"=>"form-control","placeholder"=>"Descripcion","rows"=>4,"required"=>"required"])!!}
 						</div>
 					</div>
 				</div>
@@ -203,13 +171,13 @@ Información Adicional
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label>Teléfono</label>
-							{!! Form::text("telefono",null,["class"=>"form-control","placeholder"=>"Teléfono","maxlength"=>"15","id"=>"telefono"])!!}
+							{!! Form::text("telefono",isset($sujeto)?$sujeto->telefono:null,["class"=>"form-control","placeholder"=>"Teléfono","maxlength"=>"15","id"=>"telefono"])!!}
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label>Fax</label>
-							{!! Form::text("fax",null,["class"=>"form-control","placeholder"=>"Fax","maxlength"=>"15","id"=>"fax"])!!}
+							{!! Form::text("fax",isset($sujeto)?$sujeto->fax:null,["class"=>"form-control","placeholder"=>"Fax","maxlength"=>"15","id"=>"fax"])!!}
 						</div>
 					</div>
 				</div>
@@ -224,7 +192,7 @@ Información Adicional
 					<div class="col-sm-12">
 						<div class="form-group">
 							<label>Sitio de Internet</label>
-							{!! Form::text("sitio_internet",null,["class"=>"form-control","placeholder"=>"Página WEB"])!!}
+							{!! Form::text("sitio_internet",isset($sujeto)?$sujeto->pagina_web:null,["class"=>"form-control","placeholder"=>"Página WEB"])!!}
 						</div>
 					</div>
 				</div>
@@ -235,128 +203,7 @@ Información Adicional
 		<div class="col-sm-12">
 			<fieldset class="fieldset-collapse">
 				<legend><span class="glyphicon glyphicon-check"></span>Tipología de la Empresa</legend>
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="form-group">
-							<label>Servicios</label>
-							<span class="control-obligatorio">*</span>
-							<div class="form-group clearfix">
-								<div class="icheck-primary d-inline">
-									<input type="radio" id="servicios1" name="servicios" value="1" required>
-									<label for="servicios1">
-										Sí
-									</label>
-								</div>
-								<div class="icheck-primary d-inline">
-									<input type="radio" id="servicios0" name="servicios" value="0">
-									<label for="servicios0">
-										No
-									</label>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="form-group">
-							<label>Comercializadora</label>
-							<span class="control-obligatorio">*</span>
-							<div class="form-group clearfix">
-								<div class="icheck-primary d-inline">
-									<input type="radio" id="comercializadora1" name="comercializadora" value="1" required>
-									<label for="comercializadora1">
-										Sí
-									</label>
-								</div>
-								<div class="icheck-primary d-inline">
-									<input type="radio" id="comercializadora0" name="comercializadora" value="0">
-									<label for="comercializadora0">
-										No
-									</label>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="form-group">
-							<label>Productora</label>
-							<span class="control-obligatorio">*</span>
-							<div class="form-group clearfix">
-								<div class="icheck-primary d-inline">
-									<input type="radio" id="productora1" name="productora" value="1" required>
-									<label for="productora1">
-										Sí
-									</label>
-								</div>
-								<div class="icheck-primary d-inline">
-									<input type="radio" id="productora0" name="productora" value="0">
-									<label for="productora0">
-										No
-									</label>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="form-group">
-							<label>Distribuidora</label>
-							<span class="control-obligatorio">*</span>
-							<div class="form-group clearfix">
-								<div class="icheck-primary d-inline">
-									<input type="radio" id="distribuidora1" name="distribuidora" value="1" required>
-									<label for="distribuidora1">
-										Sí
-									</label>
-								</div>
-								<div class="icheck-primary d-inline">
-									<input type="radio" id="distribuidora0" name="distribuidora" value="0">
-									<label for="distribuidora0">
-										No
-									</label>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="form-group">
-							<label>Exportadora</label>
-							<span class="control-obligatorio">*</span>
-							<div class="form-group clearfix">
-								<div class="icheck-primary d-inline">
-									<input type="radio" id="exportadora1" name="exportadora" value="1" required>
-									<label for="exportadora1">
-										Sí
-									</label>
-								</div>
-								<div class="icheck-primary d-inline">
-									<input type="radio" id="exportadora0" name="exportadora" value="0">
-									<label for="exportadora0">
-										No
-									</label>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="form-group">
-							<label>Importadora</label>
-							<span class="control-obligatorio">*</span>
-							<div class="form-group clearfix">
-								<div class="icheck-primary d-inline">
-									<input type="radio" id="importadora1" name="importadora" value="1" required>
-									<label for="importadora1">
-										Sí
-									</label>
-								</div>
-								<div class="icheck-primary d-inline">
-									<input type="radio" id="importadora0" name="importadora" value="0">
-									<label for="importadora0">
-										No
-									</label>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				@include("partials.tipologia")
 			</fieldset>
 		</div>
 	</div>
@@ -375,7 +222,9 @@ Información Adicional
 		//$('#fax').inputmask("(9999) 999-9999");
 		//$('#capital_pagado').inputmask('###.###.###,##', { reverse: true });
 		
-		
+		jQuery('#folios').keyup(function () {
+        		this.value = this.value.replace(/[^0-9]/g, '');
+        	});
 		
 		$("select").select2();
 		
