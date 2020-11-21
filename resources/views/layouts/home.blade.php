@@ -108,7 +108,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('adicional/create') }}"
+          <a class="nav-link" href="{{ url('adicional') }}"
           >
           {{ __('Información Adicional') }}
         </a>

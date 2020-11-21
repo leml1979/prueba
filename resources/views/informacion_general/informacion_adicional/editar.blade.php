@@ -38,7 +38,8 @@ Información Adicional
 
 		</div>
 	</div>
-	{!! Form::open(['url' => '/adicional', 'method' => 'post','id'=>'proveedor-form']) !!}
+	{!! Form::open(['route' => ["adicional.update",$sujeto->id], 'method' => 'post','id'=>'adicional-form']) !!}
+	@method('PATCH')
 	@csrf
 	@if($sujeto->numero_registro!=null)
 	<div id="registro_mercantil">		
@@ -222,7 +223,7 @@ Información Adicional
 		//$('#fax').inputmask("(9999) 999-9999");
 		//$('#capital_pagado').inputmask('###.###.###,##', { reverse: true });
 		
-		jQuery('#folios').keyup(function () {
+		jQuery('#zona_postal').keyup(function () {
         		this.value = this.value.replace(/[^0-9]/g, '');
         	});
 		

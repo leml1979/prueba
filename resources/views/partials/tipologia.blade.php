@@ -161,7 +161,7 @@
 				<div class="icheck-primary d-inline">
 					<input type="radio" id="importadora1" name="importadora" value="1" required 
 					@if(isset($sujeto))
-					@if($sujeto->importadora==0)
+					@if($sujeto->importadora==1)
 					checked
 					@endif
 					@endif

@@ -3,7 +3,7 @@
 		<div class="form-group">
 			<label>Zona Postal</label>
 			<span class="control-obligatorio">*</span>
-			{!! Form::text("zona_postal",isset($sujeto)?$sujeto->zona_postal:null,["class"=>"form-control","required"=>"required","maxlength"=>"6"])!!}
+			{!! Form::text("zona_postal",isset($sujeto)?$sujeto->zona_postal:null,["class"=>"form-control","required"=>"required","maxlength"=>"6", "id"=>"zona_postal"])!!}
 		</div>
 	</div>
 	<div class="col-sm-9">

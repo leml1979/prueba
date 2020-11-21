@@ -395,7 +395,9 @@ Información Adicional
 		//$('#fax').inputmask("(9999) 999-9999");
 		//$('#capital_pagado').inputmask('###.###.###,##', { reverse: true });
 		
-		
+		jQuery('#zona_postal').keyup(function () {
+        		this.value = this.value.replace(/[^0-9]/g, '');
+        	});
 		$('input[name="posse"]').prop('checked', false);
 		$("select").select2();
 		$("#registro_mercantil").hide();

@@ -29,7 +29,13 @@ class AdicionalController extends Controller
      */
     public function index()
     {
-        //
+        $sujeto = MSujeto::where("rif",Auth::user()->rif)->first();
+        if($sujeto->estatus_adicional){
+
+            return redirect()->route("adicional.edit",$sujeto->id);
+        }
+        else{
+            return $redirect()->route("adicional");      }
     }
 
     /**
@@ -58,7 +64,7 @@ class AdicionalController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->servicios=='0' &&  $request->comercializadora=='0' && $request->productora=='0' && $request->importadora=='0'){
+        if($request->servicios=='0' &&  $request->comercializadora=='0' && $request->productora=='0' && $request->importadora=='0'  && $request->exportadora=='0' && $request->distribuidora=='0'){
             flash("No")->error();
             return back(); 
         }
@@ -75,6 +81,8 @@ class AdicionalController extends Controller
             "importadora"=>"required",
             "comercializadora"=>"required",
             "servicios"=>"required",
+            "exportadora"=>"required",
+            "distribuidora"=>"required",
             "punto_referencia"=>"required",
             "descripcion"=>"required",
             "zona_postal"=>"required|integer|min:4",
@@ -121,6 +129,8 @@ class AdicionalController extends Controller
         $sujeto->importadora=$request->importadora;
         $sujeto->comercializadora=$request->comercializadora;
         $sujeto->servicios=$request->servicios;
+        $sujeto->exportadora=$request->exportadora;
+        $sujeto->distribuidora=$request->distribuidora;
         $sujeto->punto_referencia=$request->punto_referencia;
         $sujeto->descripcion_actividad=$request->descripcion;
         $sujeto->zona_postal=$request->zona_postal;
@@ -131,6 +141,7 @@ class AdicionalController extends Controller
         $sujeto->estatus_adicional=1;
         $sujeto->pagina_web=$request->sitio_internet;
         $sujeto->update();
+        flash("informacion adicional, guardada exitosamente")->success();
         return redirect()->route("adicional.edit",$sujeto->id);
     }
 
@@ -174,7 +185,85 @@ class AdicionalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sujeto = MSujeto::find($id);
+        if($request->servicios=='0' &&  $request->comercializadora=='0' && $request->productora=='0' && $request->importadora=='0' && $request->exportadora=='0' && $request->distribuidora=='0'){
+            flash("No")->error();
+            return back(); 
+        }
+        $rules=[
+            "clase_id"=>"required|exists:m_clases,id",
+            "division_id"=>"required|exists:m_divisiones,id",
+            "grupo_id"=>"required|exists:m_grupos,id",
+            "seccion_id"=>"required|exists:m_secciones,id",
+            "estado"=>"required|exists:m_estados,id",
+            "municipio"=>"required|exists:m_municipios,id",
+            "parroquia"=>"required|exists:m_parroquias,id",
+            "ciudad"=>"required",
+            "productora"=>"required",
+            "importadora"=>"required",
+            "comercializadora"=>"required",
+            "servicios"=>"required",
+            "exportadora"=>"required",
+            "distribuidora"=>"required",
+            "punto_referencia"=>"required",
+            "descripcion"=>"required",
+            "zona_postal"=>"required|integer|min:4",
+            "urbanizacion"=>"required",
+            "avenida"=>"required",
+        ];
+        if($sujeto->numero_registro!=null){
+            $rules=Arr::add($rules, "numero_expediente","required");
+            $rules=Arr::add($rules, "fecha_registro","required|date");
+            $rules=Arr::add($rules, "tomo","required");
+            $rules=Arr::add($rules, "folio","required");
+            $rules=Arr::add($rules, "capital_pagado","required");
+            $rules=Arr::add($rules, "capital_suscrito","required");
+            $rules=Arr::add($rules, "explicacion_estatus","required");
+            $rules=Arr::add($rules, "fecha_desde","required|date");
+            $rules=Arr::add($rules, "estatus_empresa","required");
+        }
+        $request->validate($rules);
+
+
+//dd($request->all());
+        if($sujeto->numero_registro!=null){
+            $sujeto->numero_registro = $request->numero_expediente;
+            $sujeto->fecha_registros = $request->fecha_registro;
+            $sujeto->nombre_comercial = $request->nombre_comercial;
+            $sujeto->tomo = $request->tomo;
+            $sujeto->folio = $request->folio;
+            $sujeto->capital_pagado = $request->capital_pagado;
+            $sujeto->capital_suscrito = $request->capital_suscrito;
+            $sujeto->explicacion_estatus = $request->explicacion_estatus;
+            $sujeto->fecha_estatus_desde = $request->fecha_desde;
+            $sujeto->estatus_empresa_adicional_id=$request->estatus_empresa;
+        }
+        $sujeto->clase_id=$request->clase_id;
+        $sujeto->division_id=$request->division_id;
+        $sujeto->grupo_id=$request->grupo_id;
+        $sujeto->seccion_id=$request->seccion_id;
+        $sujeto->estado_id=$request->estado;
+        $sujeto->municipio_id=$request->municipio;
+        $sujeto->parroquia_id=$request->parroquia;
+        $sujeto->ciudad=$request->ciudad;
+        $sujeto->productora=$request->productora;
+        $sujeto->importadora=$request->importadora;
+        $sujeto->comercializadora=$request->comercializadora;
+        $sujeto->servicios=$request->servicios;
+        $sujeto->exportadora=$request->exportadora;
+        $sujeto->distribuidora=$request->distribuidora;
+        $sujeto->punto_referencia=$request->punto_referencia;
+        $sujeto->descripcion_actividad=$request->descripcion;
+        $sujeto->zona_postal=$request->zona_postal;
+        $sujeto->telefono=$request->telefono;
+        $sujeto->urbanizacion_barrio=$request->urbanizacion;
+        $sujeto->avenida=$request->avenida;
+        $sujeto->fax=$request->fax;
+        $sujeto->estatus_adicional=1;
+        $sujeto->pagina_web=$request->sitio_internet;
+        $sujeto->update();
+        flash("informacion adicional, guardada exitosamente")->success();
+        return redirect()->route("adicional.edit",$sujeto->id);
     }
 
     /**
