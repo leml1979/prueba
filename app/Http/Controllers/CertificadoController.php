@@ -19,6 +19,7 @@ use App\Models\MInfraestructura;
 use App\Models\MRelacionesDependencia;
 use Carbon\Carbon;
 use Storage;
+use Str;
 
 class CertificadoController extends Controller
 {
@@ -33,18 +34,21 @@ class CertificadoController extends Controller
      */
     public function index()
     {
+        $persona="JURIDICA";
         $sujeto = MSujeto::where("rif",Auth::user()->rif)->firstOrFail();
-        $establecimientos=[];
+        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
+            $persona="NATURAL";
+        }
         if($sujeto->estatus_adicional==0){
             $estatus="Debe Completar la Información Adicional";
             return view("certificado.estatus",compact("estatus"));
-        } elseif ($sujeto->estatus_accionista==0) {
+        } elseif ($sujeto->estatus_accionista==0 &&  $persona=="JURIDICA") {
             $estatus="Debe Completar la Información Accionista";
             return view("certificado.estatus",compact("estatus"));
         }elseif ($sujeto->estatus_establecimiento==0) {
             $estatus="Debe Completar la Información Establecimientos";
             return view("certificado.estatus",compact("estatus"));
-        }elseif ($sujeto->estatus_representante_legal==0) {
+        }elseif ($sujeto->estatus_representante_legal==0 && $persona=="JURIDICA") {
             $estatus="Debe Completar la Información Representante Legal";
             return view("certificado.estatus",compact("estatus"));
         }elseif ($sujeto->estatus_seniat==0 ) {

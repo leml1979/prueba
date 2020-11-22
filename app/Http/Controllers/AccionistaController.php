@@ -13,6 +13,7 @@ use App\Models\MPais;
 use App\Models\MPersonalidad;
 use App\Models\MTiposRelacionEmpresa;
 use DB;
+use Str;
 
 
 class AccionistaController extends Controller
@@ -29,7 +30,9 @@ class AccionistaController extends Controller
     public function index()
     {
         //$sujeto = MSujeto::find("rif",Auth::user()->rif);
-
+        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
+            return redirect()->route("home");
+        }
         $sujeto = MSujeto::where("rif",Auth::user()->rif)->firstOrFail();
         $accionistas = RAccionistasEmpresa::where("sujeto_id",$sujeto->id)->get();
        // dd($accionistas);
@@ -44,7 +47,9 @@ class AccionistaController extends Controller
      */
     public function create()
     {
-
+        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
+            return redirect()->route("home");
+        }
         $paises = MPais::orderBy("pais")->pluck("pais","id");
         $personalidades = MPersonalidad::orderBy("id")->pluck("personalidad", "id");
         $tipoRelacionEmpresa = MTiposRelacionEmpresa::orderBy("id")->pluck("tipo_relacion_empresa","id");
@@ -59,7 +64,9 @@ class AccionistaController extends Controller
      */
     public function store(Request $request)
     {   
-
+        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
+            return redirect()->route("home");
+        }
         $request->validate([
             "tipo"=>"required|in:V,E,P,J,G,C,N",
             "documento_identidad"=>"required|min:8|max:10",
@@ -105,7 +112,9 @@ class AccionistaController extends Controller
      */
     public function show($id)
     {
-        //
+        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
+            return redirect()->route("home");
+        }
     }
 
     /**
@@ -116,6 +125,9 @@ class AccionistaController extends Controller
      */
     public function edit($id)
     {
+        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
+            return redirect()->route("home");
+        }
         $accionista = RAccionistasEmpresa::find($id);
         $paises = MPais::orderBy("pais")->pluck("pais","id");
         $personalidades = MPersonalidad::orderBy("id")->pluck("personalidad", "id");
@@ -132,6 +144,9 @@ class AccionistaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
+            return redirect()->route("home");
+        }
         $request->validate([
             "personalidad"=>"required",
             "pais"=>"required|exists:m_paises,id",
@@ -164,7 +179,10 @@ class AccionistaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   
+        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
+            return redirect()->route("home");
+        }
         $sujeto = MSujeto::where("rif",Auth::user()->rif)->first();
         $accionista = RAccionistasEmpresa::find($id);
         $mensaje="El(la) Accionista  se a eliminado";
@@ -179,6 +197,9 @@ class AccionistaController extends Controller
     }
 
     public function buscar(Request $request){
+        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
+            return redirect()->route("home");
+        }
         if($request->tipo=="V" || $request->tipo=="E" || $request->tipo=="P"){
             $persona = ESaime::where(["cedula"=>$request->documento_identidad,"tipo"=>$request->tipo])->first();
                 //dd($persona);

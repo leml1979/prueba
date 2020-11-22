@@ -96,63 +96,64 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('seniat') }}"
-              >
-              {{ __('Información SENIAT') }}
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('accionista') }}"
-            >
-            {{ __('Accionistas') }}
+              <a class="nav-link" href="{{ url('seniat') }}">
+                {{ __('Información SENIAT') }}
+              </a>
+            </li>
+            @if(Str::startsWith(Auth::user()->rif,['J','G','N','C']))
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('accionista') }}">
+                {{ __('Accionistas') }}
+              </a>
+            </li>
+            @endif
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('adicional') }}">
+                {{ __('Información Adicional') }}
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="{{route('establecimiento.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              ESTABLECIMIENTO
+            </p>
+          </a>
+        </li>
+        @if(Str::startsWith(Auth::user()->rif,['J','G','N','C']))
+        <li class="nav-item">
+          <a href="{{route('representante.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              REPRESENTANTE LEGAL
+            </p>
+          </a>
+        </li>
+        @endif
+        <li class="nav-item">
+          <a href="{{route('proveedores.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              PROVEEDORES
+            </p>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('adicional') }}"
-          >
-          {{ __('Información Adicional') }}
-        </a>
-      </li>
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a href="{{route('establecimiento.index')}}" class="nav-link">
-      <i class="nav-icon fas fa-th"></i>
-      <p>
-        ESTABLECIMIENTO
-      </p>
-    </a>
-  </li>
-  <li class="nav-item">
-    <a href="{{route('representante.index')}}" class="nav-link">
-      <i class="nav-icon fas fa-th"></i>
-      <p>
-        REPRESENTANTE LEGAL
-      </p>
-    </a>
-  </li>
-  <li class="nav-item">
-    <a href="{{route('proveedores.index')}}" class="nav-link">
-      <i class="nav-icon fas fa-th"></i>
-      <p>
-        PROVEEDORES
-      </p>
-    </a>
-  </li>
-  <li class="nav-item">
-    <a href="{{route('certificados.index')}}" class="nav-link">
-      <i class="nav-icon fas fa-th"></i>
-      <p>
-        CERTIFICADOS
-      </p>
-    </a>
-  </li>
-</ul>
-@endif
-</nav>
-<!-- /.sidebar-menu -->
-</div>
-<!-- /.sidebar -->
+          <a href="{{route('certificados.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>
+              CERTIFICADOS
+            </p>
+          </a>
+        </li>
+      </ul>
+      @endif
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
 </aside>
 
 <!-- Content Wrapper. Contains page content -->
@@ -182,7 +183,7 @@
       <div class="row">
         <div class="col-sm-12 ">
           <div class="info-box">
-            
+
             <div class="info-box-content">
               @yield('content')
             </div>

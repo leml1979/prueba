@@ -37,10 +37,11 @@ return [
         'UserInputID' => 'CaptchaCode',
         'CodeLength' => CaptchaRandomization::GetRandomCodeLength(4, 6),
         'ImageStyle' => [
-            ImageStyle::Radar,
-            ImageStyle::Collage,
-            ImageStyle::Fingerprints,
+            ImageStyle::Rough,
+            ImageStyle::Split,
+            ImageStyle::Graffiti,
         ],
+        'CodeStyle' => CodeStyle::Alphanumeric,
     ],
 
     /*
@@ -51,7 +52,7 @@ return [
     'RegisterCaptcha' => [
         'UserInputID' => 'CaptchaCode',
         'CodeLength' => CaptchaRandomization::GetRandomCodeLength(4, 7),
-        'CodeStyle' => CodeStyle::Alpha,
+        'CodeStyle' => CodeStyle::Alphanumeric,
     ],
 
     /*
@@ -63,6 +64,7 @@ return [
         'UserInputID' => 'CaptchaCode',
         'CodeLength' => 6,
         'CustomLightColor' => '#9966FF',
+        'CodeStyle' => CodeStyle::Alphanumeric,
     ],
 
     // Add more your Captcha configuration here...

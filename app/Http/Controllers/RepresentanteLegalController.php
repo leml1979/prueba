@@ -8,6 +8,7 @@ use App\Models\MSujeto;
 use App\Models\RRepresentanteLegal;
 use App\Models\ESaime;
 use Arr;
+use Str;
 
 class RepresentanteLegalController extends Controller
 {
@@ -22,6 +23,9 @@ class RepresentanteLegalController extends Controller
      */
     public function index()
     {
+        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
+            return redirect()->route("home");
+        }
         $sujeto = MSujeto::where("rif",Auth::user()->rif)->firstOrFail();
         $representantes = RRepresentanteLegal::where("sujeto_id",$sujeto->id)->get();
         return view("representante_legal.listar",compact("representantes"));
@@ -34,6 +38,9 @@ class RepresentanteLegalController extends Controller
      */
     public function create()
     {
+        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
+            return redirect()->route("home");
+        }
         return view("representante_legal.agregar");
     }
 
@@ -45,6 +52,9 @@ class RepresentanteLegalController extends Controller
      */
     public function store(Request $request)
     {
+        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
+            return redirect()->route("home");
+        }
         $rules = [
             "tipo"=>"required|in:V,E",
             "documento_identidad"=>"required|min:8|max:10",
@@ -95,7 +105,9 @@ class RepresentanteLegalController extends Controller
      */
     public function show($id)
     {
-        //
+        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
+            return redirect()->route("home");
+        }
     }
 
     /**
@@ -106,6 +118,9 @@ class RepresentanteLegalController extends Controller
      */
     public function edit($id)
     {
+        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
+            return redirect()->route("home");
+        }
         $representanteLegal = RRepresentanteLegal::find($id);
         return view("representante_legal.editar",compact("representanteLegal","id"));
     }
@@ -119,6 +134,9 @@ class RepresentanteLegalController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
+            return redirect()->route("home");
+        }
         $rules = [
             "telefono"=>"required|regex:/[0-9]{11}/|starts_with:02",
             "correo"=>"required|email:rfc,dns",
@@ -153,6 +171,9 @@ class RepresentanteLegalController extends Controller
      */
     public function destroy($id)
     {
+        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
+            return redirect()->route("home");
+        }
         $sujeto = MSujeto::where("rif",Auth::user()->rif)->first();
         $representante = RRepresentanteLegal::find($id);
         $mensaje="El(la) representante  se a eliminado";

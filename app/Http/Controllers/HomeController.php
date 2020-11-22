@@ -7,6 +7,7 @@ use Auth;
 use App\Models\User;
 use App\Models\MSujeto;
 use App\Models\ESeniat;
+use Str;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $persona=null;
         if(Auth::user()->declaracion_jurada && (Auth::user()->respuesta_declaracion_jurada==null || Auth::user()->respuesta_declaracion_jurada!=='ESTOY DE ACUERDO')){
             return view('registro.declaracionJurada');
         }elseif(Auth::user()->declaracion_jurada && Auth::user()->respuesta_declaracion_jurada==='ESTOY DE ACUERDO'){
@@ -54,6 +56,7 @@ class HomeController extends Controller
             $sujeto->save();
             return redirect()->route('home');
         }elseif($request->texto=="NO ESTOY DE ACUERDO"){
+            //actualiza la tabla y el modelos
             Auth::user()->update(["respuesta_declaracion_jurada"=>$request->texto]);
             return redirect()->back();
         }else{
