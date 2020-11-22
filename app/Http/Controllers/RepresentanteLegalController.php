@@ -106,7 +106,8 @@ class RepresentanteLegalController extends Controller
      */
     public function edit($id)
     {
-        //
+        $representanteLegal = RRepresentanteLegal::find($id);
+        return view("representante_legal.editar",compact("representanteLegal","id"));
     }
 
     /**
@@ -118,7 +119,30 @@ class RepresentanteLegalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            "telefono"=>"required|regex:/[0-9]{11}/|starts_with:02",
+            "correo"=>"required|email:rfc,dns",
+        ];
+        if($request->celular!=null){
+            $rules=Arr::add($rules, "celular","regex:/[0-9]{11}/|starts_with:04");
+        }
+        $request->validate([$rules]);
+
+        $representante = RRepresentanteLegal::find($id);
+        $representante->cargo = $request->cargo;
+        $representante->correo = $request->correo;
+        $representante->telefono = $request->telefono;
+        $representante->celular = $request->celular;
+        $representante->id_usuario_modificador=Auth::user()->id;
+        if($representante->save()){
+            $mensaje="El(la) representante legal se a editado";
+            flash($mensaje)->success()->important();
+            return redirect()->route('representante.index');
+        }else{
+            $mensaje="El(la) representante no se a editado";
+            flash($mensaje)->error()->important();
+            return redirect()->route('representante.index');
+        }
     }
 
     /**

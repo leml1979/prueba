@@ -35,7 +35,7 @@ Listado de Contactos Establecimiento
 						<td>{{ $contacto->saime->nombre1. " ".$contacto->saime->nombre2. " ".$contacto->saime->apellido1. " ".$contacto->saime->apellido2 }}</td>
 						<td>{!!$contacto->cargo!!}</td>
 						<td></td>
-						<td><a href="{{url('contacto/'.$contacto->id.'/edit')}}" alt="Editar Proveedor"><span class="fa fa-edit"></span></a> 
+						<td><a href="{{url('establecimiento-contacto/'.$contacto->id.'/edit')}}" alt="Editar Proveedor"><span class="fa fa-edit"></span></a> 
 							<a href="{{url('contactos/eliminar/'.$contacto->id.'/'.$id)}}" alt="Eliminar"><span class="fa fa-trash-alt"></span></a></td>
 					</tr>
 					@endforeach

@@ -110,7 +110,8 @@ class ContactoEstablecimientoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $contacto =  RContactosEstablecimiento::find($id);
+        return view("establecimiento.contactos.editar", compact("contacto","id"));
     }
 
     /**
@@ -122,7 +123,31 @@ class ContactoEstablecimientoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            "telefono"=>"required|regex:/[0-9]{11}/|starts_with:02",
+            "correo"=>"required|email:rfc,dns",
+        ];
+        if($request->celular!=null){
+            $rules=Arr::add($rules, "celular","regex:/[0-9]{11}/|starts_with:04");
+        }
+        
+        $request->validate($rules);
+
+        $contacto = RContactosEstablecimiento::find($id);
+        $contacto->cargo = $request->cargo;
+        $contacto->correo = $request->correo;
+        $contacto->telefono = $request->telefono;
+        $contacto->celular = $request->celular;
+        $contacto->id_usuario_modificador=Auth::user()->id;
+        if($contacto->save()){
+            $mensaje="El(la) contacto se a actualizado";
+            flash($mensaje)->success()->important();
+            return redirect()->route('establecimiento.contacto',$contacto->establecimiento_id);
+        }else{
+            $mensaje="El(la) contacto no se a actualizado";
+            flash($mensaje)->error()->important();
+            return redirect()->route('establecimiento.contacto',$contacto->establecimiento_id);
+        }
     }
 
     /**

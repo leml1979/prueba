@@ -116,7 +116,11 @@ class AccionistaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $accionista = RAccionistasEmpresa::find($id);
+        $paises = MPais::orderBy("pais")->pluck("pais","id");
+        $personalidades = MPersonalidad::orderBy("id")->pluck("personalidad", "id");
+        $tipoRelacionEmpresa = MTiposRelacionEmpresa::orderBy("id")->pluck("tipo_relacion_empresa","id");
+        return view("informacion_general.accionistas.editar",compact("paises","personalidades","tipoRelacionEmpresa","accionista"));
     }
 
     /**
@@ -128,7 +132,29 @@ class AccionistaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            "personalidad"=>"required",
+            "pais"=>"required|exists:m_paises,id",
+            "tipo_relacion_empresa"=>"required|exists:m_tipos_relacion_empresas,id",
+            "cantidad_acciones"=>"required|numeric",
+            "correo"=>"required|email:rfc,dns",
+        ]);
+        $accionista = RAccionistasEmpresa::find($id);
+        $accionista->cantidad_acciones = $request->cantidad_acciones;
+        $accionista->pais_id = $request->pais;
+        $accionista->personalidad_id = $request->personalidad;
+        $accionista->correo = $request->correo;
+        $accionista->tipo_relacion_empresa_id = $request->tipo_relacion_empresa;
+        $accionista->usuario_modificador_id=Auth::user()->id;
+        if($accionista->save()){
+            $mensaje="El(la) accionista se a modifcado";
+            flash($mensaje)->success()->important();
+            return redirect()->route('accionista.index');
+        }else{
+            $mensaje="El(la) accionista no se a modificado";
+            flash($mensaje)->error()->important();
+            return redirect()->route('accionista.index');
+        }
     }
 
     /**
