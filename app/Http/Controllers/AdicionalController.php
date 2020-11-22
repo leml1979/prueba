@@ -166,12 +166,12 @@ class AdicionalController extends Controller
     {
         $sujeto = MSujeto::find($id);
         $estados = MEstado::orderBy("estado")->pluck("estado","id");
-        $municipios = MMunicipio::orderBy("municipio")->pluck("municipio","id");
-        $parroquias = MParroquia::orderBy("parroquia")->pluck("parroquia","id");
+        $municipios = MMunicipio::orderBy("municipio")->where("estado_id",$sujeto->estado_id)->pluck("municipio","id");
+        $parroquias = MParroquia::orderBy("parroquia")->where("municipio_id",$sujeto->municipio_id)->pluck("parroquia","id");
         $secciones = MSeccion::orderBy("seccion")->pluck("seccion","id");
-        $divisiones = MDivision::orderBy("division")->pluck("division","id");
-        $grupos = MGrupo::orderBy("grupo")->pluck("grupo","id");
-        $clases = MClase::orderBy("clase")->pluck("clase","id");
+        $divisiones = MDivision::orderBy("division")->where("seccion_id",$sujeto->seccion_id)->pluck("division","id");
+        $grupos = MGrupo::orderBy("grupo")->where("division_id",$sujeto->division_id)->pluck("grupo","id");
+        $clases = MClase::orderBy("clase")->where("grupo_id",$sujeto->grupo_id)->pluck("clase","id");
         $estatus_empresa = MEstatusEmpresa::orderBy("estatu_empresa")->pluck("estatu_empresa","id");
         return view('informacion_general.informacion_adicional.editar',compact("estados","municipios","parroquias","secciones","divisiones","grupos","clases","estatus_empresa","sujeto"));
     }

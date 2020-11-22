@@ -18,8 +18,7 @@
 @endsection
 
 @section('breadcrumb')
-Establecimiento
-
+Agregar
 @endsection
 @section('titulo')
 Gestion de Establecimiento
@@ -45,86 +44,9 @@ Gestion de Establecimiento
 			
 		</div>
 		<hr />
-		<div class="row">
-			<div class="col-sm-3">
-				<div class="form-group">
-					<label>Tipo Sede</label>
-					<span class="control-obligatorio">*</span>
-					{!! Form::select("tipo_sede",$tipoSedes,null,["class"=>"form-control select2", "required"=>"required","placeholder"=>"Seleccione ..."])!!}
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<div class="form-group">
-					<label>Establecimiento</label>
-					<span class="control-obligatorio">*</span>
-					{!! Form::text("establecimiento",null,["class"=>"form-control", "required"=>"required","placeholder"=>"Establecimiento"])!!}
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<label>Tipo de Establecimiento</label>
-				<span class="control-obligatorio">*</span>
-				{!! Form::select("tipo_establecimiento",$infraestructuras,null,["class"=>"form-control select2", "required"=>"required","placeholder"=>"Seleccione ..."])!!}
-			</div>
-			<div class="col-sm-3">
-				<label>Relacion de Dependencia</label>
-				<span class="control-obligatorio">*</span>
-				{!! Form::select("relacion_dependencia",$relacion_dependencia,null,["class"=>"form-control select2", "required"=>"required","placeholder"=>"Seleccione ..."])!!}
-			</div>
-			<div class="col-sm-12">
-				<label>Actividad</label>
-				<span class="control-obligatorio">*</span>
-				{!! Form::textarea("actividad",null,["class"=>"form-control",'rows' => 4, 'cols' => 54, "required"=>"required"])!!}
-			</div>
-		</div>
-		<div class="row" style="margin-bottom: 2%;margin-top: 3%; font-size:1.5em">
-			<span class="fa fa-pencil-alt"></span>Dirección
-			
-		</div>
-		<hr />
-		<div class="row">
-			@include("partials.estado_municipio_parroquia")
-		</div>
-		@include("partials.direccion")
-		<div class="row" style="margin-bottom: 2%;margin-top: 3%; font-size:1.5em">
-			<span class="fa fa-pencil-alt"></span>Inmueble
-		</div>
-		<div class="row">
-			
-			<div class="col-sm-3">
-				<label>Tenencia</label>
-				<span class="control-obligatorio">*</span>
-				{!! Form::select("tenencia",$tenencias,null,["class"=>"form-control select2", "required"=>"required","placeholder"=>"Seleccione...."])!!}
-			</div>
-			<div class="col-sm-3">
-				<label>Tipo de Inmueble</label>
-				<span class="control-obligatorio">*</span>
-				{!! Form::select("tipo_inmueble",$inmuebles,null,["class"=>"form-control select2", "required"=>"required","placeholder"=>"Seleccione...."])!!}
-			</div>
-			<div class="col-sm-3">
-				<label>Nombre del Inmueble</label>
-				<span class="control-obligatorio">*</span>
-				{!! Form::text("nombre_inmueble",null,["class"=>"form-control","required"=>"required","placeholder"=>"Nombre del Inmueble"])!!}
-			</div>
-			<div class="col-sm-3">
-				<label>Capacidad</label>
-				<span class="control-obligatorio">*</span>
-				{!! Form::text("capacidad",null,["class"=>"form-control","required"=>"required","placeholder"=>"Capacidad"])!!}
-			</div>
-			<div class="col-sm-6">
-				<label>Apartamento/Local/Oficina</label>
-				<span class="control-obligatorio">*</span>
-				{!! Form::text("apartamento",null,["class"=>"form-control","required"=>"required","placeholder"=>"Apartamento/Local/Oficina"])!!}
-			</div>
-			<div class="col-sm-3">
-				<label>Piso</label>
-				{!! Form::text("piso",null,["class"=>"form-control","placeholder"=>"Piso"])!!}
-			</div>
-			<div class="col-sm-3">
-				<label>Nivel</label>
-				{!! Form::text("nivel",null,["class"=>"form-control","placeholder"=>"Nivel"])!!}
-			</div>
-		</div>
+		@include("establecimiento.partials.form")
 		<button type="submit" class="btn btn-primary" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
+		<a href="{{url('establecimiento')}}" class="btn btn-warning">Regresar</a>
 		{!! Form::close() !!}
 	</div>
 </div>
