@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Http\Request;
 
 class ForgotPasswordController extends Controller
 {
@@ -19,4 +20,13 @@ class ForgotPasswordController extends Controller
     */
 
     use SendsPasswordResetEmails;
+
+    protected function validateEmail(Request $request)
+  {
+    $this->validate($request, [
+      'email' => 'required|email|exists:users',
+      'CaptchaCode' => 'required|valid_captcha',
+      ],["CaptchaCode.required"=>"El código es requerido",
+      "CaptchaCode.valid_captcha"=>"El código no es correcto"]);
+  }
 }

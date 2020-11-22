@@ -5,6 +5,9 @@
     .content-wrapper {
         background: #FFFFFF;
     }
+    .help-block{
+        color:#dc3545;
+    }
 </style>
 @endsection
 
@@ -34,8 +37,6 @@
                         </div>
 
                         <div class="form-group row">
-
-
                             <div class="col-md-12">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Contraseña">
 
@@ -46,49 +47,62 @@
                                 @enderror
                             </div>
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-12 offset-md-0">
-                                <button type="submit" class="btn btn-info btn-lg btn-block">
-                                    {{ __('Iniciar Sesión') }}
-                                </button>
-                            </div>
+                        <div class="form-group{{ $errors->has('CaptchaCode') ? ' has-error' : '' }}">
                             
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-4">
+                          <div class="col-md-12">
+                            {!! captcha_image_html('LoginCaptcha') !!}
+                            <input type="text" class="form-control" name="CaptchaCode" id="CaptchaCode">
 
-                                @if (Route::has('password.request'))
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                 <i class="fa fa-unlock" aria-hidden="true"></i>
-                             </a>
-                             @endif
-                         </div>
-                         <div class="col-md-4">
-
-                            @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="{{ route('registro') }}">
-                                <i class="fas fa-user-plus"></i>
-                            </a>
+                            @if ($errors->has('CaptchaCode'))
+                            <span class="help-block ">
+                                <strong>{{ $errors->first('CaptchaCode') }}</strong>
+                            </span>
                             @endif
                         </div>
-                        <div class="col-md-4">
-                            @if (Route::has('password.request'))
+                    </div>
 
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                <i class="fa fa-check-circle" aria-hidden="true"></i>
-
-                            </a>
-                            @endif
+                    <div class="form-group row mb-0">
+                        <div class="col-md-12 offset-md-0">
+                            <button type="submit" class="btn btn-info btn-lg btn-block">
+                                {{ __('Iniciar Sesión') }}
+                            </button>
                         </div>
 
                     </div>
+                    <div class="form-group">
+                        <div class="col-md-4">
 
-                </form>
-            </div>
+                            @if (Route::has('password.request'))
+
+                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                             <i class="fa fa-unlock" aria-hidden="true"></i>
+                         </a>
+                         @endif
+                     </div>
+                     <div class="col-md-4">
+
+                        @if (Route::has('password.request'))
+                        <a class="btn btn-link" href="{{ route('registro') }}">
+                            <i class="fas fa-user-plus"></i>
+                        </a>
+                        @endif
+                    </div>
+                    <div class="col-md-4">
+                        @if (Route::has('password.request'))
+
+                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                            <i class="fa fa-check-circle" aria-hidden="true"></i>
+
+                        </a>
+                        @endif
+                    </div>
+
+                </div>
+
+            </form>
         </div>
     </div>
+</div>
 </div>
 <div class="">
     @include('flash::message')

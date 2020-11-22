@@ -26,7 +26,7 @@ class TUsuariosTemporalController extends Controller
            'password'  => 'required|min:4|max:10',
            'password_confirmar' => 'required|same:password',
            'email'=> 'unique:users,email',
-           'rif' => 'unique:users,rif'
+           'rif' => 'unique:users,rif',
        ]);
         $usuario = new User();
         $usuario->rif=$request->rif;

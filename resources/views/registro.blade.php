@@ -5,6 +5,9 @@
     .content-wrapper {
         background: #FFFFFF;
     }
+    .help-block{
+        color:#dc3545;
+    }
 </style>
 @endsection
 
@@ -17,7 +20,7 @@
 
                 <div class="card-body">
                     {!! Form::open(['route' => 'registro.validar', 'method' => 'post']) !!}
-                   <!-- <form method="POST" action="{{ route('registro.validar') }}">-->
+                    <!-- <form method="POST" action="{{ route('registro.validar') }}">-->
                         @csrf
 
                         <div class="form-group row">
@@ -43,14 +46,28 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-12 offset-md-0">
-                                <button type="submit" class="btn btn-info btn-lg btn-block">
-                                    {{ __('Registrar') }}
-                                </button>
-                            </div>
+                        <div class="form-group{{ $errors->has('CaptchaCode') ? ' has-error' : '' }}">
+                          <label class="col-md-4 control-label"></label>
+
+                          <div class="col-sm-12">
+                            {!! captcha_image_html('RegisterCaptcha') !!}
+                            <input type="text" class="form-control" name="CaptchaCode" id="CaptchaCode">
+
+                            @if ($errors->has('CaptchaCode'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('CaptchaCode') }}</strong>
+                            </span>
+                            @endif
                         </div>
-                        {!! Form::close() !!}
+                    </div>
+                    <div class="form-group row mb-0">
+                        <div class="col-md-12 offset-md-0">
+                            <button type="submit" class="btn btn-info btn-lg btn-block">
+                                {{ __('Registrar') }}
+                            </button>
+                        </div>
+                    </div>
+                    {!! Form::close() !!}
                     <!--</form>-->
                 </div>
             </div>

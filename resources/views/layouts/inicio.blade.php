@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+   <link href="{{ captcha_layout_stylesheet_url() }}" type="text/css" rel="stylesheet">
   @yield('css')
 </head>
 <body class="hold-transition layout-navbar-fixed layout-footer-fixed">

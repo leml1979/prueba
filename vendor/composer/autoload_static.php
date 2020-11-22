@@ -34,6 +34,7 @@ class ComposerStaticInitd09f28543e8f04e0c61407f82af2214b
         '9cdd7b9056abc3081735233ba9dd9c7f' => __DIR__ . '/..' . '/facade/flare-client-php/src/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
+        'c78728b4802e1a9e0e9e89908b46d100' => __DIR__ . '/..' . '/captcha-com/laravel-captcha/src/Support/helpers.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
         'e23faeee409e941dc9b4c80386209c39' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/functions.php',
         'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
@@ -130,6 +131,7 @@ class ComposerStaticInitd09f28543e8f04e0c61407f82af2214b
             'Laraveles\\Spanish\\' => 18,
             'Laravel\\Ui\\' => 11,
             'Laravel\\Tinker\\' => 15,
+            'LaravelCaptcha\\' => 15,
         ),
         'I' => 
         array (
@@ -410,6 +412,10 @@ class ComposerStaticInitd09f28543e8f04e0c61407f82af2214b
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
         ),
+        'LaravelCaptcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/captcha-com/laravel-captcha/src',
+        ),
         'Illuminate\\Support\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Macroable',
@@ -579,6 +585,7 @@ class ComposerStaticInitd09f28543e8f04e0c61407f82af2214b
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
+        'App\\Http\\Controllers\\CertificadoController' => __DIR__ . '/../..' . '/app/Http/Controllers/CertificadoController.php',
         'App\\Http\\Controllers\\ContactoEstablecimientoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContactoEstablecimientoController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\EstablecimientoController' => __DIR__ . '/../..' . '/app/Http/Controllers/EstablecimientoController.php',
@@ -628,6 +635,7 @@ class ComposerStaticInitd09f28543e8f04e0c61407f82af2214b
         'App\\Models\\TEstablecimiento' => __DIR__ . '/../..' . '/app/Models/TEstablecimiento.php',
         'App\\Models\\TUsuariosTemporal' => __DIR__ . '/../..' . '/app/Models/TUsuariosTemporal.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Notifications\\ResetPassword' => __DIR__ . '/../..' . '/app/Notifications/ResetPassword.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -2758,6 +2766,16 @@ class ComposerStaticInitd09f28543e8f04e0c61407f82af2214b
         'Laracasts\\Flash\\Message' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/Message.php',
         'Laracasts\\Flash\\OverlayMessage' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/OverlayMessage.php',
         'Laracasts\\Flash\\SessionStore' => __DIR__ . '/..' . '/laracasts/flash/src/Laracasts/Flash/SessionStore.php',
+        'LaravelCaptcha\\BotDetectCaptcha' => __DIR__ . '/..' . '/captcha-com/laravel-captcha/src/BotDetectCaptcha.php',
+        'LaravelCaptcha\\BotDetectSimpleCaptcha' => __DIR__ . '/..' . '/captcha-com/laravel-captcha/src/BotDetectSimpleCaptcha.php',
+        'LaravelCaptcha\\Controllers\\CaptchaHandlerController' => __DIR__ . '/..' . '/captcha-com/laravel-captcha/src/Controllers/CaptchaHandlerController.php',
+        'LaravelCaptcha\\Controllers\\SimpleCaptchaHandlerController' => __DIR__ . '/..' . '/captcha-com/laravel-captcha/src/Controllers/SimpleCaptchaHandlerController.php',
+        'LaravelCaptcha\\Providers\\LaravelCaptchaServiceProvider' => __DIR__ . '/..' . '/captcha-com/laravel-captcha/src/Providers/LaravelCaptchaServiceProvider.php',
+        'LaravelCaptcha\\Support\\LaravelInformation' => __DIR__ . '/..' . '/captcha-com/laravel-captcha/src/Support/LaravelInformation.php',
+        'LaravelCaptcha\\Support\\LibraryLoader' => __DIR__ . '/..' . '/captcha-com/laravel-captcha/src/Support/LibraryLoader.php',
+        'LaravelCaptcha\\Support\\Path' => __DIR__ . '/..' . '/captcha-com/laravel-captcha/src/Support/Path.php',
+        'LaravelCaptcha\\Support\\SimpleLibraryLoader' => __DIR__ . '/..' . '/captcha-com/laravel-captcha/src/Support/SimpleLibraryLoader.php',
+        'LaravelCaptcha\\Support\\UserCaptchaConfiguration' => __DIR__ . '/..' . '/captcha-com/laravel-captcha/src/Support/UserCaptchaConfiguration.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
         'Laravel\\Tinker\\TinkerCaster' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerCaster.php',
