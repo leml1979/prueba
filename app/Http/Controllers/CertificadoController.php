@@ -63,8 +63,9 @@ class CertificadoController extends Controller
     public function pdf(){
         $sujeto = MSujeto::where("rif", Auth::user()->rif)->first();
         //dd($sujeto);
-        $qrcode = base64_encode(QrCode::format('png')->size(100)->errorCorrection('H')->generate("www.sundde.gob.ve/rupdae/".$sujeto->codigo_certificado));
-        Carbon::setLocale('es');
+        //$qrcode = base64_encode(QrCode::format('png')->size(100)->errorCorrection('H')->generate("www.sundde.gob.ve/rupdae/".$sujeto->codigo_certificado));
+        $qrcode = base64_encode(QrCode::format('png')->size(100)->errorCorrection('H')->generate("Codigo certficado:".$sujeto->codigo_certificado. " RIF: ".$sujeto->rif. " Razon Social: ".$sujeto->sujeto));
+        Carbon::setLocale('es'); 
         $fecha = Carbon::now();
         $fecha->diffForHumans();
         $pdf = PDF::loadView('certificado.pdf', compact("sujeto","qrcode","fecha"));
@@ -79,7 +80,8 @@ class CertificadoController extends Controller
         Carbon::setLocale('es');
         $fecha = Carbon::now();
         $fecha->diffForHumans();
-        $qrcode = base64_encode(QrCode::format('png')->size(100)->errorCorrection('H')->generate("www.sundde.gob.ve/rupdae/".$establecimiento->codigo_certificado));
+        //$qrcode = base64_encode(QrCode::format('png')->size(100)->errorCorrection('H')->generate("www.sundde.gob.ve/rupdae/".$establecimiento->codigo_certificado));
+        $qrcode = base64_encode(QrCode::format('png')->size(100)->errorCorrection('H')->generate("Codigo certficado:".$establecimiento->codigo_certificado. " RIF: ".$establecimiento->sujetos->rif. " Razon Social: ".$establecimiento->sujetos->rif));
         $pdf = PDF::loadView('certificado.pdfEstablecimiento', compact("establecimiento","qrcode","fecha"));
 
           // download PDF file with download method
