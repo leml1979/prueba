@@ -78,13 +78,6 @@
                         </a>
                         @endif
                     </div>
-                    <div class="col-md-4">
-                        @if (Route::has('password.request'))
-                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                            <i class="fa fa-check-circle" aria-hidden="true"></i>
-                        </a>
-                        @endif
-                    </div>
                 </div>
             </form>
         </div>
