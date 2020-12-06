@@ -26,28 +26,33 @@ Gestion de Establecimiento
 
 @section('content')
 @include('partials.errores')
-<div class="alert alert-danger col-sm-4" id="error"></div>
+<div class="alert alert-danger col-md-4" id="error"></div>
 <div class="row">
-		<div class="col-sm-12">
-			<div class="float-right text-danger"><span>*</span>Campos Obligatorios</div>
+	<div class="col-md-12">
+		<div class="float-right text-danger"><span>*</span>Campos Obligatorios</div>
+
+	</div>
+</div>
+<div class="info-box">
+
+	<div class="info-box-content">
+		<div class="content">
+
+			{!! Form::open(['route' => ['establecimiento.update',$establecimiento->id], 'method' => 'post','id'=>'establecimiento-form']) !!}
+			@method("PATCH")
+			@csrf
+
+			<div class="row" style="margin-bottom: 2%;margin-top: 3%; font-size:1.5em">
+				<span class="fa fa-pencil-alt"></span>Datos Basicos
+
+			</div>
+			<hr />
+			@include("establecimiento.partials.form")
+			<button type="submit" class="btn btn-primary" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
+			<a href="{{url('establecimiento')}}" class="btn btn-warning">Regresar</a>
+			{!! Form::close() !!}
 
 		</div>
-	</div>
-<div class="content">
-	<div class="row">
-		{!! Form::open(['route' => ['establecimiento.update',$establecimiento->id], 'method' => 'post','id'=>'establecimiento-form']) !!}
-		@method("PATCH")
-		@csrf
-		
-		<div class="row" style="margin-bottom: 2%;margin-top: 3%; font-size:1.5em">
-			<span class="fa fa-pencil-alt"></span>Datos Basicos
-			
-		</div>
-		<hr />
-		@include("establecimiento.partials.form")
-		<button type="submit" class="btn btn-primary" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
-		<a href="{{url('establecimiento')}}" class="btn btn-warning">Regresar</a>
-		{!! Form::close() !!}
 	</div>
 </div>
 
@@ -59,7 +64,7 @@ Gestion de Establecimiento
 	$( document ).ready(function(){
 		$("#error").hide();
 		$("select").select2();
-		
+
 		$("#estado_id").on("change",function(event){
 			event.preventDefault();
 			if($(this).val()!=""){

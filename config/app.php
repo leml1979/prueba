@@ -164,7 +164,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         LaravelCaptcha\Providers\LaravelCaptchaServiceProvider::class,
-
+	Spatie\Permission\PermissionServiceProvider::class,
         /*
          * Package Service Providers...
          */

@@ -14,7 +14,10 @@ class RepresentanteLegalController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('permission:representante.index|representante.create|representante.edit|representante.destroy', ['only' => ['index','store']]);
+        $this->middleware('permission:representante.create', ['only' => ['create','store']]);
+        $this->middleware('permission:representante.edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:representante.destroy', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -23,9 +26,6 @@ class RepresentanteLegalController extends Controller
      */
     public function index()
     {
-        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
-            return redirect()->route("home");
-        }
         $sujeto = MSujeto::where("rif",Auth::user()->rif)->firstOrFail();
         $representantes = RRepresentanteLegal::where("sujeto_id",$sujeto->id)->get();
         return view("representante_legal.listar",compact("representantes"));
@@ -38,9 +38,6 @@ class RepresentanteLegalController extends Controller
      */
     public function create()
     {
-        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
-            return redirect()->route("home");
-        }
         return view("representante_legal.agregar");
     }
 
@@ -52,9 +49,6 @@ class RepresentanteLegalController extends Controller
      */
     public function store(Request $request)
     {
-        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
-            return redirect()->route("home");
-        }
         $rules = [
             "tipo"=>"required|in:V,E",
             "documento_identidad"=>"required|min:8|max:10",
@@ -97,18 +91,6 @@ class RepresentanteLegalController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
-            return redirect()->route("home");
-        }
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -118,9 +100,6 @@ class RepresentanteLegalController extends Controller
      */
     public function edit($id)
     {
-        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
-            return redirect()->route("home");
-        }
         $representanteLegal = RRepresentanteLegal::find($id);
         return view("representante_legal.editar",compact("representanteLegal","id"));
     }
@@ -134,9 +113,6 @@ class RepresentanteLegalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
-            return redirect()->route("home");
-        }
         $rules = [
             "telefono"=>"required|regex:/[0-9]{11}/|starts_with:02",
             "correo"=>"required|email:rfc,dns",
@@ -171,9 +147,6 @@ class RepresentanteLegalController extends Controller
      */
     public function destroy($id)
     {
-        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
-            return redirect()->route("home");
-        }
         $sujeto = MSujeto::where("rif",Auth::user()->rif)->first();
         $representante = RRepresentanteLegal::find($id);
         $mensaje="El(la) representante  se a eliminado";

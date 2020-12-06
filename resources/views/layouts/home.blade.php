@@ -15,6 +15,14 @@
   <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style type="text/css">
+     .sidebar-dark-primary{
+        background: #044279 !important;
+      }
+      .layout-navbar-fixed .wrapper .sidebar-dark-primary .brand-link:not([class*="navbar"]) {
+    background-color: #044279;
+}
+  </style>
   @yield('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -35,7 +43,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-      <a href="index3.html" class="brand-link">
+      <a href="{{url("home")}}" class="brand-link">
         <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
         style="opacity: .8">
         <span class="brand-text font-weight-light">RUPDAE</span>
@@ -95,25 +103,32 @@
             <i class="fas fa-angle-left right"></i>
           </a>
           <ul class="nav nav-treeview">
+@can('seniat.index')
             <li class="nav-item">
               <a class="nav-link" href="{{ url('seniat') }}">
                 {{ __('Información SENIAT') }}
               </a>
             </li>
-            @if(Str::startsWith(Auth::user()->rif,['J','G','N','C']))
+@endcan
+		@can('accionista.index')
+
             <li class="nav-item">
               <a class="nav-link" href="{{ url('accionista') }}">
                 {{ __('Accionistas') }}
               </a>
             </li>
-            @endif
+@endcan
+@can('adicional.index')
             <li class="nav-item">
               <a class="nav-link" href="{{ url('adicional') }}">
                 {{ __('Información Adicional') }}
               </a>
             </li>
+@endcan
           </ul>
         </li>
+
+@can('establecimiento.index')
         <li class="nav-item">
           <a href="{{route('establecimiento.index')}}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
@@ -122,7 +137,8 @@
             </p>
           </a>
         </li>
-        @if(Str::startsWith(Auth::user()->rif,['J','G','N','C']))
+@endcan
+       @can('representante.index')
         <li class="nav-item">
           <a href="{{route('representante.index')}}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
@@ -131,7 +147,9 @@
             </p>
           </a>
         </li>
-        @endif
+
+@endcan
+	@can('proveedores.index')
         <li class="nav-item">
           <a href="{{route('proveedores.index')}}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
@@ -140,6 +158,9 @@
             </p>
           </a>
         </li>
+
+@endcan
+@can('certificado.index')
         <li class="nav-item">
           <a href="{{route('certificados.index')}}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
@@ -148,6 +169,7 @@
             </p>
           </a>
         </li>
+@endcan
       </ul>
       @endif
     </nav>
@@ -181,15 +203,10 @@
     <div class="container-fluid">
       <!-- Info boxes -->
       <div class="row">
-        <div class="col-sm-12 ">
-          <div class="info-box">
-
-            <div class="info-box-content">
+        <div class="col-md-12 ">
+          
               @yield('content')
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          <!-- /.info-box -->
+            
         </div>
 
       </div>

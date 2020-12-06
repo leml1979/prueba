@@ -1,7 +1,9 @@
 <div class="row">
-	<div class="col-sm-2">
+	<div class="col-md-3">
 		<div class="form-group">
-			<label>Servicios</label>
+			{!! Form::select("tipologia",$tipologia,isset($sujeto)?$sujeto->tipologia:null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "id"=>"tipologia_id"])!!}
+
+			<!--<label>Servicios</label>
 			<span class="control-obligatorio">*</span>
 			<div class="form-group clearfix">
 				<div class="icheck-primary d-inline">
@@ -25,9 +27,10 @@
 						No
 					</label>
 				</div>
-			</div>
+			</div>-->
 		</div>
 	</div>
+	<!--
 	<div class="col-sm-2">
 		<div class="form-group">
 			<label>Comercializadora</label>
@@ -185,4 +188,5 @@
 			</div>
 		</div>
 	</div>
+-->
 </div>

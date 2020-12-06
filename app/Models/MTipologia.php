@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class MTipologia extends Model
 {
-    use HasFactory;
+	use HasFactory;
+	protected $table='m_tipologias';
+	public $timestamps = false;
+
 }

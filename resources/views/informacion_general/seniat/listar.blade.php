@@ -20,50 +20,54 @@ Información Seniat
         <div class="card-header"><h1>{{ __('Información Seniat') }}</h1></div>
 
         <div class="card-body">
-          <table class="table table-responsive">
-            <thead>
-              <th>RIF</th>
-              <th>RAZÓN SOCIAL</th>
-              <th>CORREO</th>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{{ $datosseniat[0]['rif']}}</td>
-                <td>{{ $datosseniat[0]['razon_social']}}</td>
-                <td>{{ $datosseniat[0]['email']}}</td>
-              </tr>
-            </tbody>
-          </table>
-          <form action="{{url('seniat/guardar')}}" method="post" id="seniat-form">
-            @csrf
-            <table class="table table-responsive">
+          <div class="table-responsive">
+            <table class="table">
               <thead>
-                <th></th>
-
+                <th>RIF</th>
+                <th>RAZÓN SOCIAL</th>
+                <th>CORREO</th>
               </thead>
               <tbody>
                 <tr>
-                  <td>
-                    ¿Esta usted de acuerdo con la información mostrada? <br /> 
-                    <div class="form-group clearfix">
-                      <div class="icheck-primary d-inline">
-                        <input type="radio" id="radioPrimary1" name="acuerdo" value="si">
-                        <label for="radioPrimary1">
-                          Sí
-                        </label>
-                      </div>
-                      <div class="icheck-primary d-inline">
-                        <input type="radio" id="radioPrimary2" name="acuerdo" value="no">
-                        <label for="radioPrimary2">
-                          No
-                        </label>
-                      </div>
-                    </div></td>
-                    <td><input type="submit" name="guardar" value="Guardar" class="btn btn-primary"></td>
+                  <td>{{ $datosseniat[0]['rif']}}</td>
+                  <td>{{ $datosseniat[0]['razon_social']}}</td>
+                  <td>{{ $datosseniat[0]['email']}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <form action="{{url('seniat/guardar')}}" method="post" id="seniat-form">
+            @csrf
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <th></th>
 
-                  </tr>
-                </tbody>
-              </table>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      ¿Esta usted de acuerdo con la información mostrada? <br /> 
+                      <div class="form-group clearfix">
+                        <div class="icheck-primary d-inline">
+                          <input type="radio" id="radioPrimary1" name="acuerdo" value="si">
+                          <label for="radioPrimary1">
+                            Sí
+                          </label>
+                        </div>
+                        <div class="icheck-primary d-inline">
+                          <input type="radio" id="radioPrimary2" name="acuerdo" value="no">
+                          <label for="radioPrimary2">
+                            No
+                          </label>
+                        </div>
+                      </div></td>
+                      <td><input type="submit" name="guardar" value="Guardar" class="btn btn-primary"></td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </form>
             <div class="">
               @include('flash::message')
@@ -82,6 +86,6 @@ Información Seniat
     $(document).ready(function(){
      // $("input")
 
-    });
-  </script>
-  @endsection
+   });
+ </script>
+ @endsection

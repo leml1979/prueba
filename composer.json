@@ -21,7 +21,8 @@
         "laravelcollective/html": "^6.2",
         "laraveles/spanish": "^1.5",
         "nesbot/carbon": "^2.41",
-        "simplesoftwareio/simple-qrcode": "~2"
+        "simplesoftwareio/simple-qrcode": "~2",
+        "spatie/laravel-permission": "^3.18"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

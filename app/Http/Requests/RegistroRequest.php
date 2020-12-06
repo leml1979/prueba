@@ -27,7 +27,7 @@ class RegistroRequest extends FormRequest
         return [
             'rif' => ['required', 'string','min:10', 'max:10','regex:/(^([VJGNPEC]+)(\d+)?$)/u','unique:users,rif'],
             //'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email:dns','unique:users,email'],
+            'email' => ['required', 'email','unique:users,email'],
             'CaptchaCode' => ['required','valid_captcha'],
         ];
     }

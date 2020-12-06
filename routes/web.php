@@ -25,22 +25,25 @@ Route::get('/declaracionjurada', function () {
     return view('registro.declaracionJurada');
 })->name('declaracionjurada');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/seniat', [App\Http\Controllers\SeniatController::class, 'index'])->name('seniat');
-Route::post('/seniat/guardar', [App\Http\Controllers\SeniatController::class, 'store'])->name('seniat.guardar');
 Route::post('/registro/validar', [App\Http\Controllers\TUsuariosTemporalController::class, 'store'])->name('registro.validar');
 
 Route::get('/usuarios/verificar/{hash}', [App\Http\Controllers\TUsuariosTemporalController::class, 'verificar'])->name('usuario.verificar');
-
 Route::post('/password', [App\Http\Controllers\TUsuariosTemporalController::class, 'guardarUsuario'])->name('registro.password');
-
 
 Route::get('/mensaje', function () {
     return view('registro.registroMensaje');
 })->name('registroMensaje');
+
+Auth::routes();
+
+Route::middleware(['auth'])->group(function () {
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/seniat', [App\Http\Controllers\SeniatController::class, 'index'])->name('seniat')->middleware('permission:seniat.index');
+Route::post('/seniat/guardar', [App\Http\Controllers\SeniatController::class, 'store'])->name('seniat.guardar');
+
+
 
 //declaracion jurada
 Route::post('/declaracionjurada', [App\Http\Controllers\HomeController::class, 'guardarDeclaracion'])->name('declaracionjurada');
@@ -55,8 +58,8 @@ Route::post("clase",[App\Http\Controllers\AdicionalController::class, 'clases'])
 
 //accionistas
 Route::resource('/accionista', '\App\Http\Controllers\AccionistaController');
-Route::post('/buscarpersona', [App\Http\Controllers\AccionistaController::class, 'buscar'])->name('accionista.buscar');
-Route::get('/accionista/eliminar/{id}', [App\Http\Controllers\AccionistaController::class, 'destroy'])->name('accionista.eliminar');
+Route::post('/buscarpersona', [App\Http\Controllers\AccionistaController::class, 'buscar'])->name('accionista.buscar')->middleware('permission:accionista.buscar');
+Route::get('/accionista/eliminar/{id}', [App\Http\Controllers\AccionistaController::class, 'destroy'])->name('accionista.eliminar')->middleware('permission:accionista.eliminar');
 
 //proveedores
 Route::resource('/proveedores', '\App\Http\Controllers\ProveedorController');
@@ -88,3 +91,7 @@ Route::get('/certificado/matriz/{id}/certificar',[App\Http\Controllers\Certifica
 Route::get('/certificado/establecimiento/pdf/{id}',[App\Http\Controllers\CertificadoController::class, 'pdfEstablecimiento'])->name("pdf.establecimiento");
 Route::get('/certificado/{id}/certificar',[App\Http\Controllers\CertificadoController::class, 'certificarEstablecimiento'])->name("certificar.establecimiento");
 
+});
+//validar Certificados
+Route::get("/certificado/matriz/validar/{codigo}",[App\Http\Controllers\CertificadoValidarController::class,'validarMatriz']);
+Route::get("/certificado/establecimiento/validar/{codigo}",[App\Http\Controllers\CertificadoValidarController::class,'validarEstablecimiento']);

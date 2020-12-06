@@ -20,7 +20,10 @@ class AccionistaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('permission:accionista.index|accionista.create|accionista.edit|accionista.destroy', ['only' => ['index','store']]);
+        $this->middleware('permission:accionista.create', ['only' => ['create','store']]);
+        $this->middleware('permission:accionista.edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:accionista.destroy', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -30,9 +33,6 @@ class AccionistaController extends Controller
     public function index()
     {
         //$sujeto = MSujeto::find("rif",Auth::user()->rif);
-        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
-            return redirect()->route("home");
-        }
         $sujeto = MSujeto::where("rif",Auth::user()->rif)->firstOrFail();
         $accionistas = RAccionistasEmpresa::where("sujeto_id",$sujeto->id)->get();
        // dd($accionistas);
@@ -47,9 +47,6 @@ class AccionistaController extends Controller
      */
     public function create()
     {
-        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
-            return redirect()->route("home");
-        }
         $paises = MPais::orderBy("pais")->pluck("pais","id");
         $personalidades = MPersonalidad::orderBy("id")->pluck("personalidad", "id");
         $tipoRelacionEmpresa = MTiposRelacionEmpresa::orderBy("id")->pluck("tipo_relacion_empresa","id");
@@ -64,9 +61,6 @@ class AccionistaController extends Controller
      */
     public function store(Request $request)
     {   
-        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
-            return redirect()->route("home");
-        }
         $request->validate([
             "tipo"=>"required|in:V,E,P,J,G,C,N",
             "documento_identidad"=>"required|min:8|max:10",
@@ -105,19 +99,6 @@ class AccionistaController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
-            return redirect()->route("home");
-        }
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -125,9 +106,6 @@ class AccionistaController extends Controller
      */
     public function edit($id)
     {
-        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
-            return redirect()->route("home");
-        }
         $accionista = RAccionistasEmpresa::find($id);
         $paises = MPais::orderBy("pais")->pluck("pais","id");
         $personalidades = MPersonalidad::orderBy("id")->pluck("personalidad", "id");
@@ -144,9 +122,6 @@ class AccionistaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
-            return redirect()->route("home");
-        }
         $request->validate([
             "personalidad"=>"required",
             "pais"=>"required|exists:m_paises,id",
@@ -180,9 +155,6 @@ class AccionistaController extends Controller
      */
     public function destroy($id)
     {   
-        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
-            return redirect()->route("home");
-        }
         $sujeto = MSujeto::where("rif",Auth::user()->rif)->first();
         $accionista = RAccionistasEmpresa::find($id);
         $mensaje="El(la) Accionista  se a eliminado";
@@ -197,9 +169,6 @@ class AccionistaController extends Controller
     }
 
     public function buscar(Request $request){
-        if(Str::startsWith(Auth::user()->rif,['V','E','P'])){
-            return redirect()->route("home");
-        }
         if($request->tipo=="V" || $request->tipo=="E" || $request->tipo=="P"){
             $persona = ESaime::where(["cedula"=>$request->documento_identidad,"tipo"=>$request->tipo])->first();
                 //dd($persona);
@@ -233,6 +202,7 @@ class AccionistaController extends Controller
                     "nombre2" => "",
                     "apellido1"=>"",
                     "apellido2" => "",
+                    "sexo"=>"N/D",
                     "encontrado" => 1,
                 ];
             }else{

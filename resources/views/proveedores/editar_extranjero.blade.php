@@ -26,33 +26,37 @@ Gestión de Proveedores
 @section('content')
 @if ($errors->any())
 
-<div class="alert alert-danger col-sm-3">
+<div class="alert alert-danger col-md-3">
 	<ul>
 		
 	</ul>
 </div>
 @endif
-<div class="content">
-	<div class="row">
-		<div class="col-sm-12">
-			<div class="pull-right text-danger"><span>*</span>Campos Obligatorios</div>
+<div class="info-box">
+
+	<div class="info-box-content">
+		<div class="content">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="pull-right text-danger"><span>*</span>Campos Obligatorios</div>
+				</div>
+			</div>
+			{!! Form::open(['route' => ["proveedores.update",$proveedorSujetos->id], 'method' => 'post','id'=>'proveedor-form'])!!}
+			@method('PATCH')
+			@csrf
+			<div class="row">
+				@include("proveedores.partials.form")
+			</div>
+			<div class="row">
+				<button type="submit" class="btn btn-success" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
+				<a href="{{url('proveedores')}}" class="btn btn-warning">Regresar</a>
+			</div>
+
+			<input type="hidden" name="tipo_proveedor" value="2">
+			{!! Form::close() !!}
 		</div>
 	</div>
-	{!! Form::open(['route' => ["proveedores.update",$proveedorSujetos->id], 'method' => 'post','id'=>'proveedor-form'])!!}
-	@method('PATCH')
-	@csrf
-	<div class="row">
-			@include("proveedores.partials.form")
-	</div>
-	<div class="row">
-		<button type="submit" class="btn btn-primary" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
-		<a href="{{url('proveedor')}}" class="btn btn-warning">Regresar</a>
-	</div>
-	
-	<input type="hidden" name="tipo_proveedor" value="2">
-	{!! Form::close() !!}
 </div>
-
 @endsection
 
 @section('js')

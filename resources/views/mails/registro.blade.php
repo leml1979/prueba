@@ -7,7 +7,7 @@
 		<tbody>
 			<tr>
 				<td style="padding-top:15px;padding-right:30px;padding-bottom:15px;padding-left:30px" valign="middle" align="center">
-					<a href="http://127.0.0.1:8000/usuarios/verificar/{{$hash}}" style="color:#ffffff;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:bold;text-decoration:none" target="_blank" data-saferedirecturl="https://www.google.com/url?q=http://127.0.0.1:8000/usuarios/verificar/24bb818b4f&amp;source=gmail&amp;ust=1604409344366000&amp;usg=AFQjCNFTKpy2Rtf0uf9nvF4Pg_INQd79_g">Activar Nuevo Usuario</a>
+					<a href="{{url('/usuarios/verificar/'.$hash.'')}}" style="color:#ffffff;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:bold;text-decoration:none" target="_blank">Activar Nuevo Usuario</a>
 				</td>
 			</tr>
 		</tbody>

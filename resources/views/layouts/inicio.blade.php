@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-   <link href="{{ captcha_layout_stylesheet_url() }}" type="text/css" rel="stylesheet">
+  <link href="{{ captcha_layout_stylesheet_url() }}" type="text/css" rel="stylesheet">
   @yield('css')
 </head>
 <body class="hold-transition layout-navbar-fixed layout-footer-fixed">
@@ -34,7 +34,7 @@
     </div>
   </footer> 
 
-  </div>-->
+</div>-->
 <div class="wrapper">
   <!-- Navbar -->
   <nav class="navbar navbar-expand navbar-white navbar-light">
@@ -43,7 +43,9 @@
       <li class="nav-item">
         <!--<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>-->
       </li>
-      <img src="{{asset('img/banner.png')}}" alt="Banner" class="img img-responsive img-size-100 mr-3">
+      <div class="row">
+        <img src="{{asset('img/banner.png')}}" alt="Banner" class="img-responsive" width="98%" height="75%">
+      </div>
     </ul>    
   </nav>
   <!-- /.navbar -->
@@ -55,22 +57,27 @@
       <div class="container">
         <!-- Info boxes -->
         <div class="row">
-          
-            <div class="col-sm-8">
+
+          <div class="col-md-8">
               <!--<div class="row">
               <a href="http://www.sundde.gob.ve" target="_BLANK" class="img-logo img img-rounded">
                 <img src="{{asset('img/logoRupdae.png')}}" height="150px" style="margin-top:2px;"  > 
               </a>
-              </div>-->
-              <div class="row">
-                <img src="{{asset('img/rupdae.png')}}" class="img img-responsive img-rounded" style="margin-top:5px;"  > 
-              </a>
-              </div>
+            </div>-->
+            <div class="row">
+              RUPDAE
+            </div>
+            <div class="row">
+              Registro Unico de Personas Actividad Economica
+            </div>
+            <div class="row">
+              <img src="{{asset('img/rupdae2.png')}}" class="img img-responsive img-rounded" style="margin-top:5px;"  > 
+            </div>
 
-            </div>
-            <div class="col-sm-4">
-              @yield('content')
-            </div>
+          </div>
+          <div class="col-md-4">
+            @yield('content')
+          </div>
         </div>
         <!-- /.row -->
       </div><!--/. container-fluid -->

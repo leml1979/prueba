@@ -34,4 +34,8 @@ class MSujeto extends Model
 	{
 		return $this->belongsTo('App\Models\MClase','clase_id');
 	}
+	public function tipologias()
+	{
+		return $this->belongsTo('App\Models\MTipologia','tipologia');
+	}
 }

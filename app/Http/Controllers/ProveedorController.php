@@ -14,7 +14,11 @@ class ProveedorController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('permission:proveedores.index|proveedores.create|proveedores.edit|proveedores.destroy', ['only' => ['index','store']]);
+        $this->middleware('permission:proveedores.create', ['only' => ['create','store']]);
+        $this->middleware('permission:proveedores.edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:proveedores.destroy', ['only' => ['destroy']]);
+       // $this->middleware('permission:proveedores.buscar', ['only' => ['buscar']]);
     }
     /**
      * Display a listing of the resource.
@@ -51,9 +55,9 @@ class ProveedorController extends Controller
         $sujeto = MSujeto::where("rif",Auth::user()->rif)->first();
         if($request->tipo_proveedor=='1'){
             $request->validate([
-               'rif'  => 'required|max:10|min:9',
-               'tipo' => 'required|in:V,E,G,P,N,J,C'
-           ],);
+             'rif'  => 'required|max:10|min:9',
+             'tipo' => 'required|in:V,E,G,P,N,J,C'
+         ],);
             $proveedor = new MProveedor;
             $proveedor->rif_codigo = $request->rif;
             $proveedor->proveedor =  mb_strtoupper($request->razon_social,"UTF-8");
@@ -82,9 +86,9 @@ class ProveedorController extends Controller
         }
         if($request->tipo_proveedor=='2'){
             $request->validate([
-             'nombre_proveedor'  => 'required',
-             'pais' => 'required|exists:m_paises,id'
-         ]);
+               'nombre_proveedor'  => 'required',
+               'pais' => 'required|exists:m_paises,id'
+           ]);
 
             //guardar el proveedor extranjero
             $proveedor = new MProveedor;
@@ -161,9 +165,9 @@ class ProveedorController extends Controller
     {
         if($request->tipo_proveedor=='2'){
             $request->validate([
-             'nombre_proveedor'  => 'required',
-             'pais' => 'required|exists:m_paises,id'
-         ]);
+               'nombre_proveedor'  => 'required',
+               'pais' => 'required|exists:m_paises,id'
+           ]);
             $proveedor_sujeto =  RProveedorSujeto::find($id);
             $proveedor = $proveedor_sujeto->proveedor;
             //guardar el proveedor extranjero

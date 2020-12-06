@@ -42,6 +42,10 @@ return [
             ImageStyle::Graffiti,
         ],
         'CodeStyle' => CodeStyle::Alphanumeric,
+        "SoundEnabled" =>false,
+        "AdditionalCssClasses"=>"img img-responsive",
+        "ImageWidth"=> 180,
+        "ImageHeight"=> 50
     ],
 
     /*

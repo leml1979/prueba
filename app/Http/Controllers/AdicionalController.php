@@ -13,6 +13,7 @@ use App\Models\MDivision;
 use App\Models\MClase;
 use App\Models\MSujeto;
 use App\Models\MEstatusEmpresa;
+use App\Models\MTipologia;
 use Arr;
 
 
@@ -20,7 +21,9 @@ class AdicionalController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('permission:adicional.index|adicional.create|adicional.edit', ['only' => ['index','store']]);
+        $this->middleware('permission:adicional.create', ['only' => ['create','store']]);
+        $this->middleware('permission:adicional.edit', ['only' => ['edit','update']]);
     }
     /**
      * Display a listing of the resource.
@@ -35,7 +38,8 @@ class AdicionalController extends Controller
             return redirect()->route("adicional.edit",$sujeto->id);
         }
         else{
-            return $redirect()->route("adicional");      }
+            return redirect()->route("adicional.create");      
+	}
     }
 
     /**
@@ -53,7 +57,8 @@ class AdicionalController extends Controller
         $grupos = MGrupo::orderBy("grupo")->pluck("grupo","id");
         $clases = MClase::orderBy("clase")->pluck("clase","id");
         $estatus_empresa = MEstatusEmpresa::orderBy("estatu_empresa")->pluck("estatu_empresa","id");
-        return view('informacion_general.informacion_adicional.agregar',compact("estados","municipios","parroquias","secciones","divisiones","grupos","clases","estatus_empresa"));
+        $tipologia = Mtipologia::where("estatus_id",1)->orderBy("nom_tipologia")->pluck("nom_tipologia","id");
+        return view('informacion_general.informacion_adicional.agregar',compact("estados","municipios","parroquias","secciones","divisiones","grupos","clases","estatus_empresa","tipologia"));
     }
 
     /**
@@ -64,10 +69,6 @@ class AdicionalController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->servicios=='0' &&  $request->comercializadora=='0' && $request->productora=='0' && $request->importadora=='0'  && $request->exportadora=='0' && $request->distribuidora=='0'){
-            flash("No")->error();
-            return back(); 
-        }
         $rules=[
             "clase_id"=>"required|exists:m_clases,id",
             "division_id"=>"required|exists:m_divisiones,id",
@@ -77,12 +78,7 @@ class AdicionalController extends Controller
             "municipio"=>"required|exists:m_municipios,id",
             "parroquia"=>"required|exists:m_parroquias,id",
             "ciudad"=>"required",
-            "productora"=>"required",
-            "importadora"=>"required",
-            "comercializadora"=>"required",
-            "servicios"=>"required",
-            "exportadora"=>"required",
-            "distribuidora"=>"required",
+            "tipologia_id"=>"required",
             "punto_referencia"=>"required",
             "descripcion"=>"required",
             "zona_postal"=>"required|integer|min:4",
@@ -125,12 +121,7 @@ class AdicionalController extends Controller
         $sujeto->municipio_id=$request->municipio;
         $sujeto->parroquia_id=$request->parroquia;
         $sujeto->ciudad=$request->ciudad;
-        $sujeto->productora=$request->productora;
-        $sujeto->importadora=$request->importadora;
-        $sujeto->comercializadora=$request->comercializadora;
-        $sujeto->servicios=$request->servicios;
-        $sujeto->exportadora=$request->exportadora;
-        $sujeto->distribuidora=$request->distribuidora;
+        $sujeto->tipologia=$request->tipologia;
         $sujeto->punto_referencia=$request->punto_referencia;
         $sujeto->descripcion_actividad=$request->descripcion;
         $sujeto->zona_postal=$request->zona_postal;
@@ -143,17 +134,6 @@ class AdicionalController extends Controller
         $sujeto->update();
         flash("informacion adicional, guardada exitosamente")->success();
         return redirect()->route("adicional.edit",$sujeto->id);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -173,7 +153,8 @@ class AdicionalController extends Controller
         $grupos = MGrupo::orderBy("grupo")->where("division_id",$sujeto->division_id)->pluck("grupo","id");
         $clases = MClase::orderBy("clase")->where("grupo_id",$sujeto->grupo_id)->pluck("clase","id");
         $estatus_empresa = MEstatusEmpresa::orderBy("estatu_empresa")->pluck("estatu_empresa","id");
-        return view('informacion_general.informacion_adicional.editar',compact("estados","municipios","parroquias","secciones","divisiones","grupos","clases","estatus_empresa","sujeto"));
+        $tipologia = Mtipologia::where("estatus_id",1)->orderBy("nom_tipologia")->pluck("nom_tipologia","id");
+        return view('informacion_general.informacion_adicional.editar',compact("estados","municipios","parroquias","secciones","divisiones","grupos","clases","estatus_empresa","sujeto","tipologia"));
     }
 
     /**
@@ -186,10 +167,6 @@ class AdicionalController extends Controller
     public function update(Request $request, $id)
     {
         $sujeto = MSujeto::find($id);
-        if($request->servicios=='0' &&  $request->comercializadora=='0' && $request->productora=='0' && $request->importadora=='0' && $request->exportadora=='0' && $request->distribuidora=='0'){
-            flash("No")->error();
-            return back(); 
-        }
         $rules=[
             "clase_id"=>"required|exists:m_clases,id",
             "division_id"=>"required|exists:m_divisiones,id",
@@ -199,12 +176,7 @@ class AdicionalController extends Controller
             "municipio"=>"required|exists:m_municipios,id",
             "parroquia"=>"required|exists:m_parroquias,id",
             "ciudad"=>"required",
-            "productora"=>"required",
-            "importadora"=>"required",
-            "comercializadora"=>"required",
-            "servicios"=>"required",
-            "exportadora"=>"required",
-            "distribuidora"=>"required",
+            "tipologia"=>"required",
             "punto_referencia"=>"required",
             "descripcion"=>"required",
             "zona_postal"=>"required|integer|min:4",
@@ -246,12 +218,7 @@ class AdicionalController extends Controller
         $sujeto->municipio_id=$request->municipio;
         $sujeto->parroquia_id=$request->parroquia;
         $sujeto->ciudad=$request->ciudad;
-        $sujeto->productora=$request->productora;
-        $sujeto->importadora=$request->importadora;
-        $sujeto->comercializadora=$request->comercializadora;
-        $sujeto->servicios=$request->servicios;
-        $sujeto->exportadora=$request->exportadora;
-        $sujeto->distribuidora=$request->distribuidora;
+        $sujeto->tipologia=$request->tipologia;
         $sujeto->punto_referencia=$request->punto_referencia;
         $sujeto->descripcion_actividad=$request->descripcion;
         $sujeto->zona_postal=$request->zona_postal;
@@ -266,16 +233,6 @@ class AdicionalController extends Controller
         return redirect()->route("adicional.edit",$sujeto->id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
     public function municipio(Request $request){
         $municipios = MMunicipio::orderBy('municipio')->where("estado_id",$request->id_estado)->get();
         echo "<option value=''>Seleccione....</option>";

@@ -14,7 +14,7 @@
 	<div class="row justify-content-center">
 		<div class="col-md-12">
 			<div class="card">
-				<div class="card-header">{{ __('Configurar Contraseña') }}</div>
+				<div class="card-header text-right">{{ __('Configurar Contraseña') }}</div>
 
 				<div class="card-body">
 					{!! Form::open(['route' => 'registro.password', 'method' => 'post']) !!}
@@ -23,7 +23,7 @@
 
 						<div class="form-group row">
 							<div class="col-sm-12">
-								<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" autofocus placeholder="Contraseña" maxlength="10">
+								<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" autofocus placeholder="Contraseña" maxlength="10" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Debe contener al menos un numero, una letra Mayuscula y una letra Minuscula, minimo 8 caracteres">
 
 								@error('password')
 								<span class="invalid-feedback" role="alert">
@@ -46,7 +46,7 @@
 						</div>
 						<div class="form-group row mb-0">
 							<div class="col-md-12 offset-md-0">
-								<button type="submit" class="btn btn-danger btn-lg btn-block">
+								<button type="submit" class="btn btn-info btn-lg btn-block">
 									{{ __('Guardar datos') }}
 								</button>
 							</div>

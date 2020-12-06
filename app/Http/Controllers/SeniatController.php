@@ -12,7 +12,7 @@ class SeniatController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('permission:seniat.index', ['only' => ['index','store']]);
     }
     /**
      * Display a listing of the resource.
@@ -102,17 +102,6 @@ class SeniatController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
     {
         //
     }

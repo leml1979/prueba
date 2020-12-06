@@ -1,7 +1,6 @@
 @extends('layouts.home')
 
 @section('css')
-<link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
 <style type="text/css">
 	.select2-container .select2-selection--single{
@@ -27,48 +26,62 @@ Gestion de Representante Legal
 
 @section('content')
 @include('partials.errores')
-<div class="alert alert-danger col-sm-4" id="error"></div>
+<div class="alert alert-danger col-md-4" id="error"></div>
 
-<div class="content">
-	<div class="row">
-		<div class="col-sm-12">
-			<div class="float-right text-danger"><span>*</span>Campos Obligatorios</div>
+<div class="info-box">
+	<div class="info-box-content">
+		<div class="content">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="float-right text-danger"><span>*</span>Campos Obligatorios</div>
+
+				</div>
+			</div>
+			
+				{!! Form::open(['route' => 'representante.store', 'method' => 'post','id'=>'representante-form']) !!}
+
+				@csrf
+				<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:1.5em">
+					<span class="fa fa-search"></span>Consulta de Cédula 
+
+				</div>
+				<hr />
+
+				<div class="input-group col-md-6">
+					{!! Form::select('tipo',["V"=>"V","E"=>"E"],null, ["class"=>"form-control","placeholder"=>"Seleccione....","required"=>"required","id"=>"tipo"]) !!}
+
+					{!! Form::text('documento_identidad',null, ["class"=>"form-control","placeholder"=>"Buscar Persona","required"=>"required","id"=>"documento_identidad", "maxlength"=>"10"]) !!}
+					<span class="input-group-btn">
+						<a class="btn btn-primary" href="" id="buscar"><span class="fa fa-search"></span>buscar
+						</a>
+					</span>
+				</div>
+				<div class="row" style="margin-top: 3%" id="datos"></div>
 
 		</div>
 	</div>
-	<div class="row">
-		{!! Form::open(['route' => 'representante.store', 'method' => 'post','id'=>'representante-form']) !!}
-		
-		@csrf
-		<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:1.5em">
-			<span class="fa fa-search"></span>Consulta de Cédula 
-			
+</div>
+<div class="info-box">
+	<div class="info-box-content">
+		<div class="content">
+			<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:2em">
+
+				<span class="fa fa-pencil-alt"></span>Información del Representante Legal
+
+			</div>
+			<hr />
+
+			@include('representante_legal.partials.form')
+
+			<button type="submit" class="btn btn-success" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
+			<a href="{{url('representante')}}" class="btn btn-warning">Regresar</a>
+			<input type='hidden' name='seniatsaime' value='' id="seniatsaime">
+
+			{!! Form::close() !!}
 		</div>
-		<hr />
-		
-		<div class="input-group col-sm-6">
-			{!! Form::select('tipo',["V"=>"V","E"=>"E"],null, ["class"=>"form-control","placeholder"=>"Seleccione....","required"=>"required","id"=>"tipo"]) !!}
-
-			{!! Form::text('documento_identidad',null, ["class"=>"form-control","placeholder"=>"Buscar Persona","required"=>"required","id"=>"documento_identidad", "maxlength"=>"10"]) !!}
-			<span class="input-group-btn">
-				<a class="btn btn-primary" href="" id="buscar"><span class="fa fa-search"></span>buscar
-				</a>
-			</span>
-		</div>
-		<div class="row" style="margin-top: 3%" id="datos"></div>
-		<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:2em">
-			<span class="fa fa-pencil-alt"></span>Información del Representante Legal
-			
-		</div>
-		<hr />
-
-		@include('representante_legal.partials.form')
-
-		<button type="submit" class="btn btn-primary" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
-		<input type='hidden' name='seniatsaime' value='' id="seniatsaime">
-
-		{!! Form::close() !!}
 	</div>
+</div>
+</div>
 </div>
 
 @endsection
@@ -114,7 +127,7 @@ Gestion de Representante Legal
 				},
 				success: function(data) {
 					if(data.encontrado==1){
-						$("#datos").html("Datos encontrado: "+data.nombre1.toUpperCase()+" "+data.nombre2 + " "+data.apellido1 + " "+data.apellido2);
+						$("#datos").html("Datos encontrado: "+data.nombre1.toUpperCase()+" "+data.nombre2 + " "+data.apellido1 + " "+data.apellido2+", Sexo: "+data.sexo);
 						$("#seniatsaime").val(data.codigo);
 						$("#btn-guardar").prop("disabled",false);
 

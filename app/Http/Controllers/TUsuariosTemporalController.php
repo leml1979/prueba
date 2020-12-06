@@ -10,6 +10,7 @@ use App\Http\Requests\RegistroRequest;
 use Mail;
 use App\Models\User;
 use Hash;
+use Str;
 
 
 
@@ -23,7 +24,13 @@ class TUsuariosTemporalController extends Controller
     public function guardarUsuario(Request $request)
     {
         $this->validate($request, [
-           'password'  => 'required|min:4|max:10',
+           /*'password'  => array(
+            'required',
+            'min:8',
+            'max:10',
+            'regex:/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$)/u'
+        ), */
+           'password'  => 'required|min:8|max:10|regex:/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/u',
            'password_confirmar' => 'required|same:password',
            'email'=> 'unique:users,email',
            'rif' => 'unique:users,rif',
@@ -38,6 +45,12 @@ class TUsuariosTemporalController extends Controller
         if($usuario->save()){
             $usuario_temporal = TUsuariosTemporal::where("email",$usuario->email)->first();
             $usuario_temporal->delete();
+	 	if(Str::startsWith($usuario->rif,['V','E','P'])){
+		    $usuario->assignRole("natural");
+		}else{
+		    $usuario->assignRole("juridico");
+		}
+	    
             flash("Ingrese al sistema con el usuario: ".$usuario->email. " y la contraseña creada")->success();
             return redirect()->route('login');
         }else{

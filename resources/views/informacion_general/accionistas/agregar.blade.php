@@ -18,55 +18,66 @@
 @endsection
 
 @section('breadcrumb')
-Gestión de Accionistas
-
+Agregar
 @endsection
 @section('titulo')
-Accionistas Agregar
+Gestión de Accionistas
 @endsection
 
 @section('content')
 @include('partials.errores')
-<div class="alert alert-danger col-sm-4" id="error"></div>
+<div class="alert alert-danger col-md-4" id="error"></div>
 
-<div class="content">
-	<div class="row">
-		<div class="col-sm-12">
-			<div class="float-right text-danger"><span>*</span>Campos Obligatorios</div>
+<div class="info-box">
+	<div class="info-box-content">
+		<div class="content">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="float-right text-danger"><span>*</span>Campos Obligatorios</div>
 
+				</div>
+			</div>
+
+			{!! Form::open(['route' => 'accionista.store', 'method' => 'post','id'=>'accionista-form']) !!}
+			@csrf
+			<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:2em">
+				<span class="fa fa-search"></span>Consulta de Cédula 
+			</div>
+			<hr />
+
+			<div class="input-group col-md-6">
+				{!! Form::select('tipo',["V"=>"V","E"=>"E","P"=>"P","N"=>"N","J"=>"J","G"=>"G"],null, ["class"=>"form-control","placeholder"=>"Seleccione....","required"=>"required","id"=>"tipo"]) !!}
+
+				{!! Form::text('documento_identidad',null, ["class"=>"form-control","placeholder"=>"Buscar Persona","required"=>"required","id"=>"documento_identidad", "maxlength"=>"10"]) !!}
+				<span class="input-group-btn">
+					<a class="btn btn-primary" href="" id="buscar"><span class="fa fa-search"></span>buscar
+					</a>
+				</span>
+			</div>
+			<div class="row" style="margin-top: 3%" id="datos"></div>
 		</div>
 	</div>
-	<div class="row">
-		{!! Form::open(['route' => 'accionista.store', 'method' => 'post','id'=>'accionista-form']) !!}
-		@csrf
-		<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:2em">
-			<span class="fa fa-search"></span>Consulta de Cédula 
+</div>
+<div class="info-box">
+	<div class="info-box-content">
+		<div class="content">
+			<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:2em">
+				<span class="fa fa-pencil-alt"></span>Datos Adicionales
+
+			</div>
+			<hr />
+
+			@include('informacion_general.accionistas.partials.form')
+
+			<button type="submit" class="btn btn-success" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
+			<a href="{{url('accionista')}}" class="btn btn-warning">Regresar</a>
+			<input type='hidden' name='seniatsaime' value='' id="seniatsaime">
+
+			{!! Form::close() !!}
 		</div>
-		<hr />
-		
-		<div class="input-group col-sm-6">
-			{!! Form::select('tipo',["V"=>"V","E"=>"E","P"=>"P","N"=>"N","J"=>"J","G"=>"G"],null, ["class"=>"form-control","placeholder"=>"Seleccione....","required"=>"required","id"=>"tipo"]) !!}
-
-			{!! Form::text('documento_identidad',null, ["class"=>"form-control","placeholder"=>"Buscar Persona","required"=>"required","id"=>"documento_identidad", "maxlength"=>"10"]) !!}
-			<span class="input-group-btn">
-				<a class="btn btn-primary" href="" id="buscar"><span class="fa fa-search"></span>buscar
-				</a>
-			</span>
-		</div>
-		<div class="row" style="margin-top: 3%" id="datos"></div>
-		<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:2em">
-			<span class="fa fa-pencil-alt"></span>Datos Adicionales
-			
-		</div>
-		<hr />
-
-		@include('informacion_general.accionistas.partials.form')
-
-		<button type="submit" class="btn btn-primary" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
-		<input type='hidden' name='seniatsaime' value='' id="seniatsaime">
-
-		{!! Form::close() !!}
 	</div>
+</div>
+</div>
 </div>
 
 @endsection
