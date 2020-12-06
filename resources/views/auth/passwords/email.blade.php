@@ -15,8 +15,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+            <div class="card  bg-light">
+                <div class="card-header text-right"><img src="{{asset('img/logoRupdae.png')}}" height="60px" class="float-left img-circle elevation-2">{{ __('Reset Password') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -58,7 +58,7 @@
 
                     <div class="form-group row mb-0">
                         <div class="col-md-12 offset-md-0">
-                            <button type="submit" class="btn btn-info">
+                            <button type="submit" class="btn btn-success">
                                 {{ __('Send Password Reset Link') }}
                             </button>
                         </div>

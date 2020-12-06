@@ -18,7 +18,7 @@ Representante Legal
 	</div>
 	<div class="row text-center">
 		<div class="table-responsive">
-			<table class="table  table-hover">
+			<table class="table  table-hover bg-white">
 				<thead>
 					<th></th>
 					<th>Nombres</th>
@@ -36,7 +36,7 @@ Representante Legal
 						<td>{!! $representante->saime->apellido1. " ".$representante->saime->apellido2 !!}</td>
 						<td>{!!$representante->cargo !!}</td>
 						<td><a href="{{url('representante/'.$representante->id.'/edit ')}}" alt="Editar Proveedor"><span class="fa fa-edit"></span></a> 
-							<a href="{{url('representante/eliminar/'.$representante->id)}}" alt="Eliminar"><span class="fa fa-trash-alt"></span></a></td>
+							<a href="{{url('representante/eliminar/'.$representante->id)}}" alt="Eliminar" class=""><span class="fa fa-trash-alt"></span></a></td>
 					</tr>
 					@endforeach
 				</tbody>

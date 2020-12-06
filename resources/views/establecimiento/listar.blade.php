@@ -15,16 +15,13 @@ Establecimientos
 @endsection
 
 @section('content')
-<div class="info-box">
-
-	<div class="info-box-content">
 		<div class="content">
 			<div class="row">
 				@include('flash::message')
 			</div>
 			<div class="row text-center">
-				<div class="table-responsive col-lg-12">
-					<table class="table table-hover table-sm">
+				<div class="table-responsive bg-white">
+					<table class="table table-hover">
 						<thead>
 							<th></th>
 							<th>Establecimiento</th>

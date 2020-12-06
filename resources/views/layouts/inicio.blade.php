@@ -16,6 +16,17 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link href="{{ captcha_layout_stylesheet_url() }}" type="text/css" rel="stylesheet">
+  <style type="text/css">
+    .main-footer2{
+      background: #fff;
+      border-top: 1px solid #dee2e6;
+      color: #869099;
+      padding: 1rem;
+      position: absolute;
+      bottom: 0;
+      width:80%;
+    }
+  </style>
   @yield('css')
 </head>
 <body class="hold-transition layout-navbar-fixed layout-footer-fixed">
@@ -65,13 +76,13 @@
               </a>
             </div>-->
             <div class="row">
-              RUPDAE
+              <h1>RUPDAE</h1>
             </div>
             <div class="row">
-              Registro Unico de Personas Actividad Economica
+              <h2>Registro Único de Personas Actividad Económica</h2>
             </div>
             <div class="row">
-              <img src="{{asset('img/rupdae2.png')}}" class="img img-responsive img-rounded" style="margin-top:5px;"  > 
+              <img src="{{asset('img/rupdae2.png')}}" class="img img-responsive img-circle" style="margin-top:5px; width: 80%; height: 80%"  > 
             </div>
 
           </div>

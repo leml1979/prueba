@@ -17,7 +17,7 @@ Listado de Contactos Establecimiento
 		@include('flash::message')
 	</div>
 	<div class="row">
-		<div class="table-responsive">
+		<div class="table-responsive bg-white">
 			<table class="table">
 				<thead>
 					<th></th>
