@@ -1,12 +1,12 @@
 <div class="row">
-	<div class="col-lg-6">
+	<div class="col-md-6">
 		<div class="form-group">
 			<label>Sección</label>
 			<span class="control-obligatorio">*</span>
 			{!! Form::select("seccion_id",$secciones,isset($sujeto)?$sujeto->seccion_id:null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required","id"=>"seccion_id"]) !!}
 		</div>
 	</div>
-	<div class="col-lg-6">
+	<div class="col-md-6">
 		<div class="form-group">
 			<label>División</label>
 			<span class="control-obligatorio">*</span>
@@ -16,14 +16,14 @@
 
 </div>
 <div class="row">
-	<div class="col-lg-6">
+	<div class="col-md-6">
 		<div class="form-group">
 			<label>Grupo</label>
 			<span class="control-obligatorio">*</span>
 			{!! Form::select("grupo_id",$grupos,isset($sujeto)?$sujeto->grupo_id:null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "disabled"=>isset($sujeto)?false:true, "id"=>"grupo_id"])!!}
 		</div>
 	</div>
-	<div class="col-lg-6">
+	<div class="col-md-6">
 		<div class="form-group">
 			<label>Clase</label>
 			<span class="control-obligatorio">*</span>

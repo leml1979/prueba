@@ -38,25 +38,24 @@ Gestion de Representante Legal
 				</div>
 			</div>
 			
-				{!! Form::open(['route' => 'representante.store', 'method' => 'post','id'=>'representante-form']) !!}
+			{!! Form::open(['route' => 'representante.store', 'method' => 'post','id'=>'representante-form']) !!}
 
-				@csrf
-				<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:1.5em">
-					<span class="fa fa-search"></span>Consulta de Cédula 
+			@csrf
+			<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:1.5em">
+				<span class="fa fa-search"></span>Consulta de Cédula 
+			</div>
+			<hr />
 
-				</div>
-				<hr />
+			<div class="input-group col-md-6">
+				{!! Form::select('tipo',["V"=>"V","E"=>"E"],null, ["class"=>"form-control","placeholder"=>"Seleccione....","required"=>"required","id"=>"tipo"]) !!}
 
-				<div class="input-group col-md-6">
-					{!! Form::select('tipo',["V"=>"V","E"=>"E"],null, ["class"=>"form-control","placeholder"=>"Seleccione....","required"=>"required","id"=>"tipo"]) !!}
-
-					{!! Form::text('documento_identidad',null, ["class"=>"form-control","placeholder"=>"Buscar Persona","required"=>"required","id"=>"documento_identidad", "maxlength"=>"10"]) !!}
-					<span class="input-group-btn">
-						<a class="btn btn-primary" href="" id="buscar"><span class="fa fa-search"></span>buscar
-						</a>
-					</span>
-				</div>
-				<div class="row" style="margin-top: 3%" id="datos"></div>
+				{!! Form::text('documento_identidad',null, ["class"=>"form-control","placeholder"=>"Buscar Persona","required"=>"required","id"=>"documento_identidad", "maxlength"=>"10"]) !!}
+				<span class="input-group-btn">
+					<a class="btn btn-primary" href="" id="buscar"><span class="fa fa-search"></span>buscar
+					</a>
+				</span>
+			</div>
+			<div class="row" style="margin-top: 3%" id="datos"></div>
 
 		</div>
 	</div>
@@ -64,10 +63,8 @@ Gestion de Representante Legal
 <div class="info-box">
 	<div class="info-box-content">
 		<div class="content">
-			<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:2em">
-
+			<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:1.5em">
 				<span class="fa fa-pencil-alt"></span>Información del Representante Legal
-
 			</div>
 			<hr />
 

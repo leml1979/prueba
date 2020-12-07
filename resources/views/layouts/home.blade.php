@@ -16,14 +16,32 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <style type="text/css">
-     .sidebar-dark-primary{
-        background: #044279 !important;
-      }
-      .layout-navbar-fixed .wrapper .sidebar-dark-primary .brand-link:not([class*="navbar"]) {
-    background-color: #044279;
-}
-  </style>
-  @yield('css')
+   .sidebar-dark-primary{
+    background: #1e81a3 !important;
+  }
+  .layout-navbar-fixed .wrapper .sidebar-dark-primary .brand-link:not([class*="navbar"]) {
+    background-color: #1e81a3;
+  }
+  .round_table {
+    border-collapse:separate;
+    border-spacing: 10;
+    border:solid #044279 1px;
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius: 5px;  
+    box-shadow: black 0.5em 0.5em 0.3em;
+  }
+  .btn-success {
+     background-color: #1c80a2;
+     border-color: #adcee7;
+   }
+   .btn-success:hover {
+    color: #fff;
+    background-color: #276b8f;
+    border-color: #adcee7;
+  }
+</style>
+@yield('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
   <div class="wrapper">
@@ -103,32 +121,32 @@
             <i class="fas fa-angle-left right"></i>
           </a>
           <ul class="nav nav-treeview">
-@can('seniat.index')
+            @can('seniat.index')
             <li class="nav-item">
               <a class="nav-link" href="{{ url('seniat') }}">
                 {{ __('Información SENIAT') }}
               </a>
             </li>
-@endcan
-		@can('accionista.index')
+            @endcan
+            @can('accionista.index')
 
             <li class="nav-item">
               <a class="nav-link" href="{{ url('accionista') }}">
                 {{ __('Accionistas') }}
               </a>
             </li>
-@endcan
-@can('adicional.index')
+            @endcan
+            @can('adicional.index')
             <li class="nav-item">
               <a class="nav-link" href="{{ url('adicional') }}">
                 {{ __('Información Adicional') }}
               </a>
             </li>
-@endcan
+            @endcan
           </ul>
         </li>
 
-@can('establecimiento.index')
+        @can('establecimiento.index')
         <li class="nav-item">
           <a href="{{route('establecimiento.index')}}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
@@ -137,8 +155,8 @@
             </p>
           </a>
         </li>
-@endcan
-       @can('representante.index')
+        @endcan
+        @can('representante.index')
         <li class="nav-item">
           <a href="{{route('representante.index')}}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
@@ -148,8 +166,8 @@
           </a>
         </li>
 
-@endcan
-	@can('proveedores.index')
+        @endcan
+        @can('proveedores.index')
         <li class="nav-item">
           <a href="{{route('proveedores.index')}}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
@@ -159,8 +177,8 @@
           </a>
         </li>
 
-@endcan
-@can('certificado.index')
+        @endcan
+        @can('certificado.index')
         <li class="nav-item">
           <a href="{{route('certificados.index')}}" class="nav-link">
             <i class="nav-icon fas fa-th"></i>
@@ -169,7 +187,7 @@
             </p>
           </a>
         </li>
-@endcan
+        @endcan
       </ul>
       @endif
     </nav>
@@ -204,9 +222,9 @@
       <!-- Info boxes -->
       <div class="row">
         <div class="col-md-12 ">
-          
-              @yield('content')
-            
+
+          @yield('content')
+
         </div>
 
       </div>

@@ -17,7 +17,7 @@ Representante Legal
 		@include('flash::message')
 	</div>
 	<div class="row text-center">
-		<div class="table-responsive">
+		<div class="table-responsive round_table">
 			<table class="table  table-hover bg-white">
 				<thead>
 					<th></th>
@@ -46,7 +46,7 @@ Representante Legal
 		
 	</div>
 	<div class="row pull-right">
-		<a href="{{url('representante/create')}}" class="btn btn-primary">Agregar Representante</a>
+		<a href="{{url('representante/create')}}" class="btn btn-primary" style="margin-top: 10px">Agregar Representante</a>
 	</div>
 	
 </div>

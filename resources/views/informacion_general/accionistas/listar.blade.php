@@ -17,7 +17,7 @@ Listado de Accionistas
 		@include('flash::message')
 	</div>
 	<div class="row text-center">
-		<div class="table table-responsive bg-white">
+		<div class="table table-responsive bg-white round_table">
 			<table>
 				<thead>
 					<th></th>

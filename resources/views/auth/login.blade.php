@@ -8,6 +8,7 @@
     .help-block{
         color:#dc3545;
     }
+    
 </style>
 @endsection
 
@@ -67,11 +68,11 @@
                         <div class="col-md-4">
                             @if (Route::has('password.request'))
                             <a class="btn btn-link" href="{{ route('password.request') }}">
-                             <i class="fa fa-unlock" aria-hidden="true"></i>
-                         </a>
-                         @endif
-                     </div>
-                     <div class="col-md-4">
+                               <i class="fa fa-unlock" aria-hidden="true"></i>
+                           </a>
+                           @endif
+                       </div>
+                       <div class="col-md-4">
                         @if (Route::has('password.request'))
                         <a class="btn btn-link" href="{{ route('registro') }}">
                             <i class="fas fa-user-plus"></i>

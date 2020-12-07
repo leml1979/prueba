@@ -20,12 +20,12 @@ Establecimientos
 				@include('flash::message')
 			</div>
 			<div class="row text-center">
-				<div class="table-responsive bg-white">
+				<div class="table-responsive bg-white round_table">
 					<table class="table table-hover">
 						<thead>
 							<th></th>
 							<th>Establecimiento</th>
-							<th>Sede</th>
+							<th>Sede</th> 
 							<th>Estado</th>
 							<th>Municipio</th>
 							<th>Parroquia</th>
@@ -61,7 +61,7 @@ Establecimientos
 
 				</div>
 				<div class="row pull-right">
-					<a href="{{url('establecimiento/create')}}" class="btn btn-success">
+					<a href="{{url('establecimiento/create')}}" class="btn btn-success" style="margin-top: 10px">
 					Agregar Establecimiento</a>
 				</div>
 

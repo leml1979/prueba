@@ -128,39 +128,40 @@ Información Adicional
 						</fieldset>
 					</div>
 				</div>
-			</div>
-			<div class="row" id="estatus_empresa">
-				<div class="col-sm-12">
-					<fieldset class="fieldset-collapse">
-						<legend><span class="fa fa-check"></span>Estatus de Empresa</legend>
-						<hr />
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="form-group">
-									<label>Fecha desde:</label>
-									<span class="control-obligatorio">*</span>
-									{!! Form::date("fecha_desde",null,["class"=>"form-control","placeholder"=>"Fecha desde", "id"=>"fecha_desde"])!!}
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="form-group">
-									<label>Estatus</label>
-									<span class="control-obligatorio">*</span>
-									{!! Form::select("estatus_empresa",$estatus_empresa,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","id"=>"estatus_empresa"]) !!}
-								</div>
-							</div>
 
-						</div>
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="form-group">
-									<label>Explicación del Estatus</label>
-									<span class="control-obligatorio">*</span>
-									{!! Form::textarea("explicacion_estatus",null,["class"=>"form-control","placeholder"=>"Explicacion","rows"=>4, "id"=>"explicacion_estatus"])!!}
+				<div class="row" id="estatus_empresa">
+					<div class="col-sm-12">
+						<fieldset class="fieldset-collapse">
+							<legend><span class="fa fa-check"></span>Estatus de Empresa</legend>
+							<hr />
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label>Fecha desde:</label>
+										<span class="control-obligatorio">*</span>
+										{!! Form::date("fecha_desde",null,["class"=>"form-control","placeholder"=>"Fecha desde", "id"=>"fecha_desde"])!!}
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label>Estatus</label>
+										<span class="control-obligatorio">*</span>
+										{!! Form::select("estatus_empresa",$estatus_empresa,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","id"=>"estatus_empresa"]) !!}
+									</div>
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label>Explicación del Estatus</label>
+										<span class="control-obligatorio">*</span>
+										{!! Form::textarea("explicacion_estatus",null,["class"=>"form-control","placeholder"=>"Explicacion","rows"=>4, "id"=>"explicacion_estatus"])!!}
+									</div>
 								</div>
 							</div>
-						</div>
-					</fieldset>
+						</fieldset>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -286,7 +287,11 @@ Información Adicional
 					<fieldset class="fieldset-collapse">
 						<legend><span class="glyphicon glyphicon-check"></span>Tipología de la Empresa</legend>
 						<div class="row">
-							@include("partials.tipologia")
+							<div class="col-sm-12">
+								<div class="form-group">
+									@include("partials.tipologia")
+								</div>
+							</div>
 						</div>
 					</fieldset>
 				</div>

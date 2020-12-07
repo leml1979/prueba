@@ -69,6 +69,7 @@ class AdicionalController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $rules=[
             "clase_id"=>"required|exists:m_clases,id",
             "division_id"=>"required|exists:m_divisiones,id",
@@ -78,7 +79,7 @@ class AdicionalController extends Controller
             "municipio"=>"required|exists:m_municipios,id",
             "parroquia"=>"required|exists:m_parroquias,id",
             "ciudad"=>"required",
-            "tipologia_id"=>"required",
+            "tipologia"=>"required",
             "punto_referencia"=>"required",
             "descripcion"=>"required",
             "zona_postal"=>"required|integer|min:4",
@@ -167,6 +168,7 @@ class AdicionalController extends Controller
     public function update(Request $request, $id)
     {
         $sujeto = MSujeto::find($id);
+       // dd($request->all());
         $rules=[
             "clase_id"=>"required|exists:m_clases,id",
             "division_id"=>"required|exists:m_divisiones,id",

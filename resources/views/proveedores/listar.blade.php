@@ -19,7 +19,7 @@ Proveedores
 		@include('flash::message')
 	</div>
 	<div class="row">
-		<div class="table-responsive bg-white">
+		<div class="table-responsive bg-white round_table">
 			<table class="table table-hover">
 				<thead>
 					<th></th>
@@ -45,7 +45,7 @@ Proveedores
 		</div>
 	</div>
 	<div class="row pull-right">
-		<a href="{{route('proveedores.create')}}" class="btn btn-primary">Agregar Proveedor</a>
+		<a href="{{route('proveedores.create')}}" class="btn btn-primary" style="margin-top: 10px">Agregar Proveedor</a>
 	</div>
 </div>
 @endsection

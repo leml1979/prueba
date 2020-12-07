@@ -26,8 +26,17 @@
       bottom: 0;
       width:80%;
     }
-  </style>
-  @yield('css')
+    .btn-success {
+     background-color: #1c80a2;
+     border-color: #adcee7;
+   }
+   .btn-success:hover {
+    color: #fff;
+    background-color: #276b8f;
+    border-color: #adcee7;
+  }
+</style>
+@yield('css')
 </head>
 <body class="hold-transition layout-navbar-fixed layout-footer-fixed">
 
@@ -75,11 +84,11 @@
                 <img src="{{asset('img/logoRupdae.png')}}" height="150px" style="margin-top:2px;"  > 
               </a>
             </div>-->
-            <div class="row">
+            <div class="row text-center">
               <h1>RUPDAE</h1>
             </div>
             <div class="row">
-              <h2>Registro Único de Personas Actividad Económica</h2>
+              <h4>Registro Único de Personas que Desarrollan Actividades Económicas</h4>
             </div>
             <div class="row">
               <img src="{{asset('img/rupdae2.png')}}" class="img img-responsive img-circle" style="margin-top:5px; width: 80%; height: 80%"  > 

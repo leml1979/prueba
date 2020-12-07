@@ -1,17 +1,13 @@
 <div class="row">
 	<div class="col-md-3">
-		<div class="form-group">
-			<label>Tipo Sede</label>
-			<span class="control-obligatorio">*</span>
-			{!! Form::select("tipo_sede",$tipoSedes,isset($establecimiento)?$establecimiento->tipo_sede_id:null,["class"=>"form-control select2", "required"=>"required","placeholder"=>"Seleccione ..."])!!}
-		</div>
+		<label>Tipo Sede</label>
+		<span class="control-obligatorio">*</span>
+		{!! Form::select("tipo_sede",$tipoSedes,isset($establecimiento)?$establecimiento->tipo_sede_id:null,["class"=>"form-control select2", "required"=>"required","placeholder"=>"Seleccione ..."])!!}
 	</div>
 	<div class="col-md-3">
-		<div class="form-group">
-			<label>Establecimiento</label>
-			<span class="control-obligatorio">*</span>
-			{!! Form::text("establecimiento",isset($establecimiento)?$establecimiento->establecimiento:null,["class"=>"form-control", "required"=>"required","placeholder"=>"Establecimiento"])!!}
-		</div>
+		<label>Establecimiento</label>
+		<span class="control-obligatorio">*</span>
+		{!! Form::text("establecimiento",isset($establecimiento)?$establecimiento->establecimiento:null,["class"=>"form-control", "required"=>"required","placeholder"=>"Establecimiento"])!!}
 	</div>
 	<div class="col-md-3">
 		<label>Tipo de Establecimiento</label>

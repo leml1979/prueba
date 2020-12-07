@@ -22,7 +22,7 @@ Certificados
 	<div class="row">
 		@include('flash::message')
 	</div>
-	<div class="row table-responsive bg-white">
+	<div class="row table-responsive bg-white round_table">
 		<table class="table">
 			<caption>ESTABLECIMIENTOS</caption>
 			<thead>
@@ -65,33 +65,31 @@ Certificados
 
 
 <div class="content">
-	<div class="row">
-		<div class="row table-responsive bg-white" style="margin-top: 5%">
-			<table class="table">
-				<caption>SUJETO DE APLICACION</caption>
-				<thead>
-					<th></th>
-					<th>RIF</th>
-					<th>NOMBRE</th>
-					<th>Certificar</th>
-				</thead>
-				<tbody>
-					<tr>
-						<td></td>
-						<td>
-							{{ $sujeto->rif}} 
-						</td>
-						<td>{!! mb_strtoupper($sujeto->sujeto,"UTF-8")!!}</td>
-						<td>@if($sujeto->estatus_culminacion_registro==0)
-							<a href="{{route('certificar.matriz',$sujeto->id)}}" alt="Certificar Matriz"><span class="fa fa-edit"></span></a>
-							@else
-							<a href="{{url('certificado-matriz/'.$sujeto->id.'/pdf ')}}" alt="Certificar Matriz"><span class="fa fa-file-pdf"></span></a>
-							@endif
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+	<div class="row table-responsive bg-white round_table" style="margin-top: 5%">
+		<table class="table">
+			<caption>SUJETO DE APLICACION</caption>
+			<thead>
+				<th></th>
+				<th>RIF</th>
+				<th>NOMBRE</th>
+				<th>Certificar</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td></td>
+					<td>
+						{{ $sujeto->rif}} 
+					</td>
+					<td>{!! mb_strtoupper($sujeto->sujeto,"UTF-8")!!}</td>
+					<td>@if($sujeto->estatus_culminacion_registro==0)
+						<a href="{{route('certificar.matriz',$sujeto->id)}}" alt="Certificar Matriz"><span class="fa fa-edit"></span></a>
+						@else
+						<a href="{{url('certificado-matriz/'.$sujeto->id.'/pdf ')}}" alt="Certificar Matriz"><span class="fa fa-file-pdf"></span></a>
+						@endif
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
 
