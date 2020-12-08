@@ -14,10 +14,10 @@ class RepresentanteLegalController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:representante.index|representante.create|representante.edit|representante.destroy', ['only' => ['index','store']]);
+        $this->middleware('permission:representante.index|representante.create|representante.edit|representante.eliminar', ['only' => ['index','store']]);
         $this->middleware('permission:representante.create', ['only' => ['create','store']]);
         $this->middleware('permission:representante.edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:representante.destroy', ['only' => ['destroy']]);
+        $this->middleware('permission:representante.eliminar', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.

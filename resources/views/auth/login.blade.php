@@ -45,48 +45,48 @@
                             </div>
                         </div>
                         <div class="form-group{{ $errors->has('CaptchaCode') ? ' has-error' : '' }}">
-                            
-                          <div class="col-md-12">
-                            <div class="img-responsive">{!! captcha_image_html('LoginCaptcha') !!}</div>
-                            <input type="text" class="form-control" name="CaptchaCode" id="CaptchaCode">
+                            <div class="col-md-12">
+                                <div class="img-responsive">{!! captcha_image_html('LoginCaptcha') !!}</div>
+                                <input type="text" class="form-control" name="CaptchaCode" id="CaptchaCode">
 
-                            @if ($errors->has('CaptchaCode'))
-                            <span class="help-block ">
-                                <strong>{{ $errors->first('CaptchaCode') }}</strong>
-                            </span>
-                            @endif
+                                @if ($errors->has('CaptchaCode'))
+                                <span class="help-block ">
+                                    <strong>{{ $errors->first('CaptchaCode') }}</strong>
+                                </span>
+                                @endif
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row mb-0">
-                        <div class="col-md-12 offset-md-0">
-                            <button type="submit" class="btn btn-success btn-lg btn-block">
-                                {{ __('Iniciar Sesión') }}
-                            </button>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-12 offset-md-0">
+                                <button type="submit" class="btn btn-success btn-lg btn-block">
+                                    {{ __('Iniciar Sesión') }}
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-4">
-                            @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                               <i class="fa fa-unlock" aria-hidden="true"></i>
-                           </a>
-                           @endif
-                       </div>
-                       <div class="col-md-4">
-                        @if (Route::has('password.request'))
-                        <a class="btn btn-link" href="{{ route('registro') }}">
-                            <i class="fas fa-user-plus"></i>
-                        </a>
-                        @endif
-                    </div>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                @if (Route::has('password.request'))
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <i class="fa fa-unlock" aria-hidden="true"></i>
+                                </a>
+                                @endif
+                            </div>
+                            <div class="col-md-4">
+
+                                @if (Route::has('password.request'))
+                                <a class="btn btn-link" href="{{ route('registro') }}">
+                                    <i class="fas fa-user-plus"></i>
+                                </a>
+                                @endif
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
-</div>
-</div>
-<div class="">
-    @include('flash::message')
-</div>
+    <div class="">
+        @include('flash::message')
+    </div>
 </div>
 @endsection

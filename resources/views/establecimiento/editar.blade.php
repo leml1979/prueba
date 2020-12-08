@@ -27,31 +27,62 @@ Gestion de Establecimiento
 @section('content')
 @include('partials.errores')
 <div class="alert alert-danger col-md-4" id="error"></div>
-<div class="row">
-	<div class="col-md-12">
-		<div class="float-right text-danger"><span>*</span>Campos Obligatorios</div>
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-12">
+			<div class="card bg-white">
+				<div class="card-header text-right control-obligatorio">
+					<span>*</span>Campos Obligatorios         	
+				</div>
+				<div class="card-body">
+					{!! Form::open(['route' => ['establecimiento.update',$establecimiento->id], 'method' => 'post','id'=>'establecimiento-form']) !!}
+					@method("PATCH")
+					@csrf
+					<div class="row" style="margin-bottom: 2%; font-size:1.5em">
+						<span class="fa fa-pencil-alt"></span>Datos Basicos
 
+					</div>
+					<hr />
+					@include("establecimiento.partials.datos_basicos")
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
-<div class="info-box">
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-12">
+			<div class="card bg-white">
+				<div class="card-body">
 
-	<div class="info-box-content">
-		<div class="content">
+					<div class="row" style="font-size:1.5em">
+						<span class="fa fa-pencil-alt"></span>Direccion
 
-			{!! Form::open(['route' => ['establecimiento.update',$establecimiento->id], 'method' => 'post','id'=>'establecimiento-form']) !!}
-			@method("PATCH")
-			@csrf
-
-			<div class="row" style="margin-bottom: 2%;margin-top: 3%; font-size:1.5em">
-				<span class="fa fa-pencil-alt"></span>Datos Basicos
-
+					</div>
+					<hr />
+					@include("partials.estado_municipio_parroquia_establecimiento")
+					@include("partials.direccion_establecimiento")
+				</div>
 			</div>
-			<hr />
-			@include("establecimiento.partials.form")
-			<button type="submit" class="btn btn-primary" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
-			<a href="{{url('establecimiento')}}" class="btn btn-warning">Regresar</a>
-			{!! Form::close() !!}
+		</div>
+	</div>
+</div>
 
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-12">
+			<div class="card bg-white">
+				<div class="card-body">
+					<div class="row" style="font-size:1.5em">
+						<span class="fa fa-pencil-alt"></span>Inmuebles
+					</div>
+					<hr />
+					@include("establecimiento.partials.inmueble")
+					<button type="submit" class="btn btn-primary" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
+					<a href="{{url('establecimiento')}}" class="btn btn-warning">Regresar</a>
+					{!! Form::close() !!}
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

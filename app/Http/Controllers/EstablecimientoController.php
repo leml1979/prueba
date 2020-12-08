@@ -219,7 +219,18 @@ class EstablecimientoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $establecimiento = TEstablecimiento::find($id);
+        if($establecimiento==null){
+            flash("Error en los datos al eliminar")->error();
+            return redirect()->route('establecimiento.index');
+        }else{
+            foreach ($establecimiento->contactos as $key => $contactos) {
+               $contactos->delete();
+            }
+            $establecimiento->delete();
+            flash("Establecimiento y contactos asociados eliminados ")->error();
+            return redirect()->route('establecimiento.index');
+        }
     }
 
 }

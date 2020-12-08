@@ -1,7 +1,7 @@
-<div class="row">
+
+<div class="form-group row">
 	<div class="col-md-3">
-		<div class="form-group">
-			{!! Form::select("tipologia",$tipologia,isset($sujeto)?$sujeto->tipologia:null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "id"=>"tipologia_id"])!!}
+		{!! Form::select("tipologia",$tipologia,isset($sujeto)?$sujeto->tipologia:null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "id"=>"tipologia_id"])!!}
 
 			<!--<label>Servicios</label>
 			<span class="control-obligatorio">*</span>
@@ -189,4 +189,3 @@
 		</div>
 	</div>
 -->
-</div>

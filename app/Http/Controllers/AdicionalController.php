@@ -155,6 +155,7 @@ class AdicionalController extends Controller
         $clases = MClase::orderBy("clase")->where("grupo_id",$sujeto->grupo_id)->pluck("clase","id");
         $estatus_empresa = MEstatusEmpresa::orderBy("estatu_empresa")->pluck("estatu_empresa","id");
         $tipologia = Mtipologia::where("estatus_id",1)->orderBy("nom_tipologia")->pluck("nom_tipologia","id");
+       // dd($sujeto);
         return view('informacion_general.informacion_adicional.editar',compact("estados","municipios","parroquias","secciones","divisiones","grupos","clases","estatus_empresa","sujeto","tipologia"));
     }
 

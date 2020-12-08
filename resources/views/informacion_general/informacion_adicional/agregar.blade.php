@@ -31,273 +31,141 @@ Información Adicional
 	@include('flash::message')
 </div>
 @include('partials.errores')
-<div class="info-box">
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-12">
+			<div class="card bg-white">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="float-right text-danger"><span>*</span>Campos Obligatorios</div>
 
-	<div class="info-box-content">
-		<div class="content">
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="float-right text-danger"><span>*</span>Campos Obligatorios</div>
-
-				</div>
-			</div>
-			{!! Form::open(['url' => '/adicional', 'method' => 'post','id'=>'proveedor-form']) !!}
-			@csrf
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="form-group">
-						<label>Posse usted registro mercantil</label>
-						<span class="control-obligatorio">*</span>
-						<div class="form-group clearfix">
-							<div class="icheck-primary d-inline">
-								<input type="radio" id="radioPrimary1" name="posse" value="si" required>
-								<label for="radioPrimary1">
-									Sí
-								</label>
-							</div>
-							<div class="icheck-primary d-inline">
-								<input type="radio" id="radioPrimary2" name="posse" value="no">
-								<label for="radioPrimary2">
-									No
-								</label>
-							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-			<div id="registro_mercantil">
-				<div class="row">
-					<div class="col-sm-12">
-						<fieldset class="fieldset-collapse">
-							<legend>
-								<span class="fa fa-check"></span>Registro Mercantil
-							</legend>
-							<hr />
-							<div class="row">
-								<div class="col-sm-3">
-									<div class="form-group">
-										<label>Numero de Expediente</label>
-										<span class="control-obligatorio">*</span>
-										{!! Form::text("numero_expediente",null,["class"=>"form-control","placeholder"=>"Expediente", "id"=>"numero_expediente"])!!}
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="form-group">
-										<label>Fecha Registro</label>
-										<span class="control-obligatorio">*</span>
-										{!! Form::date("fecha_registro",null,["class"=>"form-control","placeholder"=>"Fecha Registro", "id"=>"fecha_registro"])!!}
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="form-group">
-										<label>Tomo</label>
-										<span class="control-obligatorio">*</span>
-										{!! Form::text("tomo",null,["class"=>"form-control","placeholder"=>"Tomo", "id"=>"tomo"])!!}
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="form-group">
-										<label>Folio</label>
-										<span class="control-obligatorio">*</span>
-										{!! Form::text("folio",null,["class"=>"form-control","placeholder"=>"Folio", "id"=>"folio"])!!}
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label>Nombre Comercial</label>
-										{!! Form::text("nombre_comercial",null,["class"=>"form-control","placeholder"=>"Nombre Comercial"])!!}
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label>Capital Suscrito</label>
-										<span class="control-obligatorio">*</span>
-										{!! Form::text("capital_suscrito",null,["class"=>"form-control","placeholder"=>"Capital Suscrito","id"=>"capital_suscrito"])!!}
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label>Capital Pagado</label>
-										<span class="control-obligatorio">*</span>
-										{!! Form::text("capital_pagado",null,["class"=>"form-control","placeholder"=>"Capital Pagado","id"=>"capital_pagado"])!!}
-									</div>
-								</div>
-							</div>
-						</fieldset>
-					</div>
-				</div>
+					{!! Form::open(['url' => '/adicional', 'method' => 'post','id'=>'proveedor-form']) !!}
+					@csrf
+					<div class="form-group row">
+						<div class="col-sm-12">
 
-				<div class="row" id="estatus_empresa">
-					<div class="col-sm-12">
-						<fieldset class="fieldset-collapse">
-							<legend><span class="fa fa-check"></span>Estatus de Empresa</legend>
-							<hr />
-							<div class="row">
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label>Fecha desde:</label>
-										<span class="control-obligatorio">*</span>
-										{!! Form::date("fecha_desde",null,["class"=>"form-control","placeholder"=>"Fecha desde", "id"=>"fecha_desde"])!!}
-									</div>
+							<label>Posse usted registro mercantil</label>
+							<span class="control-obligatorio">*</span>
+							<div class="form-group clearfix">
+								<div class="icheck-primary d-inline">
+									<input type="radio" id="radioPrimary1" name="posse" value="si" required>
+									<label for="radioPrimary1">
+										Sí
+									</label>
 								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label>Estatus</label>
-										<span class="control-obligatorio">*</span>
-										{!! Form::select("estatus_empresa",$estatus_empresa,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","id"=>"estatus_empresa"]) !!}
-									</div>
+								<div class="icheck-primary d-inline">
+									<input type="radio" id="radioPrimary2" name="posse" value="no">
+									<label for="radioPrimary2">
+										No
+									</label>
 								</div>
+							</div>
 
-							</div>
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label>Explicación del Estatus</label>
-										<span class="control-obligatorio">*</span>
-										{!! Form::textarea("explicacion_estatus",null,["class"=>"form-control","placeholder"=>"Explicacion","rows"=>4, "id"=>"explicacion_estatus"])!!}
-									</div>
-								</div>
-							</div>
-						</fieldset>
+						</div>
 					</div>
+					@include("informacion_general.informacion_adicional.partials.registro_mercantil")
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="info-box">
 
-	<div class="info-box-content">
-		<div class="content">
-			<div class="row" id="actividad_economica">
-				<div class="col-sm-12">
-					<fieldset class="fieldset-collapse">
-						<legend><span class="fa fa-check"></span>Clasificación Industrial (Actividad Económica de la Empresa según CIIU Rev. 4)</legend>
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-12">
+			<div class="card bg-white">
+				<div class="card-body">
+					@include("informacion_general.informacion_adicional.partials.actividad_economica")
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-12">
+			<div class="card bg-white">
+				<div class="card-body">
+
+					<div id="direccion_fiscal">
+						<div class="row" style="font-size:1.5em">
+							<span class="fa fa-pencil-alt"></span>Dirección
+						</div>
 						<hr />
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="form-group">
-									<label>Sección</label>
-									<span class="control-obligatorio">*</span>
-									{!! Form::select("seccion_id",$secciones,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required","id"=>"seccion_id"]) !!}
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="form-group">
-									<label>División</label>
-									<span class="control-obligatorio">*</span>
-									{!! Form::select("division_id",$divisiones,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required","disabled"=>true,  "id"=>"divisiones_id"])!!}
-								</div>
-							</div>
+						
+						@include("partials.estado_municipio_parroquia")
 
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="form-group">
-									<label>Grupo</label>
-									<span class="control-obligatorio">*</span>
-									{!! Form::select("grupo_id",$grupos,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "disabled"=>true, "id"=>"grupo_id"])!!}
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="form-group">
-									<label>Clase</label>
-									<span class="control-obligatorio">*</span>
-									{!! Form::select("clase_id",$clases,null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required", "disabled"=>true, "id"=>"clase_id"])!!}
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="form-group">
-									<label>Descripción específica</label>
-									<span class="control-obligatorio">*</span>
-									{!! Form::textarea("descripcion",null,["class"=>"form-control","placeholder"=>"Descripcion","rows"=>4,"required"=>"required"])!!}
-								</div>
-							</div>
-						</div>
-					</fieldset>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="info-box">
-
-	<div class="info-box-content">
-		<div class="content">
-			<div class="row" id="direccion_fiscal">
-				<div class="col-sm-12">
-					<fieldset class="fieldset-collapse">
-						<legend><span class="fa fa-check"></span>Dirección Fiscal</legend>
-						<div class="row">
-							@include("partials.estado_municipio_parroquia")
-						</div>
 						@include("partials.direccion")
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="form-group">
+						<div class="form-group row">
+							<div class="col-md-6">
+								<div class="input-group">
 									<label>Teléfono</label>
+									<span class="input-group-addon control-obligatorio">*</span>
+								</div>
+								<div class="input-group">
 									{!! Form::text("telefono",null,["class"=>"form-control","placeholder"=>"Teléfono","maxlength"=>"15","id"=>"telefono"])!!}
 								</div>
 							</div>
-							<div class="col-sm-6">
-								<div class="form-group">
+							<div class="col-md-6">
+								<div class="input-group">
 									<label>Fax</label>
+								</div>
+								<div class="input-group">
 									{!! Form::text("fax",null,["class"=>"form-control","placeholder"=>"Fax","maxlength"=>"15","id"=>"fax"])!!}
 								</div>
 							</div>
 						</div>
-					</fieldset>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="info-box">
-
-	<div class="info-box-content">
-		<div class="content">
-			<div class="row" id="sitio_internet">
-				<div class="col-sm-12">
-					<fieldset class="fieldset-collapse">
-						<legend><span class="glyphicon glyphicon-check"></span>Sitio de Internet</legend>
-						<div class="row">
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-12">
+			<div class="card bg-white">
+				<div class="card-body">
+					<div id="sitio_internet">
+						<div class="row" style="font-size:1.5em">
+							<span class="fa fa-pencil-alt"></span>Sitio de Internet
+						</div>
+						<hr />
+						<div class="form-group row">
 							<div class="col-sm-12">
-								<div class="form-group">
+								<div class="input-group">
 									<label>Sitio de Internet</label>
+								</div>
+								<div class="input-group">
 									{!! Form::text("sitio_internet",null,["class"=>"form-control","placeholder"=>"Página WEB"])!!}
 								</div>
 							</div>
 						</div>
-					</fieldset>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="info-box">
-
-	<div class="info-box-content">
-		<div class="content">
-			<div class="row" id="tipologia_empresa">
-				<div class="col-sm-12">
-					<fieldset class="fieldset-collapse">
-						<legend><span class="glyphicon glyphicon-check"></span>Tipología de la Empresa</legend>
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="form-group">
-									@include("partials.tipologia")
-								</div>
-							</div>
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-12">
+			<div class="card bg-white">
+				<div class="card-body">
+					<div id="tipologia_empresa">
+						<div class="row" style="font-size:1.5em">Tipología de la Empresa
 						</div>
-					</fieldset>
+						<hr />
+
+						@include("partials.tipologia")
+					</div>
+					<button class="btn btn-primary" type="submit">Guardar</button>
+					{!! Form::close() !!}
 				</div>
 			</div>
-			<button class="btn btn-primary" type="submit">Guardar</button>
-			{!! Form::close() !!}
 		</div>
 	</div>
 </div>

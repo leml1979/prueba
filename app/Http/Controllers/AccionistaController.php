@@ -20,10 +20,10 @@ class AccionistaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:accionista.index|accionista.create|accionista.edit|accionista.destroy', ['only' => ['index','store']]);
+        $this->middleware('permission:accionista.index|accionista.create|accionista.edit|accionista.eliminar', ['only' => ['index','store']]);
         $this->middleware('permission:accionista.create', ['only' => ['create','store']]);
         $this->middleware('permission:accionista.edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:accionista.destroy', ['only' => ['destroy']]);
+        $this->middleware('permission:accionista.eliminar', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.

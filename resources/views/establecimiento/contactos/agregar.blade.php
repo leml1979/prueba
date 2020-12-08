@@ -39,7 +39,9 @@ Contactos Agregar
 				</div>
 			</div>
 
+			{!! Form::open(['route' => 'establecimiento-contacto.store', 'method' => 'post','id'=>'establecimiento-contacto-form']) !!}
 
+			@csrf
 			<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:1.5em">
 				<span class="fa fa-search"></span>Consulta de Cédula 
 
@@ -56,10 +58,11 @@ Contactos Agregar
 					</a>
 				</span>
 			</div>
+			<div class="row" style="margin-top: 3%" id="datos"></div>
 		</div>
 	</div>
 </div>
-<div class="row" style="margin-top: 3%" id="datos"></div>
+
 <div class="info-box">
 
 	<div class="info-box-content">
@@ -69,20 +72,12 @@ Contactos Agregar
 
 			</div>
 			<hr />
-
-
-
-			{!! Form::open(['route' => 'establecimiento-contacto.store', 'method' => 'post','id'=>'establecimiento-contacto-form']) !!}
-
-			@csrf
 			@include('establecimiento.contactos.partials.form')
-
-			<button type="submit" class="btn btn-success" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
+			<button type="submit" class="btn btn-success" id="btn-guardar" style="margin-top: 10px; margin-right: 5px"><span class="fa fa-save"></span>Guardar</button>
 			<a href="{{url('/establecimiento/'.$id.'/contacto')}}" class="btn btn-warning">Regresar</a>
 			<input type='hidden' name='seniatsaime' value='' id="seniatsaime">
 			<input type='hidden' name='establecimiento_id' value='{!! $id !!}' id="establecimiento_id">
 			{!! Form::close() !!}
-
 		</div>
 	</div>
 </div>

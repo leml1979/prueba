@@ -54,4 +54,8 @@ class TEstablecimiento extends Model
 	{
 		return $this->belongsTo('App\Models\Minmueble','inmueble_id');
 	}
+
+	public function contactos(){
+    	return $this->hasMany('App\Models\RContactosEstablecimiento','establecimiento_id');
+    }
 }
