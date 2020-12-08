@@ -164,6 +164,12 @@ Información Adicional
 		jQuery('#zona_postal').keyup(function () {
 			this.value = this.value.replace(/[^0-9]/g, '');
 		});
+		jQuery('#telefono').keyup(function () {
+			this.value = this.value.replace(/[^0-9]/g, '');
+		});
+		jQuery('#fax').keyup(function () {
+			this.value = this.value.replace(/[^0-9]/g, '');
+		});
 		
 		$("select").select2();
 		
