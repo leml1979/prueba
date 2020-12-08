@@ -19,9 +19,8 @@
 				<span class="input-group-addon control-obligatorio">*</span>
 			</div>
 			<div class="input-group">
-				{{ $sujeto->division_id}}
 				{!! Form::select("division_id",$divisiones,isset($sujeto)?$sujeto->division_id:null,["class"=>"form-control select2", "placeholder"=>"Seleccione....","required"=>"required","disabled"=>isset($sujeto)?false:true,  "id"=>"divisiones_id"])!!}
-				}
+				
 			</div>
 		</div>
 	</div>
