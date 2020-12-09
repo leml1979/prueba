@@ -90,6 +90,12 @@ Gestion de Representante Legal
 <script type="text/javascript">
 	$( document ).ready(function(){
 		$("#error").hide();
+		jQuery('#telefono').keyup(function () {
+			this.value = this.value.replace(/[^0-9]/g, '');
+		});
+		jQuery('#celular').keyup(function () {
+			this.value = this.value.replace(/[^0-9]/g, '');
+		});
 	});
 </script>
 @endsection

@@ -2,9 +2,6 @@
 
 @section('css')
 <style type="text/css">
-	.select2-container .select2-selection--single{
-		height: calc(2.25rem + 2px);
-	}
 	.control-obligatorio {
 		margin: 3px;
 		vertical-align: middle;
@@ -82,7 +79,7 @@ Gestión de Contactos
 
 					<div class="input-group col-md-6" style="margin-top: 10px;">
 
-						<button type="submit" class="btn btn-success" id="btn-guardar" style="margin-right: 5px"><span class="fa fa-save"></span>Guardar</button>
+						<button type="submit" class="btn btn-primary" id="btn-guardar" style="margin-right: 5px"><span class="fa fa-save"></span>Guardar</button>
 						<a href="{{url('/establecimiento/'.$id.'/contacto')}}" class="btn btn-warning">Regresar</a>
 					</div>
 					{!! Form::close() !!}
@@ -98,7 +95,12 @@ Gestión de Contactos
 <script type="text/javascript">
 	$( document ).ready(function(){
 		$("#error").hide();
-		$("select").select2();
+		jQuery('#celular').keyup(function () {
+			this.value = this.value.replace(/[^0-9]/g, '');
+		});
+		jQuery('#telefono').keyup(function () {
+			this.value = this.value.replace(/[^0-9]/g, '');
+		});
 		
 	});
 </script>

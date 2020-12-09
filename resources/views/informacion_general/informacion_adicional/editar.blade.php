@@ -170,7 +170,7 @@ Información Adicional
 		jQuery('#fax').keyup(function () {
 			this.value = this.value.replace(/[^0-9]/g, '');
 		});
-		
+			
 		$("select").select2();
 		
 		$('input:radio[name=posse]').change(function () {

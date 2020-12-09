@@ -98,6 +98,15 @@ Contactos Agregar
 	$( document ).ready(function(){
 		$("#error").hide();
 		$("select").select2();
+		jQuery('#documento_identidad').keyup(function () {
+			this.value = this.value.replace(/[^0-9]/g, '');
+		});
+		jQuery('#celular').keyup(function () {
+			this.value = this.value.replace(/[^0-9]/g, '');
+		});
+		jQuery('#telefono').keyup(function () {
+			this.value = this.value.replace(/[^0-9]/g, '');
+		});
 		$("#btn-guardar").prop("disabled",true);
 		$("#buscar").on("click",function(event){
 			event.preventDefault();

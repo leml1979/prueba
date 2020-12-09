@@ -95,6 +95,15 @@ Gestion de Establecimiento
 	$( document ).ready(function(){
 		$("#error").hide();
 		$("select").select2();
+		jQuery('#piso').keyup(function () {
+			this.value = this.value.replace(/[^0-9]/g, '');
+		});
+		jQuery('#zona_postal').keyup(function () {
+			this.value = this.value.replace(/[^0-9]/g, '');
+		});
+		jQuery('#capacidad').keyup(function () {
+			this.value = this.value.replace(/[^0-9]/g, '');
+		});
 
 		$("#estado_id").on("change",function(event){
 			event.preventDefault();

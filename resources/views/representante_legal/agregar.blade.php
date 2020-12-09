@@ -92,6 +92,9 @@ Gestion de Representante Legal
 		$("#error").hide();
 		$("select").select2();
 		$("#btn-guardar").prop("disabled",true);
+		jQuery('#documento_identidad').keyup(function () {
+			this.value = this.value.replace(/[^0-9]/g, '');
+		});
 		jQuery('#telefono').keyup(function () {
 			this.value = this.value.replace(/[^0-9]/g, '');
 		});

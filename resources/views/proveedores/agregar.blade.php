@@ -153,6 +153,9 @@ Gestión de Proveedores
 <script type="text/javascript">
 	$('#nacional').hide();
 	$('#extranjero').hide();
+	jQuery('#rif').keyup(function () {
+			this.value = this.value.replace(/[^0-9]/g, '');
+		});
 	$('#datos_proveedor').hide();
 	$('#btn-guardar').hide();
 	$('input[name="tipo_proveedor"]').prop('checked', false);

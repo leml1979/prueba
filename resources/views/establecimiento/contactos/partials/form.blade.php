@@ -12,13 +12,12 @@
 	<div class="col-md-3">
 		{!! Form::label('Telefono', 'Telefono:', array('class' => 'negrita')) !!}
 		<span class="control-obligatorio">*</span>
-		{!! Form::text('telefono',isset($contacto)?$contacto->telefono:null, ["class"=>"form-control","placeholder"=>"02120000000","required"=>"required","maxlength"=>"11"]) !!}
+		{!! Form::text('telefono',isset($contacto)?$contacto->telefono:null, ["class"=>"form-control","placeholder"=>"02120000000","required"=>"required","maxlength"=>"11","id"=>"telefono"]) !!}
 	</div>
 
 	<div class="col-md-3">
 		{!! Form::label('Telefono Celular', 'Telefono Celular:', array('class' => 'negrita')) !!}
-		{!! Form::text('celular',isset($contacto)?$contacto->celular:null, ["class"=>"form-control","placeholder"=>"04160000000","maxlength"=>"11"]) !!}
+		{!! Form::text('celular',isset($contacto)?$contacto->celular:null, ["class"=>"form-control","placeholder"=>"04160000000","maxlength"=>"11","id"=>"celular"]) !!}
 
 	</div>
-	
 </div>
