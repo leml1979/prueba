@@ -61,7 +61,7 @@ Establecimientos
 
 				</div>
 				<div class="row pull-right">
-					<a href="{{url('establecimiento/create')}}" class="btn btn-success" style="margin-top: 10px">
+					<a href="{{url('establecimiento/create')}}" class="btn btn-primary" style="margin-top: 10px">
 					Agregar Establecimiento</a>
 				</div>
 

@@ -31,15 +31,10 @@
     -webkit-border-radius: 5px;  
     box-shadow: black 0.5em 0.5em 0.3em;
   }
-  .btn-success {
+  .btn-primary, .btn-primary:disabled, .btn-primary:hover {
      background-color: #1c80a2;
      border-color: #adcee7;
    }
-   .btn-success:hover {
-    color: #fff;
-    background-color: #276b8f;
-    border-color: #adcee7;
-  }
 </style>
 @yield('css')
 </head>

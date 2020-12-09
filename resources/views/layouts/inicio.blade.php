@@ -26,15 +26,11 @@
       bottom: 0;
       width:80%;
     }
-    .btn-success {
+    .btn-primary .btn-success:hover{
      background-color: #1c80a2;
      border-color: #adcee7;
    }
-   .btn-success:hover {
-    color: #fff;
-    background-color: #276b8f;
-    border-color: #adcee7;
-  }
+
 </style>
 @yield('css')
 </head>

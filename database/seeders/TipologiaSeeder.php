@@ -14,7 +14,7 @@ class TipologiaSeeder extends Seeder
      */
     public function run()
     {
-    	Permission::create(['name'=>'seniat.index']);
+    	/*Permission::create(['name'=>'seniat.index']);
 
     	Permission::create(['name'=>'accionista.index']);
     	Permission::create(['name'=>'accionista.create']);
@@ -24,6 +24,6 @@ class TipologiaSeeder extends Seeder
 
     	Permission::create(['name'=>'adicional.index']);
     	Permission::create(['name'=>'adicional.create']);
-    	Permission::create(['name'=>'adicional.edit']);
+    	Permission::create(['name'=>'adicional.edit']);*/
     }
 }

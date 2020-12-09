@@ -35,7 +35,7 @@
 			<span class="input-group-addon control-obligatorio">*</span>
 		</div>
 		<div class="input-group">
-			{!! Form::text("ciudad",isset($establecimiento)?$establecimiento->ciudad:null,["class"=>"form-control","placeholder"=>"Ciudad", "required"=>"required","id"=>"ciudad_id"])!!}
+			{!! Form::text("ciudad",isset($establecimiento)?$establecimiento->ciudad:null,["class"=>"form-control","placeholder"=>"Ciudad", "required"=>"required","id"=>"ciudad_id","style"=>"text-transform:uppercase"])!!}
 		</div>
 	</div>
 </div>

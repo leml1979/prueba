@@ -1,13 +1,13 @@
-<div class="row">
+<div class="form-group row">
 	<div class="col-md-3">
 		{!! Form::label('Cargo', 'Cargo:', array('class' => 'negrita')) !!}
-		{!! Form::text('cargo',isset($contacto)?$contacto->cargo:null, ["class"=>"form-control","placeholder"=>"Cargo"]) !!}
+		{!! Form::text('cargo',isset($contacto)?$contacto->cargo:null, ["class"=>"form-control","placeholder"=>"Cargo","style"=>"text-transform:uppercase"]) !!}
 
 	</div>
 	<div class="col-md-3">
 		{!! Form::label('Correo', 'Correo:', array('class' => 'negrita')) !!}
 		<span class="control-obligatorio">*</span>
-		{!! Form::text('correo',isset($contacto)?$contacto->correo:null, ["class"=>"form-control","placeholder"=>"Correo","required"=>"required"]) !!}
+		{!! Form::text('correo',isset($contacto)?$contacto->correo:null, ["class"=>"form-control","placeholder"=>"Correo","required"=>"required","style"=>"text-transform:uppercase"]) !!}
 	</div>
 	<div class="col-md-3">
 		{!! Form::label('Telefono', 'Telefono:', array('class' => 'negrita')) !!}

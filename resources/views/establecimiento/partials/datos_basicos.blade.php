@@ -10,7 +10,7 @@
 		<label>Establecimiento</label>
 		<span class="control-obligatorio">*</span>
 		<div class="input-group">
-			{!! Form::text("establecimiento",isset($establecimiento)?$establecimiento->establecimiento:null,["class"=>"form-control", "required"=>"required","placeholder"=>"Establecimiento"])!!}
+			{!! Form::text("establecimiento",isset($establecimiento)?$establecimiento->establecimiento:null,["class"=>"form-control", "required"=>"required","placeholder"=>"Establecimiento","style"=>"text-transform:uppercase"])!!}
 		</div>
 	</div>
 	<div class="col-md-3">
@@ -33,7 +33,7 @@
 		<label>Actividad</label>
 		<span class="control-obligatorio">*</span>
 		<div class="input-group">
-			{!! Form::textarea("actividad",isset($establecimiento)?$establecimiento->actividad:null,["class"=>"form-control",'rows' => 4, 'cols' => 54, "required"=>"required"])!!}
+			{!! Form::textarea("actividad",isset($establecimiento)?$establecimiento->actividad:null,["class"=>"form-control",'rows' => 4, 'cols' => 54, "required"=>"required","style"=>"text-transform:uppercase"])!!}
 		</div>
 	</div>
 </div>

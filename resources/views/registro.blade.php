@@ -25,7 +25,7 @@
 
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <input id="rif" type="text" class="form-control @error('rif') is-invalid @enderror" name="rif" value="{{ old('rif') }}" required autocomplete="rif" autofocus placeholder="RIF" maxlength="10" style='text-transform:uppercase;' pattern="[JGVEP]{1}[0-9]{9}" title="Debe contener el formato valido para un RIF. ej. J0000000001">
+                                <input id="rif" type="text" class="form-control @error('rif') is-invalid @enderror" name="rif" value="{{ old('rif') }}" required autocomplete="rif" autofocus placeholder="RIF" maxlength="10" style='text-transform:uppercase;' pattern="[JGVEPN]{1}[0-9]{9}" title="Debe contener el formato valido para un RIF. ej. J0000000001">
                                 @error('rif')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

@@ -46,7 +46,7 @@
 						</div>
 						<div class="form-group row mb-0">
 							<div class="col-md-12 offset-md-0">
-								<button type="submit" class="btn btn-info btn-lg btn-block">
+								<button type="submit" class="btn btn-primary btn-lg btn-block">
 									{{ __('Guardar datos') }}
 								</button>
 							</div>

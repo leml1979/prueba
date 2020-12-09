@@ -17,7 +17,7 @@
 		<label>Nombre</label>
 		<span class="control-obligatorio">*</span>
 		<div class="input-group">
-			{!! Form::text("nombre_inmueble",isset($establecimiento)?$establecimiento->nombre_inmueble:null,["class"=>"form-control","required"=>"required","placeholder"=>"Nombre del Inmueble"])!!}
+			{!! Form::text("nombre_inmueble",isset($establecimiento)?$establecimiento->nombre_inmueble:null,["class"=>"form-control","required"=>"required","placeholder"=>"Nombre del Inmueble","style"=>"text-transform:uppercase"])!!}
 		</div>
 	</div>
 	<div class="col-md-3">
@@ -33,7 +33,7 @@
 		<label>Apartamento/Local/Oficina</label>
 		<span class="control-obligatorio">*</span>
 		<div class="input-group">
-			{!! Form::text("apartamento",isset($establecimiento)?$establecimiento->apartamento_oficina:null,["class"=>"form-control","required"=>"required","placeholder"=>"Apartamento/Local/Oficina"])!!}
+			{!! Form::text("apartamento",isset($establecimiento)?$establecimiento->apartamento_oficina:null,["class"=>"form-control","required"=>"required","placeholder"=>"Apartamento/Local/Oficina","style"=>"text-transform:uppercase"])!!}
 		</div>
 	</div>
 	<div class="col-md-3">
@@ -45,7 +45,7 @@
 	<div class="col-md-3">
 		<label>Nivel</label>
 		<div class="input-group">
-			{!! Form::text("nivel",isset($establecimiento)?$establecimiento->nivel:null,["class"=>"form-control","placeholder"=>"Nivel"])!!}
+			{!! Form::text("nivel",isset($establecimiento)?$establecimiento->nivel:null,["class"=>"form-control","placeholder"=>"Nivel","style"=>"text-transform:uppercase"])!!}
 		</div>
 	</div>
 </div>

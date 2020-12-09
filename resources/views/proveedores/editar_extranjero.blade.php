@@ -48,7 +48,7 @@ Gestión de Proveedores
 				@include("proveedores.partials.form")
 			</div>
 			<div class="row">
-				<button type="submit" class="btn btn-success" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
+				<button type="submit" class="btn btn-primary" id="btn-guardar"><span class="fa fa-save"></span>Guardar</button>
 				<a href="{{url('proveedores')}}" class="btn btn-warning">Regresar</a>
 			</div>
 

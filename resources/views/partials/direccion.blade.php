@@ -14,7 +14,7 @@
 			<span class="input-group-addon control-obligatorio">*</span>
 		</div>
 		<div class="input-group">
-			{!! Form::text("avenida",isset($sujeto)?$sujeto->avenida:null,["class"=>"form-control","required"=>"required"])!!}
+			{!! Form::text("avenida",isset($sujeto)?$sujeto->avenida:null,["class"=>"form-control","required"=>"required","style"=>"text-transform:uppercase"])!!}
 		</div>
 	</div>
 </div>
@@ -25,7 +25,7 @@
 			<span class="input-group-addon control-obligatorio">*</span>
 		</div>
 		<div class="input-group">
-			{!! Form::text("urbanizacion",isset($sujeto)?$sujeto->urbanizacion_barrio:null,["class"=>"form-control","required"=>"required"])!!}
+			{!! Form::text("urbanizacion",isset($sujeto)?$sujeto->urbanizacion_barrio:null,["class"=>"form-control","required"=>"required","style"=>"text-transform:uppercase"])!!}
 		</div>
 	</div>
 </div>
@@ -37,7 +37,7 @@
 			<span class="input-group-addon control-obligatorio">*</span>
 		</div>
 		<div class="input-group">
-			{!! Form::text("punto_referencia",isset($sujeto)?$sujeto->punto_referencia:null,["class"=>"form-control","required"=>"required"])!!}
+			{!! Form::text("punto_referencia",isset($sujeto)?$sujeto->punto_referencia:null,["class"=>"form-control","required"=>"required","style"=>"text-transform:uppercase"])!!}
 		</div>
 	</div>
 </div>

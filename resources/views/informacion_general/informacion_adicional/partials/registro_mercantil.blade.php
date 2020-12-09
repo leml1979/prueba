@@ -10,7 +10,7 @@
 				<span class="input-group-addon control-obligatorio">*</span>
 			</div>
 			<div class="input-group">
-				{!! Form::text("numero_expediente",isset($sujeto)?$sujeto->numero_registro:null,["class"=>"form-control","placeholder"=>"Expediente", "id"=>"numero_expediente"])!!}
+				{!! Form::text("numero_expediente",isset($sujeto)?$sujeto->numero_registro:null,["class"=>"form-control","placeholder"=>"Expediente", "id"=>"numero_expediente","style"=>"text-transform:uppercase"])!!}
 			</div>
 		</div>
 		<div class="col-md-3">
@@ -28,7 +28,7 @@
 				<span class="input-group-addon control-obligatorio">*</span>
 			</div>
 			<div class="input-group">
-				{!! Form::text("tomo",isset($sujeto)?$sujeto->tomo:null,["class"=>"form-control","placeholder"=>"Tomo", "id"=>"tomo"])!!}
+				{!! Form::text("tomo",isset($sujeto)?$sujeto->tomo:null,["class"=>"form-control","placeholder"=>"Tomo", "id"=>"tomo","style"=>"text-transform:uppercase"])!!}
 			</div>
 		</div>
 		<div class="col-md-3">
@@ -37,7 +37,7 @@
 				<span class="input-group-addon control-obligatorio">*</span>
 			</div>
 			<div class="input-group">
-				{!! Form::text("folio",isset($sujeto)?$sujeto->folio:null,["class"=>"form-control","placeholder"=>"Folio", "id"=>"folio"])!!}
+				{!! Form::text("folio",isset($sujeto)?$sujeto->folio:null,["class"=>"form-control","placeholder"=>"Folio", "id"=>"folio","style"=>"text-transform:uppercase"])!!}
 			</div>
 		</div>
 	</div>
@@ -48,7 +48,7 @@
 				<span class="input-group-addon control-obligatorio">*</span>
 			</div>
 			<div class="input-group">
-				{!! Form::text("nombre_comercial",isset($sujeto)?$sujeto->nombre_comercial:null,["class"=>"form-control","placeholder"=>"Nombre Comercial"])!!}
+				{!! Form::text("nombre_comercial",isset($sujeto)?$sujeto->nombre_comercial:null,["class"=>"form-control","placeholder"=>"Nombre Comercial","style"=>"text-transform:uppercase"])!!}
 			</div>
 		</div>
 		
@@ -94,7 +94,7 @@
 				<div class="form-group">
 					<label>Explicación del Estatus</label>
 					<span class="control-obligatorio">*</span>
-					{!! Form::textarea("explicacion_estatus",isset($sujeto)?$sujeto->explicacion_estatus:null,["class"=>"form-control","placeholder"=>"Explicacion","rows"=>4, "id"=>"explicacion_estatus"])!!}
+					{!! Form::textarea("explicacion_estatus",isset($sujeto)?$sujeto->explicacion_estatus:null,["class"=>"form-control","placeholder"=>"Explicacion","rows"=>4, "id"=>"explicacion_estatus","style"=>"text-transform:uppercase"])!!}
 				</div>
 			</div>
 		</div>

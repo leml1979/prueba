@@ -58,7 +58,7 @@
 
                     <div class="form-group row mb-0">
                         <div class="col-md-12 offset-md-0">
-                            <button type="submit" class="btn btn-success">
+                            <button type="submit" class="btn btn-primary">
                                 {{ __('Send Password Reset Link') }}
                             </button>
                         </div>

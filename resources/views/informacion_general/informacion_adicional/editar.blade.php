@@ -119,7 +119,7 @@ Información Adicional
 									<label>Sitio de Internet</label>
 								</div>
 								<div class="input-group">
-									{!! Form::text("sitio_internet",isset($sujeto)?$sujeto->pagina_web:null,["class"=>"form-control","placeholder"=>"Página WEB"])!!}
+									{!! Form::text("sitio_internet",isset($sujeto)?$sujeto->pagina_web:null,["class"=>"form-control","placeholder"=>"Página WEB","style"=>"text-transform:uppercase"])!!}
 								</div>
 							</div>
 						</div>

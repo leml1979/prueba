@@ -28,56 +28,64 @@ Contactos Agregar
 @section('content')
 @include('partials.errores')
 <div class="alert alert-danger col-md-4" id="error"></div>
-<div class="info-box">
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-12">
+			<div class="card bg-white">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="float-right text-danger"><span>*</span>Campos Obligatorios</div>
 
-	<div class="info-box-content">
-		<div class="content">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="float-right text-danger"><span>*</span>Campos Obligatorios</div>
+						</div>
+					</div>
 
+					{!! Form::open(['route' => 'establecimiento-contacto.store', 'method' => 'post','id'=>'establecimiento-contacto-form']) !!}
+
+					@csrf
+					<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:1.5em">
+						<span class="fa fa-search"></span>Consulta de Cédula 
+
+					</div>
+					<hr />
+
+					<div class="input-group col-md-6">
+
+						{!! Form::select('tipo',["V"=>"V","E"=>"E"],null, ["class"=>"form-control col-md-3","placeholder"=>"Seleccione....","required"=>"required","id"=>"tipo"]) !!}
+
+						{!! Form::text('documento_identidad',null, ["class"=>"form-control","placeholder"=>"Buscar Persona","required"=>"required","id"=>"documento_identidad", "maxlength"=>"10"]) !!}
+						<span class="input-group-btn">
+							<a class="btn btn-primary" href="" id="buscar"><span class="fa fa-search"></span>buscar
+							</a>
+						</span>
+					</div>
+					<div class="row" style="margin-top: 3%" id="datos"></div>
 				</div>
 			</div>
-
-			{!! Form::open(['route' => 'establecimiento-contacto.store', 'method' => 'post','id'=>'establecimiento-contacto-form']) !!}
-
-			@csrf
-			<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:1.5em">
-				<span class="fa fa-search"></span>Consulta de Cédula 
-
-			</div>
-			<hr />
-
-			<div class="input-group col-md-6">
-
-				{!! Form::select('tipo',["V"=>"V","E"=>"E"],null, ["class"=>"form-control col-md-3","placeholder"=>"Seleccione....","required"=>"required","id"=>"tipo"]) !!}
-
-				{!! Form::text('documento_identidad',null, ["class"=>"form-control","placeholder"=>"Buscar Persona","required"=>"required","id"=>"documento_identidad", "maxlength"=>"10"]) !!}
-				<span class="input-group-btn">
-					<a class="btn btn-primary" href="" id="buscar"><span class="fa fa-search"></span>buscar
-					</a>
-				</span>
-			</div>
-			<div class="row" style="margin-top: 3%" id="datos"></div>
 		</div>
 	</div>
 </div>
 
-<div class="info-box">
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-12">
+			<div class="card bg-white">
+				<div class="card-body">
+					<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:1.5em">
+						<span class="fa fa-pencil-alt"></span>Datos Adicionales
+					</div>
+					<hr />
+					@include('establecimiento.contactos.partials.form')
+					<div class="input-group col-md-6" style="margin-top: 10px;">
 
-	<div class="info-box-content">
-		<div class="content">
-			<div class="row" style="margin-bottom: 2%;margin-top: 5%; font-size:1.5em">
-				<span class="fa fa-pencil-alt"></span>Datos Adicionales
-
+						<button type="submit" class="btn btn-primary" id="btn-guardar" style="margin-right: 5px"><span class="fa fa-save"></span>Guardar</button>
+						<a href="{{url('/establecimiento/'.$id.'/contacto')}}" class="btn btn-warning">Regresar</a>
+					</div>
+					<input type='hidden' name='seniatsaime' value='' id="seniatsaime">
+					<input type='hidden' name='establecimiento_id' value='{!! $id !!}' id="establecimiento_id">
+					{!! Form::close() !!}
+				</div>
 			</div>
-			<hr />
-			@include('establecimiento.contactos.partials.form')
-			<button type="submit" class="btn btn-success" id="btn-guardar" style="margin-top: 10px; margin-right: 5px"><span class="fa fa-save"></span>Guardar</button>
-			<a href="{{url('/establecimiento/'.$id.'/contacto')}}" class="btn btn-warning">Regresar</a>
-			<input type='hidden' name='seniatsaime' value='' id="seniatsaime">
-			<input type='hidden' name='establecimiento_id' value='{!! $id !!}' id="establecimiento_id">
-			{!! Form::close() !!}
 		</div>
 	</div>
 </div>

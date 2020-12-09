@@ -52,7 +52,7 @@
 				<span class="input-group-addon control-obligatorio">*</span>
 			</div>
 			<div class="input-group">
-				{!! Form::textarea("descripcion",isset($sujeto)?$sujeto->descripcion_actividad:null,["class"=>"form-control","placeholder"=>"Descripcion","rows"=>4,"required"=>"required"])!!}
+				{!! Form::textarea("descripcion",isset($sujeto)?$sujeto->descripcion_actividad:null,["class"=>"form-control","placeholder"=>"Descripcion","rows"=>4,"required"=>"required","style"=>"text-transform:uppercase"])!!}
 			</div>
 		</div>
 	</div>
