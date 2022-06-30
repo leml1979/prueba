@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header text-center"><h4>Pasos para su registro en el sistema</h4></div>
+                <div class="card-header text-center"><h4>bienvenidos</h4></div>
 
                 <div class="card-body">
-                    <ul>
+                    <!--<ul>
                         <li>Información General
                             <ul>
                                 <li>Confirme la Información presentada del Seniat.</li>
@@ -37,6 +37,7 @@
                         <li></li>
                     </ul>
 
+                    -->
                     
                 </div>
             </div>

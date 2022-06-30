@@ -41,32 +41,34 @@
                                 @enderror
                             </div>
                             <div class="form-group{{ $errors->has('CaptchaCode') ? ' has-error' : '' }}">
-                              <label class="col-md-4 control-label"></label>
+                                <label class="col-md-4 control-label"></label>
 
-                              <div class="col-md-12">
-                                {!! captcha_image_html('ResetPasswordCaptcha') !!}
-                                <input type="text" class="form-control" name="CaptchaCode" id="CaptchaCode">
+                                <div class="col-md-12">
+                                    <div class="img-responsive">
+                                        {!! captcha_image_html('RegisterCaptcha') !!}
+                                    </div>
+                                    <input type="text" class="form-control" name="CaptchaCode" id="CaptchaCode">
 
-                                @if ($errors->has('CaptchaCode'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('CaptchaCode') }}</strong>
-                                </span>
-                                @endif
+                                    @if ($errors->has('CaptchaCode'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('CaptchaCode') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="form-group row mb-0">
-                        <div class="col-md-12 offset-md-0">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Send Password Reset Link') }}
-                            </button>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-12 offset-md-0">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Send Password Reset Link') }}
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 @endsection

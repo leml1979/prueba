@@ -28,6 +28,15 @@ class PermissionTableSeeder extends Seeder
      Permission::create(['name'=>'adicional.index']);
      Permission::create(['name'=>'adicional.create']);
      Permission::create(['name'=>'adicional.edit']);
+     Permission::create(['name'=>'adicional.registroMercantil']);
+     Permission::create(['name'=>'adicional.registroMercantilCreate']);
+     Permission::create(['name'=>'adicional.registroMercantilEdit']);
+     Permission::create(['name'=>'adicional.clasificacion']);
+     Permission::create(['name'=>'adicional.clasificacionCreate']);
+     Permission::create(['name'=>'adicional.clasificacionEdit']);
+     Permission::create(['name'=>'adicional.direccion']);
+     Permission::create(['name'=>'adicional.direccionCreate']);
+     Permission::create(['name'=>'adicional.direccionEdit']);
 
 
      Permission::create(['name'=>'representante.index']);
@@ -57,6 +66,16 @@ class PermissionTableSeeder extends Seeder
      Permission::create(['name'=>'certificado.certificarEstablecimiento']);
      Permission::create(['name'=>'certificado.certificarSujeto']);
 
+     Permission::create(['name'=>'cartera_cliente.index']);
+     Permission::create(['name'=>'cartera_cliente.create']);
+     Permission::create(['name'=>'cartera_cliente.edit']);
+     Permission::create(['name'=>'cartera_cliente.eliminar']);
+     Permission::create(['name'=>'cartera_cliente.buscar']);
+
+     Permission::create(['name'=>'registro_mercantil.index']);
+     Permission::create(['name'=>'registro_mercantil.create']);
+     Permission::create(['name'=>'registro_mercantil.edit']);
+
 
 
 
@@ -66,41 +85,51 @@ class PermissionTableSeeder extends Seeder
      $admin->givePermissionTo([
       'seniat.index',
 
-       'accionista.index',
-       'accionista.edit',
-       'accionista.create',
-       'accionista.eliminar',
-       'accionista.buscar',
+      'accionista.index',
+      'accionista.edit',
+      'accionista.create',
+      'accionista.eliminar',
+      'accionista.buscar',
 
-       'adicional.index',
-       'adicional.edit',
-       'adicional.create',
+      'adicional.index',
+      'adicional.edit',
+      'adicional.create',
 
-       'representante.index',
-       'representante.edit',
-       'representante.create',
-       'representante.eliminar',
-       
-       'establecimiento.index',
-       'establecimiento.edit',
-       'establecimiento.create',
-       'establecimiento.eliminar',
+      'representante.index',
+      'representante.edit',
+      'representante.create',
+      'representante.eliminar',
 
-       'contacto.index',
-       'contacto.edit',
-       'contacto.create',
-       'contacto.eliminar',
+      'establecimiento.index',
+      'establecimiento.edit',
+      'establecimiento.create',
+      'establecimiento.eliminar',
 
-       'proveedores.index',
-       'proveedores.edit',
-       'proveedores.create',
-       'proveedores.destroy',
+      'contacto.index',
+      'contacto.edit',
+      'contacto.create',
+      'contacto.eliminar',
 
-       'certificado.index',
-       'certificado.pdf',
-       'certificado.pdfEstablecimiento',
-       'certificado.certificarEstablecimiento',
-       'certificado.certificarSujeto',
+      'proveedores.index',
+      'proveedores.edit',
+      'proveedores.create',
+      'proveedores.destroy',
+
+      'certificado.index',
+      'certificado.pdf',
+      'certificado.pdfEstablecimiento',
+      'certificado.certificarEstablecimiento',
+      'certificado.certificarSujeto',
+
+      'cartera_cliente.index',
+      'cartera_cliente.edit',
+      'cartera_cliente.create',
+      'cartera_cliente.eliminar',
+      'cartera_cliente.buscar',
+
+      'registro_mercantil.index',
+      'registro_mercantil.create',
+      'registro_mercantil.edit',
     ]);
 
 //juridico
@@ -108,7 +137,7 @@ class PermissionTableSeeder extends Seeder
      $natural = Role::create(['name' => 'natural']);
 
      $guest->givePermissionTo([
-       'seniat.index',
+       //'seniat.index',
 
        'accionista.index',
        'accionista.edit',
@@ -116,9 +145,18 @@ class PermissionTableSeeder extends Seeder
        'accionista.eliminar',
        'accionista.buscar',
 
-       'adicional.index',
-       'adicional.edit',
-       'adicional.create',
+     //  'adicional.index',
+      // 'adicional.edit',
+       //'adicional.create',
+       'adicional.registroMercantil',
+       'adicional.registroMercantilCreate',
+       'adicional.registroMercantilEdit',
+       'adicional.clasificacion',
+       'adicional.direccion',
+       'adicional.clasificacionCreate',
+       'adicional.clasificacionEdit',
+       'adicional.direccionCreate',
+       'adicional.direccionEdit',
 
        'representante.index',
        'representante.edit',
@@ -130,37 +168,54 @@ class PermissionTableSeeder extends Seeder
        'establecimiento.create',
        'establecimiento.eliminar',
 
-       'contacto.index',
+       /* 'contacto.index',
        'contacto.edit',
        'contacto.create',
        'contacto.eliminar',
 
-       'proveedores.index',
+      'proveedores.index',
        'proveedores.edit',
        'proveedores.create',
-       'proveedores.destroy',
+       'proveedores.destroy',*/
 
        'certificado.index',
        'certificado.pdf',
        'certificado.pdfEstablecimiento',
        'certificado.certificarEstablecimiento',
        'certificado.certificarSujeto',
+
+       /*'cartera_cliente.index',
+       'cartera_cliente.edit',
+       'cartera_cliente.create',
+       'cartera_cliente.eliminar',
+       'cartera_cliente.buscar',*/
+
      ]);
 
 
      $natural->givePermissionTo([
-       'seniat.index',
+       //'seniat.index',
        
-       'adicional.index',
-       'adicional.edit',
-       'adicional.create',
+       //'adicional.index',
+       //'adicional.edit',
+       //'adicional.create',
+       'adicional.registroMercantil',
+       'adicional.registroMercantilCreate',
+       'adicional.registroMercantilEdit',
+       'adicional.clasificacion',
+       'adicional.direccion',
+       'adicional.clasificacionCreate',
+       'adicional.clasificacionEdit',
+       'adicional.direccionCreate',
+       'adicional.direccionEdit',
+
        
        'establecimiento.index',
        'establecimiento.edit',
        'establecimiento.create',
        'establecimiento.eliminar',
 
-       'contacto.index',
+      /* 'contacto.index',
        'contacto.edit',
        'contacto.create',
        'contacto.eliminar',
@@ -168,13 +223,14 @@ class PermissionTableSeeder extends Seeder
        'proveedores.index',
        'proveedores.edit',
        'proveedores.create',
-       'proveedores.destroy',
+       'proveedores.destroy',*/
 
        'certificado.index',
        'certificado.pdf',
        'certificado.pdfEstablecimiento',
        'certificado.certificarEstablecimiento',
        'certificado.certificarSujeto',
+
      ]);
      $user = User::find(1);
      $user->assignRole('natural');

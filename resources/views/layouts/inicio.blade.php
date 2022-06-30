@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>RUPDAE</title>
+  <title>PRUEBA</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
@@ -26,7 +26,7 @@
       bottom: 0;
       width:80%;
     }
-    .btn-primary .btn-success:hover{
+    .btn-primary .btn-primary:hover{
      background-color: #1c80a2;
      border-color: #adcee7;
    }
@@ -81,10 +81,10 @@
               </a>
             </div>-->
             <div class="row text-center">
-              <h1>RUPDAE</h1>
+              <h1>PRUEBA</h1>
             </div>
             <div class="row">
-              <h4>Registro Único de Personas que Desarrollan Actividades Económicas</h4>
+              <h4></h4>
             </div>
             <div class="row">
               <img src="{{asset('img/rupdae2.png')}}" class="img img-responsive img-circle" style="margin-top:5px; width: 80%; height: 80%"  > 
@@ -104,10 +104,10 @@
 
   <!-- Main Footer -->
   <footer class="main-footer text-size-2">
-    <strong>Copyright &copy; 2020 Superintendencia Nacional para la Defensa de los Derechos Socioecónomicos. G-20010920-3. <a href="http://www.sundee.gob.ve">SUNDEE</a>.</strong>
+    <strong>Copyright &copy; 2022 <a href="">LEML1979</a>.</strong>
     Tdos los derechos reservados.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 2.0
+      <b>Version</b> 1.0
     </div>
   </footer>
 </div>

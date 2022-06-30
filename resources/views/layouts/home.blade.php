@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>RUPDAE</title>
+  <title>PRUEBA</title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
@@ -57,9 +57,9 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="{{url('home')}}" class="brand-link">
-        <img src="{{asset('img/logoRupdae.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+        <img src="{{asset('img/logoRupdae.png2')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
         style="opacity: .8">
-        <span class="brand-text font-weight-light">RUPDAE</span>
+        <span class="brand-text font-weight-light">PRUEBA</span>
       </a>
 
       <!-- Sidebar -->
@@ -105,7 +105,7 @@
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-      @if(Auth::user()->declaracion_jurada && Auth::user()->respuesta_declaracion_jurada==='ESTOY DE ACUERDO')
+      
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
           <a href="#" class="nav-link">
@@ -116,75 +116,37 @@
             <i class="fas fa-angle-left right"></i>
           </a>
           <ul class="nav nav-treeview">
-            @can('seniat.index')
+            
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('seniat') }}">
-                {{ __('Información SENIAT') }}
+              <a class="nav-link" href="{{ url('categorias') }}">
+                {{ __('CATEGORIAS') }}
               </a>
             </li>
-            @endcan
-            @can('accionista.index')
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('productos') }}">
+                {{ __('PRODUCTOS') }}
+              </a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('precios') }}">
+                {{ __('PRECIOS') }}
+              </a>
+            </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('accionista') }}">
-                {{ __('Accionistas') }}
+              <a class="nav-link" href="{{ url('inventario') }}">
+                {{ __('INVENTARIO') }}
               </a>
             </li>
-            @endcan
-            @can('adicional.index')
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('adicional') }}">
-                {{ __('Información Adicional') }}
+              <a class="nav-link" href="{{ url('inventario/api') }}">
+                {{ __('API') }}
               </a>
             </li>
-            @endcan
           </ul>
         </li>
-
-        @can('establecimiento.index')
-        <li class="nav-item">
-          <a href="{{route('establecimiento.index')}}" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
-            <p>
-              ESTABLECIMIENTO
-            </p>
-          </a>
-        </li>
-        @endcan
-        @can('representante.index')
-        <li class="nav-item">
-          <a href="{{route('representante.index')}}" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
-            <p>
-              REPRESENTANTE LEGAL
-            </p>
-          </a>
-        </li>
-
-        @endcan
-        @can('proveedores.index')
-        <li class="nav-item">
-          <a href="{{route('proveedores.index')}}" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
-            <p>
-              PROVEEDORES
-            </p>
-          </a>
-        </li>
-
-        @endcan
-        @can('certificado.index')
-        <li class="nav-item">
-          <a href="{{route('certificados.index')}}" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
-            <p>
-              CERTIFICADOS
-            </p>
-          </a>
-        </li>
-        @endcan
       </ul>
-      @endif
     </nav>
     <!-- /.sidebar-menu -->
   </div>
@@ -238,10 +200,10 @@
 
 <!-- Main Footer -->
 <footer class="main-footer">
-  <strong>Copyright &copy; 2020<a href="http://www.sundee.gob.ve">SUNDEE</a>.</strong>
-  Tdos los derechos reservados.
+  <strong>Copyright &copy; 2020<a href="http://www.sundee.gob.ve">LEML1979</a>.</strong>
+  Todos los derechos reservados.
   <div class="float-right d-none d-sm-inline-block">
-    <b>Version</b> 2.0
+    <b>Version</b> 1.0
   </div>
 </footer>
 </div>

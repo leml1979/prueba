@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('seniat_id');
             $table->timestamps();
             
-            $table->foreign('seniat_id')->references('id')->on('e_seniats')->onDelete('NO ACTION');
+            //$table->foreign('seniat_id')->references('id')->on('e_seniats')->onDelete('NO ACTION');
             
         });
     }

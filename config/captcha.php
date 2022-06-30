@@ -57,6 +57,10 @@ return [
         'UserInputID' => 'CaptchaCode',
         'CodeLength' => CaptchaRandomization::GetRandomCodeLength(4, 7),
         'CodeStyle' => CodeStyle::Alphanumeric,
+        "SoundEnabled" =>false,
+        "AdditionalCssClasses"=>"img img-responsive",
+        "ImageWidth"=> 180,
+        "ImageHeight"=> 50
     ],
 
     /*
@@ -69,6 +73,10 @@ return [
         'CodeLength' => 6,
         'CustomLightColor' => '#9966FF',
         'CodeStyle' => CodeStyle::Alphanumeric,
+        "SoundEnabled" =>false,
+        "AdditionalCssClasses"=>"img img-responsive",
+        "ImageWidth"=> 180,
+        "ImageHeight"=> 50
     ],
 
     // Add more your Captcha configuration here...
