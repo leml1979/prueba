@@ -49,11 +49,12 @@ class InventarioController extends Controller
         $apiURL = 'https://petroapp-price.petro.gob.ve/price/';
         // POST Data
         $postInput = [
-            'coins' => 'BTC',
+            'coins' => ["PTR"],
+            'fiats' => ["BS"]
         ];
         // Headers
         $headers = [
-            'Content-Type'=> 'application/json'
+            'Content-Type'=> 'application/x-www-form-urlencoded'
         ];
         $client = new \GuzzleHttp\Client();
         $response = $client->request('POST', $apiURL, ['form_params' => $postInput, 'headers' => $headers]);

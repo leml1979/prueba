@@ -52,3 +52,34 @@ Inventario
 	</div>
 </div>
 @endsection
+@section('js')
+ <script type="text/javascript">
+
+$(document).ready(function(){
+
+let route = 'https://petroapp-price.petro.gob.ve/price'
+                $.ajax({
+                        url: route,
+                        type: "POST",
+                        contentType: "application/x-www-form-urlencoded",
+                        dataType: 'json',
+                        timeout: 2000,
+                        data: {
+                                'coins': ["PTR"],
+                                'fiats': ["BS"],
+},
+                        success: function (data) {
+                        alert(data["data"]["PTR"]["BS"]);
+                        //$("#valorPetro").val(data["data"]["PTR"]["BS"]);
+                        },
+                               error: function(error) {
+ 				alert(error.status);
+                        }
+                });
+        });
+
+ 
+       </script>                         
+
+
+@endsection
